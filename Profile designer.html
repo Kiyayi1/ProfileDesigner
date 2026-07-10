@@ -1001,44 +1001,45 @@
         .bg-upload-row button.clear-bg:hover {
             background: #fee2e2;
         }
-/* ── SECTION DIVIDERS ── */
-.section-divider {
-    height: 2px;
-    background: linear-gradient(to right, #4f46e5, #8b5cf6, #a78bfa);
-    margin: 8px 0 10px 0;
-    border: none;
-    border-radius: 2px;
-    opacity: 0.6;
-}
 
-.property-panel .prop-group:first-child .section-divider {
-    display: none;
-}
+        /* ── SECTION DIVIDERS ── */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #4f46e5, #8b5cf6, #a78bfa);
+            margin: 8px 0 10px 0;
+            border: none;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
 
-.prop-group .section-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 10px;
-    color: #1e293b;
-    margin-bottom: 6px;
-    padding: 2px 0;
-    border-bottom: 1px solid #e9edf2;
-    padding-bottom: 4px;
-}
+        .property-panel .prop-group:first-child .section-divider {
+            display: none;
+        }
 
-.prop-group .section-header .section-icon {
-    font-size: 14px;
-}
+        .prop-group .section-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 10px;
+            color: #1e293b;
+            margin-bottom: 6px;
+            padding: 2px 0;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 4px;
+        }
 
-.prop-group .section-header .section-title {
-    font-weight: 700;
-    font-size: 10px;
-    color: #1e293b;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
+        .prop-group .section-header .section-icon {
+            font-size: 14px;
+        }
+
+        .prop-group .section-header .section-title {
+            font-weight: 700;
+            font-size: 10px;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
 
 
 
@@ -2324,6 +2325,8 @@
             toggle() { this.popup.style.display === 'block' ? this.close() : this.open(); }
             open() {
                 this.popup.style.display = 'block';
+                // Add this line to ensure the popup is visible
+                this.popup.classList.add('open');
                 const rect = this.trigger.getBoundingClientRect();
                 const popupRect = this.popup.getBoundingClientRect();
                 let left = rect.left, top = rect.bottom + 6;
@@ -2333,12 +2336,14 @@
                 this.popup.style.left = left + 'px';
                 this.popup.style.top = top + 'px';
                 this.popup.style.position = 'fixed';
-                this.popup.classList.add('open');
                 this.drawWheel();
             }
-            close() { this.popup.style.display = 'none'; this.onClose(); }
-            getColor() { return this.color; }
-        }
+
+            close() {
+                this.popup.style.display = 'none';
+                this.popup.classList.remove('open');
+                this.onClose();
+            }
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         //  STATE
@@ -4180,345 +4185,246 @@
             </div>
         </div>
         `;
-            } else {
-                // ── ELEMENT PROPERTIES ── (your existing HTML building code)
-                const el = selected;
-                const tag = el.tag;
-                const isText = isTextTag(tag);
 
-                // In renderProperties, update the section headers with dividers and clear labels:
+                attachFrameListeners();
+                attachFrameRadiusListeners();
+                updatePropertyValues();
+                return;
+            }
 
-                // ── TAG ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">🏷️ Tag</label>
-    <input value="${tag}" disabled style="background:#f1f4f9;font-size:9px;" />
-</div>`;
+            // ── ELEMENT PROPERTIES ──
+            const el = selected;
+            const tag = el.tag;
+            const isText = isTextTag(tag);
 
-                // ── CONTENT ──
-                if (isText && tag !== 'ul' && tag !== 'ol') {
-                    html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">📝 Content</label>
-    <textarea id="propContent" rows="3" style="min-height:40px;">${escapeHtml(el.content || '')}</textarea>
-</div>`;
-                }
+            // 1. TAG
+            html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🏷️</span>
+            <span class="section-title">Tag</span>
+        </div>
+        <input value="${tag}" disabled style="background:#f1f4f9;font-size:9px;width:100%;padding:2px 5px;border:1px solid #dce1e8;border-radius:3px;" />
+    </div>`;
 
-                // ── TYPOGRAPHY ──
-                if (isText) {
-                    html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">🔤 Typography</label>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
-        <div style="grid-column:span 2;">
-            <label style="font-size:8px;font-weight:600;color:#475569;">Font Family</label>
-            <select id="propFontFamily" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                ${FONT_FAMILIES.map(f => `<option value="${f.value}" ${f.value === (el.fontFamily || frame.fontFamily) ? 'selected' : ''}>${f.label}</option>`).join('')}
-            </select>
-        </div>
-        <div style="grid-column:span 2;">
-            <label style="font-size:8px;font-weight:600;color:#475569;">Font Size</label>
-            <div class="input-slider-group" style="margin-bottom:0;">
-                <input type="number" id="propFontSize" value="${parseInt(el.fontSize) || 13}" min="6" max="72" step="1" style="width:50px;flex-shrink:0;" />
-                <input type="range" id="propFontSizeRange" min="6" max="72" step="1" value="${parseInt(el.fontSize) || 13}" style="flex:1;" />
-                <span class="range-value" id="fontSizeVal">${parseInt(el.fontSize) || 13}px</span>
-            </div>
-        </div>
-        <div>
-            <label style="font-size:8px;font-weight:600;color:#475569;">Weight</label>
-            <select id="propFontWeight" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                <option value="normal" ${el.fontWeight === 'normal' ? 'selected' : ''}>Normal</option>
-                <option value="300" ${el.fontWeight === '300' ? 'selected' : ''}>Light</option>
-                <option value="400" ${el.fontWeight === '400' ? 'selected' : ''}>Regular</option>
-                <option value="600" ${el.fontWeight === '600' ? 'selected' : ''}>Semi-bold</option>
-                <option value="700" ${el.fontWeight === '700' ? 'selected' : ''}>Bold</option>
-                <option value="800" ${el.fontWeight === '800' ? 'selected' : ''}>Extra-bold</option>
-            </select>
-        </div>
-        <div>
-            <label style="font-size:8px;font-weight:600;color:#475569;">Style</label>
-            <select id="propFontStyle" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                <option value="normal" ${el.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
-                <option value="italic" ${el.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
-            </select>
-        </div>
-        <div style="grid-column:span 2;">
-            <label style="font-size:8px;font-weight:600;color:#475569;">Text Color</label>
-            <div class="color-picker-trigger" id="propTextColorTrigger">
-                <div class="cp-swatch" style="background:${el.color || frame.color};"></div>
-                <span class="cp-label">${el.color || frame.color}</span><span class="cp-arrow">▾</span>
-            </div>
-        </div>
-        <div>
-            <label style="font-size:8px;font-weight:600;color:#475569;">Decoration</label>
-            <select id="propTextDecor" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                <option value="none" ${el.textDecoration === 'none' ? 'selected' : ''}>None</option>
-                <option value="underline" ${el.textDecoration === 'underline' ? 'selected' : ''}>Underline</option>
-                <option value="line-through" ${el.textDecoration === 'line-through' ? 'selected' : ''}>Strikethrough</option>
-            </select>
-        </div>
-        <div>
-            <label style="font-size:8px;font-weight:600;color:#475569;">H. Align</label>
-            <select id="propTextAlign" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                ${TEXT_ALIGN.map(a => `<option value="${a}" ${a === (el.textAlign || 'center') ? 'selected' : ''}>${a}</option>`).join('')}
-            </select>
-        </div>
-        <div>
-            <label style="font-size:8px;font-weight:600;color:#475569;">V. Align</label>
-            <select id="propVerticalAlign" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                <option value="flex-start" ${el.verticalAlign === 'flex-start' ? 'selected' : ''}>Top</option>
-                <option value="center" ${el.verticalAlign === 'center' ? 'selected' : ''}>Middle</option>
-                <option value="flex-end" ${el.verticalAlign === 'flex-end' ? 'selected' : ''}>Bottom</option>
-            </select>
-        </div>
-    </div>
-</div>`;
-                }
-
-                // ── POSITION & SIZE ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">📐 Position & Size</label>
-    <div class="input-slider-group"><label style="width:16px;">X</label><input type="number" id="propX" value="${Math.round(el.x || 0)}" step="1" min="0" max="${frame.width}" /><input type="range" id="propXRange" min="0" max="${frame.width}" step="1" value="${Math.round(el.x || 0)}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">Y</label><input type="number" id="propY" value="${Math.round(el.y || 0)}" step="1" min="0" max="800" /><input type="range" id="propYRange" min="0" max="800" step="1" value="${Math.round(el.y || 0)}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">W</label><input type="number" id="propW" value="${Math.round(el.width || 100)}" step="1" min="20" max="${frame.width}" /><input type="range" id="propWRange" min="20" max="${frame.width}" step="1" value="${Math.round(el.width || 100)}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">H</label><input type="number" id="propH" value="${Math.round(el.height || 50)}" step="1" min="20" max="800" /><input type="range" id="propHRange" min="20" max="800" step="1" value="${Math.round(el.height || 50)}" /></div>
-    <label style="font-size:8px;font-weight:400;color:#94a3b8;margin-top:1px;">
-        <input type="checkbox" id="propAspect" ${el.maintainAspect ? 'checked' : ''} /> Lock aspect ratio
-    </label>
-</div>`;
-
-                // ── PADDING ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">📏 Padding</label>
-    <div class="input-slider-group"><label style="width:16px;">T</label>
-        <input type="number" id="propPaddingTop" value="${el.paddingTop || 0}" step="1" min="0" max="100" />
-        <input type="range" id="propPaddingTopRange" min="0" max="100" step="1" value="${el.paddingTop || 0}" />
-    </div>
-    <div class="input-slider-group"><label style="width:16px;">R</label>
-        <input type="number" id="propPaddingRight" value="${el.paddingRight || 0}" step="1" min="0" max="100" />
-        <input type="range" id="propPaddingRightRange" min="0" max="100" step="1" value="${el.paddingRight || 0}" />
-    </div>
-    <div class="input-slider-group"><label style="width:16px;">B</label>
-        <input type="number" id="propPaddingBottom" value="${el.paddingBottom || 0}" step="1" min="0" max="100" />
-        <input type="range" id="propPaddingBottomRange" min="0" max="100" step="1" value="${el.paddingBottom || 0}" />
-    </div>
-    <div class="input-slider-group"><label style="width:16px;">L</label>
-        <input type="number" id="propPaddingLeft" value="${el.paddingLeft || 0}" step="1" min="0" max="100" />
-        <input type="range" id="propPaddingLeftRange" min="0" max="100" step="1" value="${el.paddingLeft || 0}" />
-    </div>
-</div>`;
-
-                // ── BORDER ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">🖌 Border</label>
-    <div class="input-slider-group"><label style="width:16px;">W</label>
-        <input type="number" id="propBorderWidth" value="${el.borderWidth || 0}" step="1" min="0" max="50" />
-        <input type="range" id="propBorderWidthRange" min="0" max="50" step="1" value="${el.borderWidth || 0}" />
-        <span class="range-value">${el.borderWidth || 0}px</span>
-    </div>
-    <div style="display:flex;gap:4px;align-items:center;margin-top:2px;">
-        <div style="flex:1;">
-            <label style="font-size:8px;font-weight:600;color:#475569;">Style</label>
-            <select id="propBorderStyle" style="width:100%;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
-                ${BORDER_STYLES.map(s => `<option value="${s}" ${s === (el.borderStyle || 'solid') ? 'selected' : ''}>${s}</option>`).join('')}
-            </select>
-        </div>
-        <div style="flex:1;">
-            <label style="font-size:8px;font-weight:600;color:#475569;">Color</label>
-            <div class="color-picker-trigger" id="borderColorTrigger" style="min-height:24px;padding:0 4px;">
-                <div class="cp-swatch" style="background:${el.borderColor || '#000000'};width:20px;height:20px;"></div>
-                <span class="cp-label" style="font-size:7px;">${el.borderColor || '#000'}</span>
-            </div>
-        </div>
-    </div>
-    <div class="input-slider-group" style="margin-top:4px;"><label style="width:16px;">R</label>
-        <input type="number" id="propBorderRadius" value="${parseInt(el.borderRadius) || 0}" step="1" min="0" max="100" />
-        <input type="range" id="propBorderRadiusRange" min="0" max="100" step="1" value="${parseInt(el.borderRadius) || 0}" />
-        <span class="range-value" id="borderRadiusVal">${parseInt(el.borderRadius) || 0}px</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;">
-        <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">TL</label>
-            <div class="input-slider-group" style="margin-bottom:0;">
-                <input type="number" id="propBorderRadiusTL" value="${el.borderRadiusTL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
-                <input type="range" id="propBorderRadiusTLRange" min="0" max="100" step="1" value="${el.borderRadiusTL || 0}" style="flex:1;" />
-            </div>
-        </div>
-        <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">TR</label>
-            <div class="input-slider-group" style="margin-bottom:0;">
-                <input type="number" id="propBorderRadiusTR" value="${el.borderRadiusTR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
-                <input type="range" id="propBorderRadiusTRRange" min="0" max="100" step="1" value="${el.borderRadiusTR || 0}" style="flex:1;" />
-            </div>
-        </div>
-        <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">BL</label>
-            <div class="input-slider-group" style="margin-bottom:0;">
-                <input type="number" id="propBorderRadiusBL" value="${el.borderRadiusBL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
-                <input type="range" id="propBorderRadiusBLRange" min="0" max="100" step="1" value="${el.borderRadiusBL || 0}" style="flex:1;" />
-            </div>
-        </div>
-        <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">BR</label>
-            <div class="input-slider-group" style="margin-bottom:0;">
-                <input type="number" id="propBorderRadiusBR" value="${el.borderRadiusBR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
-                <input type="range" id="propBorderRadiusBRRange" min="0" max="100" step="1" value="${el.borderRadiusBR || 0}" style="flex:1;" />
-            </div>
-        </div>
-    </div>
-</div>`;
-
-                // ── BACKGROUND ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">🎨 Background</label>
-    <div class="bg-mode-toggle">
-        <button id="bgModeSolid" class="${el.bgMode === 'solid' ? 'active' : ''}">Solid</button>
-        <button id="bgModeImage" class="${el.bgMode === 'image' ? 'active' : ''}">Image</button>
-    </div>
-    <div id="bgColorSection" style="${el.bgMode === 'image' ? 'display:none;' : ''}">
-        <label style="font-size:8px;font-weight:600;color:#475569;">Fill Color</label>
-        <div class="color-picker-trigger" id="bgColorTrigger">
-            <div class="cp-swatch" style="background:${el.background || '#ffffff'};"></div>
-            <span class="cp-label">${el.background || '#ffffff'}</span><span class="cp-arrow">▾</span>
-        </div>
-    </div>
-    <div id="bgImageSection" style="${el.bgMode === 'solid' ? 'display:none;' : ''}">
-        <label style="font-size:8px;font-weight:600;color:#475569;">Background Image</label>
-        <div class="bg-upload-row">
-            <input type="file" id="bgImageInput" accept="image/*" />
-            <button id="clearBgBtn" class="clear-bg">✕</button>
-        </div>
-        <div style="font-size:7px;color:#94a3b8;margin-top:1px;" id="bgImageStatus">${el.bgImageData ? '✓ Image set' : 'Upload an image'}</div>
-    </div>
-</div>`;
-
-                // ── EFFECTS ──
-                html += `
-<div class="prop-group">
-    <div class="section-divider"></div>
-    <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">✨ Effects</label>
-    <div class="input-slider-group"><label style="width:16px;">B</label><input type="number" id="propBlur" value="${el.blur || 0}" step="0.5" min="0" max="20" /><input type="range" id="propBlurRange" min="0" max="20" step="0.5" value="${el.blur || 0}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">O</label><input type="number" id="propOpacity" value="${el.opacity !== undefined ? el.opacity : 1}" step="0.05" min="0" max="1" /><input type="range" id="propOpacityRange" min="0" max="1" step="0.05" value="${el.opacity !== undefined ? el.opacity : 1}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">D</label><select id="propTextDir" style="flex:1;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
-        <option value="ltr" ${el.textDirection === 'ltr' ? 'selected' : ''}>LTR</option>
-        <option value="rtl" ${el.textDirection === 'rtl' ? 'selected' : ''}>RTL</option>
-    </select></div>
-</div>`;
-
-                // Position & Size
+            // 2. CONTENT
+            if (isText && tag !== 'ul' && tag !== 'ol') {
                 html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">📐 Position & Size</label>
-        <div class="input-slider-group"><label>X</label><input type="number" id="propX" value="${Math.round(el.x || 0)}" step="1" min="0" max="${frame.width}" /><input type="range" id="propXRange" min="0" max="${frame.width}" step="1" value="${Math.round(el.x || 0)}" /></div>
-        <div class="input-slider-group"><label>Y</label><input type="number" id="propY" value="${Math.round(el.y || 0)}" step="1" min="0" max="800" /><input type="range" id="propYRange" min="0" max="800" step="1" value="${Math.round(el.y || 0)}" /></div>
-        <div class="input-slider-group"><label>W</label><input type="number" id="propW" value="${Math.round(el.width || 100)}" step="1" min="20" max="${frame.width}" /><input type="range" id="propWRange" min="20" max="${frame.width}" step="1" value="${Math.round(el.width || 100)}" /></div>
-        <div class="input-slider-group"><label>H</label><input type="number" id="propH" value="${Math.round(el.height || 50)}" step="1" min="20" max="800" /><input type="range" id="propHRange" min="20" max="800" step="1" value="${Math.round(el.height || 50)}" /></div>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📝</span>
+            <span class="section-title">Content</span>
+        </div>
+        <textarea id="propContent" rows="3" style="min-height:40px;width:100%;padding:2px 5px;border:1px solid #dce1e8;border-radius:3px;font-size:10px;font-family:inherit;">${escapeHtml(el.content || '')}</textarea>
+    </div>`;
+            }
+
+            // 3. TYPOGRAPHY
+            if (isText) {
+                html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🔤</span>
+            <span class="section-title">Typography</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+            <div style="grid-column:span 2;">
+                <label style="font-size:8px;font-weight:600;color:#475569;">Font Family</label>
+                <select id="propFontFamily" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    ${FONT_FAMILIES.map(f => `<option value="${f.value}" ${f.value === (el.fontFamily || frame.fontFamily) ? 'selected' : ''}>${f.label}</option>`).join('')}
+                </select>
+            </div>
+            <div style="grid-column:span 2;">
+                <label style="font-size:8px;font-weight:600;color:#475569;">Font Size</label>
+                <div class="input-slider-group" style="margin-bottom:0;">
+                    <input type="number" id="propFontSize" value="${parseInt(el.fontSize) || 13}" min="6" max="72" step="1" style="width:50px;flex-shrink:0;" />
+                    <input type="range" id="propFontSizeRange" min="6" max="72" step="1" value="${parseInt(el.fontSize) || 13}" style="flex:1;" />
+                    <span class="range-value" id="fontSizeVal">${parseInt(el.fontSize) || 13}px</span>
+                </div>
+            </div>
+            <div>
+                <label style="font-size:8px;font-weight:600;color:#475569;">Weight</label>
+                <select id="propFontWeight" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    <option value="normal" ${el.fontWeight === 'normal' ? 'selected' : ''}>Normal</option>
+                    <option value="300" ${el.fontWeight === '300' ? 'selected' : ''}>Light</option>
+                    <option value="400" ${el.fontWeight === '400' ? 'selected' : ''}>Regular</option>
+                    <option value="600" ${el.fontWeight === '600' ? 'selected' : ''}>Semi-bold</option>
+                    <option value="700" ${el.fontWeight === '700' ? 'selected' : ''}>Bold</option>
+                    <option value="800" ${el.fontWeight === '800' ? 'selected' : ''}>Extra-bold</option>
+                </select>
+            </div>
+            <div>
+                <label style="font-size:8px;font-weight:600;color:#475569;">Style</label>
+                <select id="propFontStyle" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    <option value="normal" ${el.fontStyle === 'normal' ? 'selected' : ''}>Normal</option>
+                    <option value="italic" ${el.fontStyle === 'italic' ? 'selected' : ''}>Italic</option>
+                </select>
+            </div>
+            <div>
+                <label style="font-size:8px;font-weight:600;color:#475569;">Decoration</label>
+                <select id="propTextDecor" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    <option value="none" ${el.textDecoration === 'none' ? 'selected' : ''}>None</option>
+                    <option value="underline" ${el.textDecoration === 'underline' ? 'selected' : ''}>Underline</option>
+                    <option value="line-through" ${el.textDecoration === 'line-through' ? 'selected' : ''}>Strikethrough</option>
+                </select>
+            </div>
+            <div>
+                <label style="font-size:8px;font-weight:600;color:#475569;">H. Align</label>
+                <select id="propTextAlign" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    ${TEXT_ALIGN.map(a => `<option value="${a}" ${a === (el.textAlign || 'center') ? 'selected' : ''}>${a}</option>`).join('')}
+                </select>
+            </div>
+            <div>
+                <label style="font-size:8px;font-weight:600;color:#475569;">V. Align</label>
+                <select id="propVerticalAlign" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                    <option value="flex-start" ${el.verticalAlign === 'flex-start' ? 'selected' : ''}>Top</option>
+                    <option value="center" ${el.verticalAlign === 'center' ? 'selected' : ''}>Middle</option>
+                    <option value="flex-end" ${el.verticalAlign === 'flex-end' ? 'selected' : ''}>Bottom</option>
+                </select>
+            </div>
+            <div style="grid-column:span 2;">
+                <label style="font-size:8px;font-weight:600;color:#475569;">Text Color</label>
+                <div class="color-picker-trigger" id="propTextColorTrigger">
+                    <div class="cp-swatch" style="background:${el.color || frame.color};"></div>
+                    <span class="cp-label">${el.color || frame.color}</span><span class="cp-arrow">▾</span>
+                </div>
+            </div>
+        </div>
+    </div>`;
+            }
+
+            // 4. POSITION & SIZE
+            html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📐</span>
+            <span class="section-title">Position & Size</span>
+        </div>
+        <div class="input-slider-group"><label style="width:16px;">X</label><input type="number" id="propX" value="${Math.round(el.x || 0)}" step="1" min="0" max="${frame.width}" /><input type="range" id="propXRange" min="0" max="${frame.width}" step="1" value="${Math.round(el.x || 0)}" /></div>
+        <div class="input-slider-group"><label style="width:16px;">Y</label><input type="number" id="propY" value="${Math.round(el.y || 0)}" step="1" min="0" max="800" /><input type="range" id="propYRange" min="0" max="800" step="1" value="${Math.round(el.y || 0)}" /></div>
+        <div class="input-slider-group"><label style="width:16px;">W</label><input type="number" id="propW" value="${Math.round(el.width || 100)}" step="1" min="20" max="${frame.width}" /><input type="range" id="propWRange" min="20" max="${frame.width}" step="1" value="${Math.round(el.width || 100)}" /></div>
+        <div class="input-slider-group"><label style="width:16px;">H</label><input type="number" id="propH" value="${Math.round(el.height || 50)}" step="1" min="20" max="800" /><input type="range" id="propHRange" min="20" max="800" step="1" value="${Math.round(el.height || 50)}" /></div>
         <label style="font-size:8px;font-weight:400;color:#94a3b8;margin-top:1px;">
-            <input type="checkbox" id="propAspect" ${el.maintainAspect ? 'checked' : ''} /> Lock aspect
+            <input type="checkbox" id="propAspect" ${el.maintainAspect ? 'checked' : ''} /> Lock aspect ratio
         </label>
     </div>`;
 
-                // Padding
-                html += `
+            // 5. PADDING
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">📏 Padding</label>
-        <div class="input-slider-group"><label>Top</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📏</span>
+            <span class="section-title">Padding</span>
+        </div>
+        <div class="input-slider-group"><label style="width:16px;">T</label>
             <input type="number" id="propPaddingTop" value="${el.paddingTop || 0}" step="1" min="0" max="100" />
             <input type="range" id="propPaddingTopRange" min="0" max="100" step="1" value="${el.paddingTop || 0}" />
         </div>
-        <div class="input-slider-group"><label>Right</label>
+        <div class="input-slider-group"><label style="width:16px;">R</label>
             <input type="number" id="propPaddingRight" value="${el.paddingRight || 0}" step="1" min="0" max="100" />
             <input type="range" id="propPaddingRightRange" min="0" max="100" step="1" value="${el.paddingRight || 0}" />
         </div>
-        <div class="input-slider-group"><label>Bottom</label>
+        <div class="input-slider-group"><label style="width:16px;">B</label>
             <input type="number" id="propPaddingBottom" value="${el.paddingBottom || 0}" step="1" min="0" max="100" />
             <input type="range" id="propPaddingBottomRange" min="0" max="100" step="1" value="${el.paddingBottom || 0}" />
         </div>
-        <div class="input-slider-group"><label>Left</label>
+        <div class="input-slider-group"><label style="width:16px;">L</label>
             <input type="number" id="propPaddingLeft" value="${el.paddingLeft || 0}" step="1" min="0" max="100" />
             <input type="range" id="propPaddingLeftRange" min="0" max="100" step="1" value="${el.paddingLeft || 0}" />
         </div>
     </div>`;
 
-                // Border (without radius listeners in HTML)
-                html += `
+            // 6. BORDER
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">🖌 Border</label>
-        <div class="input-slider-group"><label>Width</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🖌</span>
+            <span class="section-title">Border</span>
+        </div>
+        <div class="input-slider-group"><label style="width:16px;">W</label>
             <input type="number" id="propBorderWidth" value="${el.borderWidth || 0}" step="1" min="0" max="50" />
             <input type="range" id="propBorderWidthRange" min="0" max="50" step="1" value="${el.borderWidth || 0}" />
             <span class="range-value">${el.borderWidth || 0}px</span>
         </div>
         <div style="display:flex;gap:4px;align-items:center;margin-top:2px;">
-            <select id="propBorderStyle" style="flex:2;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
-                ${BORDER_STYLES.map(s => `<option value="${s}" ${s === (el.borderStyle || 'solid') ? 'selected' : ''}>${s}</option>`).join('')}
-            </select>
             <div style="flex:1;">
+                <label style="font-size:8px;font-weight:600;color:#475569;">Style</label>
+                <select id="propBorderStyle" style="width:100%;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
+                    ${BORDER_STYLES.map(s => `<option value="${s}" ${s === (el.borderStyle || 'solid') ? 'selected' : ''}>${s}</option>`).join('')}
+                </select>
+            </div>
+            <div style="flex:1;">
+                <label style="font-size:8px;font-weight:600;color:#475569;">Color</label>
                 <div class="color-picker-trigger" id="borderColorTrigger" style="min-height:24px;padding:0 4px;">
                     <div class="cp-swatch" style="background:${el.borderColor || '#000000'};width:20px;height:20px;"></div>
                     <span class="cp-label" style="font-size:7px;">${el.borderColor || '#000'}</span>
                 </div>
             </div>
         </div>
-        <div class="input-slider-group" style="margin-top:2px;"><label>Radius (all)</label>
+        <div class="input-slider-group" style="margin-top:4px;"><label style="width:16px;">R</label>
             <input type="number" id="propBorderRadius" value="${parseInt(el.borderRadius) || 0}" step="1" min="0" max="100" />
             <input type="range" id="propBorderRadiusRange" min="0" max="100" step="1" value="${parseInt(el.borderRadius) || 0}" />
             <span class="range-value" id="borderRadiusVal">${parseInt(el.borderRadius) || 0}px</span>
         </div>
-        <div style="display:grid;grid-template-columns:1fr;gap:4px;margin-top:4px;">
-            <div><label style="font-size:7px;">Top-Left</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;">
+            <div>
+                <label style="font-size:7px;font-weight:600;color:#475569;">TL</label>
                 <div class="input-slider-group" style="margin-bottom:0;">
-                    <input type="number" id="propBorderRadiusTL" value="${el.borderRadiusTL || 0}" step="1" min="0" max="100" style="width:50px;flex-shrink:0;" />
+                    <input type="number" id="propBorderRadiusTL" value="${el.borderRadiusTL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                     <input type="range" id="propBorderRadiusTLRange" min="0" max="100" step="1" value="${el.borderRadiusTL || 0}" style="flex:1;" />
                 </div>
             </div>
-            <div><label style="font-size:7px;">Top-Right</label>
+            <div>
+                <label style="font-size:7px;font-weight:600;color:#475569;">TR</label>
                 <div class="input-slider-group" style="margin-bottom:0;">
-                    <input type="number" id="propBorderRadiusTR" value="${el.borderRadiusTR || 0}" step="1" min="0" max="100" style="width:50px;flex-shrink:0;" />
+                    <input type="number" id="propBorderRadiusTR" value="${el.borderRadiusTR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                     <input type="range" id="propBorderRadiusTRRange" min="0" max="100" step="1" value="${el.borderRadiusTR || 0}" style="flex:1;" />
                 </div>
             </div>
-            <div><label style="font-size:7px;">Bottom-Left</label>
+            <div>
+                <label style="font-size:7px;font-weight:600;color:#475569;">BL</label>
                 <div class="input-slider-group" style="margin-bottom:0;">
-                    <input type="number" id="propBorderRadiusBL" value="${el.borderRadiusBL || 0}" step="1" min="0" max="100" style="width:50px;flex-shrink:0;" />
+                    <input type="number" id="propBorderRadiusBL" value="${el.borderRadiusBL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                     <input type="range" id="propBorderRadiusBLRange" min="0" max="100" step="1" value="${el.borderRadiusBL || 0}" style="flex:1;" />
                 </div>
             </div>
-            <div><label style="font-size:7px;">Bottom-Right</label>
+            <div>
+                <label style="font-size:7px;font-weight:600;color:#475569;">BR</label>
                 <div class="input-slider-group" style="margin-bottom:0;">
-                    <input type="number" id="propBorderRadiusBR" value="${el.borderRadiusBR || 0}" step="1" min="0" max="100" style="width:50px;flex-shrink:0;" />
+                    <input type="number" id="propBorderRadiusBR" value="${el.borderRadiusBR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                     <input type="range" id="propBorderRadiusBRRange" min="0" max="100" step="1" value="${el.borderRadiusBR || 0}" style="flex:1;" />
                 </div>
             </div>
         </div>
     </div>`;
 
-                // Background
-                html += `
+            // 7. BACKGROUND
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">🎨 Background</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🎨</span>
+            <span class="section-title">Background</span>
+        </div>
         <div class="bg-mode-toggle">
             <button id="bgModeSolid" class="${el.bgMode === 'solid' ? 'active' : ''}">Solid</button>
             <button id="bgModeImage" class="${el.bgMode === 'image' ? 'active' : ''}">Image</button>
         </div>
         <div id="bgColorSection" style="${el.bgMode === 'image' ? 'display:none;' : ''}">
+            <label style="font-size:8px;font-weight:600;color:#475569;">Fill Color</label>
             <div class="color-picker-trigger" id="bgColorTrigger">
                 <div class="cp-swatch" style="background:${el.background || '#ffffff'};"></div>
                 <span class="cp-label">${el.background || '#ffffff'}</span><span class="cp-arrow">▾</span>
             </div>
         </div>
         <div id="bgImageSection" style="${el.bgMode === 'solid' ? 'display:none;' : ''}">
+            <label style="font-size:8px;font-weight:600;color:#475569;">Background Image</label>
             <div class="bg-upload-row">
                 <input type="file" id="bgImageInput" accept="image/*" />
                 <button id="clearBgBtn" class="clear-bg">✕</button>
@@ -4527,95 +4433,125 @@
         </div>
     </div>`;
 
-                // Effects
-                html += `
+            // 8. EFFECTS
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">✨ Effects</label>
-        <div class="input-slider-group"><label>Blur</label><input type="number" id="propBlur" value="${el.blur || 0}" step="0.5" min="0" max="20" /><input type="range" id="propBlurRange" min="0" max="20" step="0.5" value="${el.blur || 0}" /></div>
-        <div class="input-slider-group"><label>Opacity</label><input type="number" id="propOpacity" value="${el.opacity !== undefined ? el.opacity : 1}" step="0.05" min="0" max="1" /><input type="range" id="propOpacityRange" min="0" max="1" step="0.05" value="${el.opacity !== undefined ? el.opacity : 1}" /></div>
-        <div class="input-slider-group"><label>Dir</label><select id="propTextDir" style="flex:1;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">✨</span>
+            <span class="section-title">Effects</span>
+        </div>
+        <div class="input-slider-group"><label style="width:16px;">B</label><input type="number" id="propBlur" value="${el.blur || 0}" step="0.5" min="0" max="20" /><input type="range" id="propBlurRange" min="0" max="20" step="0.5" value="${el.blur || 0}" /></div>
+        <div class="input-slider-group"><label style="width:16px;">O</label><input type="number" id="propOpacity" value="${el.opacity !== undefined ? el.opacity : 1}" step="0.05" min="0" max="1" /><input type="range" id="propOpacityRange" min="0" max="1" step="0.05" value="${el.opacity !== undefined ? el.opacity : 1}" /></div>
+        <div class="input-slider-group"><label style="width:16px;">D</label><select id="propTextDir" style="flex:1;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
             <option value="ltr" ${el.textDirection === 'ltr' ? 'selected' : ''}>LTR</option>
             <option value="rtl" ${el.textDirection === 'rtl' ? 'selected' : ''}>RTL</option>
         </select></div>
     </div>`;
 
-                // Image specific
-                if (tag === 'img') {
-                    html += `
-        <div class="prop-group">
-            <label style="font-weight:700;font-size:9px;color:#1e293b;">🖼 Image</label>
-            <div><label style="font-size:7px;">Image URL</label><input type="text" id="propSrc" value="${escapeHtml(el.attributes?.src || '')}" placeholder="https://..." /></div>
-            <div style="margin-top:2px;"><label style="font-size:7px;">Alt text</label><input type="text" id="propAlt" value="${escapeHtml(el.attributes?.alt || '')}" placeholder="description" /></div>
-        </div>`;
-                }
-
-                // Link specific
-                if (tag === 'a') {
-                    html += `
-        <div class="prop-group">
-            <label style="font-weight:700;font-size:9px;color:#1e293b;">🔗 Link</label>
-            <input type="text" id="propHref" value="${escapeHtml(el.attributes?.href || '#')}" placeholder="https://..." />
-        </div>`;
-                }
-
-                // List specific
-                if (isListTag(tag)) {
-                    const items = el.listItems || [];
-                    html += `
-        <div class="prop-group">
-            <label style="font-weight:700;font-size:9px;color:#1e293b;">📋 List</label>
-            <div id="listItemsContainer">
-                ${items.map((item, idx) => `
-                    <div style="display:flex;gap:2px;margin-bottom:1px;">
-                        <input type="text" value="${escapeHtml(item)}" data-index="${idx}" class="li-input" style="flex:1;padding:1px 4px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;" />
-                        <button data-index="${idx}" class="li-remove" style="background:#eef2f6;border:none;border-radius:3px;padding:0 5px;font-size:9px;cursor:pointer;color:#b91c1c;">✕</button>
-                    </div>
-                `).join('')}
-                <button class="add-li-btn" style="background:#eef2f6;border:none;border-radius:3px;padding:0 8px;font-size:9px;cursor:pointer;color:#1e293b;">+ Add item</button>
-            </div>
-            <div style="margin-top:2px;">
-                <label style="font-size:7px;">List Style</label>
-                <select id="propListStyle" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
-                    ${LIST_STYLES.map(s => `<option value="${s.value}" ${s.value === (el.listStyle || 'disc') ? 'selected' : ''}>${s.label}</option>`).join('')}
-                </select>
-            </div>
-        </div>`;
-                }
-
-                // Mask
+            // 9. IMAGE SPECIFIC
+            if (tag === 'img') {
                 html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">🎭 Mask</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🖼</span>
+            <span class="section-title">Image</span>
+        </div>
+        <div><label style="font-size:8px;font-weight:600;color:#475569;">Image URL</label><input type="text" id="propSrc" value="${escapeHtml(el.attributes?.src || '')}" placeholder="https://..." /></div>
+        <div style="margin-top:2px;"><label style="font-size:8px;font-weight:600;color:#475569;">Alt text</label><input type="text" id="propAlt" value="${escapeHtml(el.attributes?.alt || '')}" placeholder="description" /></div>
+    </div>`;
+            }
+
+            // 10. LINK SPECIFIC
+            if (tag === 'a') {
+                html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🔗</span>
+            <span class="section-title">Link</span>
+        </div>
+        <input type="text" id="propHref" value="${escapeHtml(el.attributes?.href || '#')}" placeholder="https://..." />
+    </div>`;
+            }
+
+            // 11. LIST SPECIFIC
+            if (isListTag(tag)) {
+                const items = el.listItems || [];
+                html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📋</span>
+            <span class="section-title">List</span>
+        </div>
+        <div id="listItemsContainer">
+            ${items.map((item, idx) => `
+                <div style="display:flex;gap:2px;margin-bottom:1px;">
+                    <input type="text" value="${escapeHtml(item)}" data-index="${idx}" class="li-input" style="flex:1;padding:1px 4px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;" />
+                    <button data-index="${idx}" class="li-remove" style="background:#eef2f6;border:none;border-radius:3px;padding:0 5px;font-size:9px;cursor:pointer;color:#b91c1c;">✕</button>
+                </div>
+            `).join('')}
+            <button class="add-li-btn" style="background:#eef2f6;border:none;border-radius:3px;padding:0 8px;font-size:9px;cursor:pointer;color:#1e293b;">+ Add item</button>
+        </div>
+        <div style="margin-top:2px;">
+            <label style="font-size:8px;font-weight:600;color:#475569;">List Style</label>
+            <select id="propListStyle" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                ${LIST_STYLES.map(s => `<option value="${s.value}" ${s.value === (el.listStyle || 'disc') ? 'selected' : ''}>${s.label}</option>`).join('')}
+            </select>
+        </div>
+    </div>`;
+            }
+
+            // 12. MASK
+            html += `
+    <div class="prop-group">
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">🎭</span>
+            <span class="section-title">Mask</span>
+        </div>
         <div class="mask-controls">
             <select id="propMaskSelect"><option value="">None</option>
                 ${elements.filter(e => e.id !== el.id && e.tag !== 'img').map(e =>
-                    `<option value="${e.id}" ${el.maskId === e.id ? 'selected' : ''}>${e.tag} #${e.id}</option>`
-                ).join('')}
+                `<option value="${e.id}" ${el.maskId === e.id ? 'selected' : ''}>${e.tag} #${e.id}</option>`
+            ).join('')}
             </select>
             <div class="input-slider-group"><label>Feather</label><input type="number" id="propMaskFeather" value="${el.maskFeather || 0}" step="1" min="0" max="50" /><input type="range" id="propMaskFeatherRange" min="0" max="50" step="1" value="${el.maskFeather || 0}" /><span class="range-value" id="maskFeatherVal">${el.maskFeather || 0}</span></div>
             <label style="font-size:8px;display:flex;align-items:center;gap:2px;"><input type="checkbox" id="propMaskInvert" ${el.maskInvert ? 'checked' : ''} /> Invert</label>
         </div>
     </div>`;
 
-                // Layer & Group
-                html += `
+            // 13. LAYER
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">📚 Layer</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <span class="section-title">Layer</span>
+        </div>
         <div class="layer-controls">
             <button id="bringForwardBtn">↑ Bring</button>
             <button id="sendBackwardBtn">↓ Send</button>
             <button id="bringToFrontBtn">⇧ Top</button>
             <button id="sendToBackBtn">⇩ Bottom</button>
         </div>
-    </div>
+    </div>`;
+
+            // 14. GROUP
+            html += `
     <div class="prop-group">
-        <label style="font-weight:700;font-size:9px;color:#1e293b;">📦 Group</label>
+        <div class="section-divider"></div>
+        <div class="section-header">
+            <span class="section-icon">📦</span>
+            <span class="section-title">Group</span>
+        </div>
         <div class="group-controls">
             <button id="groupBtn">📦 Group</button>
             <button id="ungroupBtn">📦 Ungroup</button>
         </div>
     </div>`;
-            }
 
             content.innerHTML = html;
 
@@ -4635,6 +4571,7 @@
                 }, 10);
             }
         }
+
         // Helper function to attach frame listeners
         function attachFrameListeners() {
             // Frame input listeners
@@ -5691,333 +5628,308 @@
             }
         }
 
-function attachSpecialListeners() {
-    // ── ELEMENT BACKGROUND COLOR PICKER ──
-    const bgTrigger = document.getElementById('bgColorTrigger');
-    if (bgTrigger) {
-        // Clean up existing picker
-        if (window._bgColorPicker) {
-            try {
-                window._bgColorPicker.close();
-                if (window._bgColorPicker.popup) window._bgColorPicker.popup.remove();
-            } catch(e) {}
-            window._bgColorPicker = null;
-        }
-        const el = getFirstSelected();
-        if (el && el !== 'frame') {
-            // Store reference to the element for the picker
-            const targetEl = el;
-            window._bgColorPicker = new ColorPicker(bgTrigger, {
-                initialColor: targetEl.background || '#ffffff',
-                onChange: (color) => {
+        function attachSpecialListeners() {
+            // ── ELEMENT BACKGROUND COLOR PICKER ──
+            const bgTrigger = document.getElementById('bgColorTrigger');
+            if (bgTrigger) {
+                if (window._bgColorPicker) {
+                    try { window._bgColorPicker.close(); if (window._bgColorPicker.popup) window._bgColorPicker.popup.remove(); } catch (e) { }
+                    window._bgColorPicker = null;
+                }
+                const el = getFirstSelected();
+                if (el && el !== 'frame') {
+                    window._bgColorPicker = new ColorPicker(bgTrigger, {
+                        initialColor: el.background || '#ffffff',
+                        onChange: (color) => {
+                            const el2 = getFirstSelected();
+                            if (el2 && el2 !== 'frame') {
+                                el2.background = color;
+                                const swatch = bgTrigger.querySelector('.cp-swatch');
+                                if (swatch) swatch.style.background = color;
+                                const label = bgTrigger.querySelector('.cp-label');
+                                if (label) label.textContent = color;
+                                render();
+                                pushHistory();
+                                markUnsaved();
+                            }
+                        }
+                    });
+                }
+            }
+
+            // ── TEXT COLOR PICKER ──
+            const textColorTrigger = document.getElementById('propTextColorTrigger');
+            if (textColorTrigger) {
+                if (window._textColorPicker) {
+                    try { window._textColorPicker.close(); if (window._textColorPicker.popup) window._textColorPicker.popup.remove(); } catch (e) { }
+                    window._textColorPicker = null;
+                }
+                const el = getFirstSelected();
+                if (el && el !== 'frame') {
+                    window._textColorPicker = new ColorPicker(textColorTrigger, {
+                        initialColor: el.color || frame.color,
+                        onChange: (color) => {
+                            const el2 = getFirstSelected();
+                            if (el2 && el2 !== 'frame') {
+                                el2.color = color;
+                                const swatch = textColorTrigger.querySelector('.cp-swatch');
+                                if (swatch) swatch.style.background = color;
+                                const label = textColorTrigger.querySelector('.cp-label');
+                                if (label) label.textContent = color;
+                                render();
+                                pushHistory();
+                                markUnsaved();
+                            }
+                        }
+                    });
+                }
+            }
+
+            // ── BORDER COLOR PICKER ──
+            const borderColorTrigger = document.getElementById('borderColorTrigger');
+            if (borderColorTrigger) {
+                if (window._borderColorPicker) {
+                    try { window._borderColorPicker.close(); if (window._borderColorPicker.popup) window._borderColorPicker.popup.remove(); } catch (e) { }
+                    window._borderColorPicker = null;
+                }
+                const el = getFirstSelected();
+                if (el && el !== 'frame') {
+                    window._borderColorPicker = new ColorPicker(borderColorTrigger, {
+                        initialColor: el.borderColor || '#000000',
+                        onChange: (color) => {
+                            const el2 = getFirstSelected();
+                            if (el2 && el2 !== 'frame') {
+                                el2.borderColor = color;
+                                const swatch = borderColorTrigger.querySelector('.cp-swatch');
+                                if (swatch) swatch.style.background = color;
+                                const label = borderColorTrigger.querySelector('.cp-label');
+                                if (label) label.textContent = color;
+                                render();
+                                pushHistory();
+                                markUnsaved();
+                            }
+                        }
+                    });
+                }
+            }
+
+            // ── FRAME BACKGROUND COLOR PICKER ──
+            const frameBgTrigger = document.getElementById('frameBgTrigger');
+            if (frameBgTrigger) {
+                if (window._frameBgPicker) {
+                    try { window._frameBgPicker.close(); if (window._frameBgPicker.popup) window._frameBgPicker.popup.remove(); } catch (e) { }
+                    window._frameBgPicker = null;
+                }
+                window._frameBgPicker = new ColorPicker(frameBgTrigger, {
+                    initialColor: frame.background,
+                    onChange: (color) => {
+                        frame.background = color;
+                        const swatch = frameBgTrigger.querySelector('.cp-swatch');
+                        if (swatch) swatch.style.background = color;
+                        const label = frameBgTrigger.querySelector('.cp-label');
+                        if (label) label.textContent = color;
+                        updateFrameStyles();
+                        markUnsaved();
+                    }
+                });
+            }
+
+            // ── FRAME COLOR PICKER ──
+            const frameColorTrigger = document.getElementById('frameColorTrigger');
+            if (frameColorTrigger) {
+                if (window._frameColorPicker) {
+                    try { window._frameColorPicker.close(); if (window._frameColorPicker.popup) window._frameColorPicker.popup.remove(); } catch (e) { }
+                    window._frameColorPicker = null;
+                }
+                window._frameColorPicker = new ColorPicker(frameColorTrigger, {
+                    initialColor: frame.color,
+                    onChange: (color) => {
+                        frame.color = color;
+                        const swatch = frameColorTrigger.querySelector('.cp-swatch');
+                        if (swatch) swatch.style.background = color;
+                        const label = frameColorTrigger.querySelector('.cp-label');
+                        if (label) label.textContent = color;
+                        updateFrameStyles();
+                        markUnsaved();
+                    }
+                });
+            }
+
+            // ── FRAME BORDER COLOR PICKER ──
+            const frameBorderColorTrigger = document.getElementById('frameBorderColorTrigger');
+            if (frameBorderColorTrigger) {
+                if (window._frameBorderColorPicker) {
+                    try { window._frameBorderColorPicker.close(); if (window._frameBorderColorPicker.popup) window._frameBorderColorPicker.popup.remove(); } catch (e) { }
+                    window._frameBorderColorPicker = null;
+                }
+                window._frameBorderColorPicker = new ColorPicker(frameBorderColorTrigger, {
+                    initialColor: frame.borderColor,
+                    onChange: (color) => {
+                        frame.borderColor = color;
+                        const swatch = frameBorderColorTrigger.querySelector('.cp-swatch');
+                        if (swatch) swatch.style.background = color;
+                        const label = frameBorderColorTrigger.querySelector('.cp-label');
+                        if (label) label.textContent = color;
+                        updateFrameStyles();
+                        markUnsaved();
+                    }
+                });
+            }
+
+            // ── BACKGROUND MODE TOGGLE (Element) ──
+            const bgModeSolid = document.getElementById('bgModeSolid');
+            const bgModeImage = document.getElementById('bgModeImage');
+            const bgColorSection = document.getElementById('bgColorSection');
+            const bgImageSection = document.getElementById('bgImageSection');
+
+            if (bgModeSolid) {
+                bgModeSolid.removeEventListener('click', function () { });
+                bgModeSolid.addEventListener('click', () => {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
-                        el2.background = color;
-                        // Update swatch and label
-                        const swatch = bgTrigger.querySelector('.cp-swatch');
-                        if (swatch) swatch.style.background = color;
-                        const label = bgTrigger.querySelector('.cp-label');
-                        if (label) label.textContent = color;
-                        // Force re-render to update the element
+                        el2.bgMode = 'solid';
+                        bgModeSolid.classList.add('active');
+                        bgModeImage.classList.remove('active');
+                        if (bgColorSection) bgColorSection.style.display = 'block';
+                        if (bgImageSection) bgImageSection.style.display = 'none';
                         render();
                         pushHistory();
                         markUnsaved();
                     }
-                }
-            });
-            // Make sure the trigger opens the picker
-            bgTrigger.style.cursor = 'pointer';
-        }
-    }
+                });
+            }
 
-    // ── TEXT COLOR PICKER ──
-    const textColorTrigger = document.getElementById('propTextColorTrigger');
-    if (textColorTrigger) {
-        if (window._textColorPicker) {
-            try {
-                window._textColorPicker.close();
-                if (window._textColorPicker.popup) window._textColorPicker.popup.remove();
-            } catch(e) {}
-            window._textColorPicker = null;
-        }
-        const el = getFirstSelected();
-        if (el && el !== 'frame') {
-            window._textColorPicker = new ColorPicker(textColorTrigger, {
-                initialColor: el.color || frame.color,
-                onChange: (color) => {
+            if (bgModeImage) {
+                bgModeImage.removeEventListener('click', function () { });
+                bgModeImage.addEventListener('click', () => {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
-                        el2.color = color;
-                        const swatch = textColorTrigger.querySelector('.cp-swatch');
-                        if (swatch) swatch.style.background = color;
-                        const label = textColorTrigger.querySelector('.cp-label');
-                        if (label) label.textContent = color;
+                        el2.bgMode = 'image';
+                        bgModeImage.classList.add('active');
+                        bgModeSolid.classList.remove('active');
+                        if (bgColorSection) bgColorSection.style.display = 'none';
+                        if (bgImageSection) bgImageSection.style.display = 'block';
                         render();
                         pushHistory();
                         markUnsaved();
                     }
-                }
-            });
-        }
-    }
+                });
+            }
 
-    // ── BORDER COLOR PICKER ──
-    const borderColorTrigger = document.getElementById('borderColorTrigger');
-    if (borderColorTrigger) {
-        if (window._borderColorPicker) {
-            try {
-                window._borderColorPicker.close();
-                if (window._borderColorPicker.popup) window._borderColorPicker.popup.remove();
-            } catch(e) {}
-            window._borderColorPicker = null;
-        }
-        const el = getFirstSelected();
-        if (el && el !== 'frame') {
-            window._borderColorPicker = new ColorPicker(borderColorTrigger, {
-                initialColor: el.borderColor || '#000000',
-                onChange: (color) => {
+            // ── BACKGROUND IMAGE UPLOAD (Element) ──
+            const bgFileInput = document.getElementById('bgImageInput');
+            const clearBgBtn = document.getElementById('clearBgBtn');
+            const bgStatus = document.getElementById('bgImageStatus');
+
+            if (bgFileInput) {
+                bgFileInput.removeEventListener('change', function () { });
+                bgFileInput.addEventListener('change', function (e) {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
-                        el2.borderColor = color;
-                        const swatch = borderColorTrigger.querySelector('.cp-swatch');
-                        if (swatch) swatch.style.background = color;
-                        const label = borderColorTrigger.querySelector('.cp-label');
-                        if (label) label.textContent = color;
+                        const file = this.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function (ev) {
+                                el2.bgImageData = ev.target.result;
+                                if (bgStatus) bgStatus.textContent = '✓ Image set';
+                                render();
+                                pushHistory();
+                                markUnsaved();
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            }
+
+            if (clearBgBtn) {
+                clearBgBtn.removeEventListener('click', function () { });
+                clearBgBtn.addEventListener('click', function () {
+                    const el2 = getFirstSelected();
+                    if (el2 && el2 !== 'frame') {
+                        el2.bgImageData = '';
+                        if (bgStatus) bgStatus.textContent = 'Upload an image';
+                        if (bgFileInput) bgFileInput.value = '';
                         render();
                         pushHistory();
                         markUnsaved();
                     }
-                }
-            });
-        }
-    }
-
-    // ── FRAME BACKGROUND COLOR PICKER ──
-    const frameBgTrigger = document.getElementById('frameBgTrigger');
-    if (frameBgTrigger) {
-        if (window._frameBgPicker) {
-            try {
-                window._frameBgPicker.close();
-                if (window._frameBgPicker.popup) window._frameBgPicker.popup.remove();
-            } catch(e) {}
-            window._frameBgPicker = null;
-        }
-        window._frameBgPicker = new ColorPicker(frameBgTrigger, {
-            initialColor: frame.background,
-            onChange: (color) => {
-                frame.background = color;
-                const swatch = frameBgTrigger.querySelector('.cp-swatch');
-                if (swatch) swatch.style.background = color;
-                const label = frameBgTrigger.querySelector('.cp-label');
-                if (label) label.textContent = color;
-                updateFrameStyles();
-                markUnsaved();
+                });
             }
-        });
-    }
 
-    // ── FRAME COLOR PICKER ──
-    const frameColorTrigger = document.getElementById('frameColorTrigger');
-    if (frameColorTrigger) {
-        if (window._frameColorPicker) {
-            try {
-                window._frameColorPicker.close();
-                if (window._frameColorPicker.popup) window._frameColorPicker.popup.remove();
-            } catch(e) {}
-            window._frameColorPicker = null;
-        }
-        window._frameColorPicker = new ColorPicker(frameColorTrigger, {
-            initialColor: frame.color,
-            onChange: (color) => {
-                frame.color = color;
-                const swatch = frameColorTrigger.querySelector('.cp-swatch');
-                if (swatch) swatch.style.background = color;
-                const label = frameColorTrigger.querySelector('.cp-label');
-                if (label) label.textContent = color;
-                updateFrameStyles();
-                markUnsaved();
-            }
-        });
-    }
+            // ── FRAME BACKGROUND MODE TOGGLE ──
+            const frameBgModeSolid = document.getElementById('frameBgModeSolid');
+            const frameBgModeImage = document.getElementById('frameBgModeImage');
+            const frameBgColorSection = document.getElementById('frameBgColorSection');
+            const frameBgImageSection = document.getElementById('frameBgImageSection');
 
-    // ── FRAME BORDER COLOR PICKER ──
-    const frameBorderColorTrigger = document.getElementById('frameBorderColorTrigger');
-    if (frameBorderColorTrigger) {
-        if (window._frameBorderColorPicker) {
-            try {
-                window._frameBorderColorPicker.close();
-                if (window._frameBorderColorPicker.popup) window._frameBorderColorPicker.popup.remove();
-            } catch(e) {}
-            window._frameBorderColorPicker = null;
-        }
-        window._frameBorderColorPicker = new ColorPicker(frameBorderColorTrigger, {
-            initialColor: frame.borderColor,
-            onChange: (color) => {
-                frame.borderColor = color;
-                const swatch = frameBorderColorTrigger.querySelector('.cp-swatch');
-                if (swatch) swatch.style.background = color;
-                const label = frameBorderColorTrigger.querySelector('.cp-label');
-                if (label) label.textContent = color;
-                updateFrameStyles();
-                markUnsaved();
-            }
-        });
-    }
-
-    // ── BACKGROUND MODE TOGGLE ──
-    const bgModeSolid = document.getElementById('bgModeSolid');
-    const bgModeImage = document.getElementById('bgModeImage');
-    const bgColorSection = document.getElementById('bgColorSection');
-    const bgImageSection = document.getElementById('bgImageSection');
-
-    if (bgModeSolid) {
-        bgModeSolid.removeEventListener('click', function() {});
-        bgModeSolid.addEventListener('click', () => {
-            const el2 = getFirstSelected();
-            if (el2 && el2 !== 'frame') {
-                el2.bgMode = 'solid';
-                bgModeSolid.classList.add('active');
-                bgModeImage.classList.remove('active');
-                if (bgColorSection) bgColorSection.style.display = 'block';
-                if (bgImageSection) bgImageSection.style.display = 'none';
-                render();
-                pushHistory();
-                markUnsaved();
-            }
-        });
-    }
-
-    if (bgModeImage) {
-        bgModeImage.removeEventListener('click', function() {});
-        bgModeImage.addEventListener('click', () => {
-            const el2 = getFirstSelected();
-            if (el2 && el2 !== 'frame') {
-                el2.bgMode = 'image';
-                bgModeImage.classList.add('active');
-                bgModeSolid.classList.remove('active');
-                if (bgColorSection) bgColorSection.style.display = 'none';
-                if (bgImageSection) bgImageSection.style.display = 'block';
-                render();
-                pushHistory();
-                markUnsaved();
-            }
-        });
-    }
-
-    // ── BACKGROUND IMAGE UPLOAD ──
-    const bgFileInput = document.getElementById('bgImageInput');
-    const clearBgBtn = document.getElementById('clearBgBtn');
-    const bgStatus = document.getElementById('bgImageStatus');
-
-    if (bgFileInput) {
-        bgFileInput.removeEventListener('change', function() {});
-        bgFileInput.addEventListener('change', function(e) {
-            const el2 = getFirstSelected();
-            if (el2 && el2 !== 'frame') {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(ev) {
-                        el2.bgImageData = ev.target.result;
-                        if (bgStatus) bgStatus.textContent = '✓ Image set';
-                        render();
-                        pushHistory();
-                        markUnsaved();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-        });
-    }
-
-    if (clearBgBtn) {
-        clearBgBtn.removeEventListener('click', function() {});
-        clearBgBtn.addEventListener('click', function() {
-            const el2 = getFirstSelected();
-            if (el2 && el2 !== 'frame') {
-                el2.bgImageData = '';
-                if (bgStatus) bgStatus.textContent = 'Upload an image';
-                if (bgFileInput) bgFileInput.value = '';
-                render();
-                pushHistory();
-                markUnsaved();
-            }
-        });
-    }
-
-    // ── FRAME BACKGROUND MODE TOGGLE ──
-    const frameBgModeSolid = document.getElementById('frameBgModeSolid');
-    const frameBgModeImage = document.getElementById('frameBgModeImage');
-    const frameBgColorSection = document.getElementById('frameBgColorSection');
-    const frameBgImageSection = document.getElementById('frameBgImageSection');
-
-    if (frameBgModeSolid) {
-        frameBgModeSolid.removeEventListener('click', function() {});
-        frameBgModeSolid.addEventListener('click', () => {
-            frame.bgMode = 'solid';
-            frameBgModeSolid.classList.add('active');
-            frameBgModeImage.classList.remove('active');
-            if (frameBgColorSection) frameBgColorSection.style.display = 'block';
-            if (frameBgImageSection) frameBgImageSection.style.display = 'none';
-            updateFrameStyles();
-            markUnsaved();
-        });
-    }
-
-    if (frameBgModeImage) {
-        frameBgModeImage.removeEventListener('click', function() {});
-        frameBgModeImage.addEventListener('click', () => {
-            frame.bgMode = 'image';
-            frameBgModeImage.classList.add('active');
-            frameBgModeSolid.classList.remove('active');
-            if (frameBgColorSection) frameBgColorSection.style.display = 'none';
-            if (frameBgImageSection) frameBgImageSection.style.display = 'block';
-            updateFrameStyles();
-            markUnsaved();
-        });
-    }
-
-    // ── FRAME BACKGROUND IMAGE UPLOAD ──
-    const frameBgFileInput = document.getElementById('frameBgImageInput');
-    const frameClearBgBtn = document.getElementById('frameClearBgBtn');
-    const frameBgStatus = document.getElementById('frameBgStatus');
-
-    if (frameBgFileInput) {
-        frameBgFileInput.removeEventListener('change', function() {});
-        frameBgFileInput.addEventListener('change', function(e) {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    frame.bgImageData = ev.target.result;
-                    if (frameBgStatus) frameBgStatus.textContent = '✓ Image set';
+            if (frameBgModeSolid) {
+                frameBgModeSolid.removeEventListener('click', function () { });
+                frameBgModeSolid.addEventListener('click', () => {
+                    frame.bgMode = 'solid';
+                    frameBgModeSolid.classList.add('active');
+                    frameBgModeImage.classList.remove('active');
+                    if (frameBgColorSection) frameBgColorSection.style.display = 'block';
+                    if (frameBgImageSection) frameBgImageSection.style.display = 'none';
                     updateFrameStyles();
                     markUnsaved();
-                };
-                reader.readAsDataURL(file);
+                });
             }
-        });
-    }
 
-    if (frameClearBgBtn) {
-        frameClearBgBtn.removeEventListener('click', function() {});
-        frameClearBgBtn.addEventListener('click', function() {
-            frame.bgImageData = '';
-            if (frameBgStatus) frameBgStatus.textContent = 'Upload an image';
-            if (frameBgFileInput) frameBgFileInput.value = '';
-            updateFrameStyles();
-            markUnsaved();
-        });
-    }
+            if (frameBgModeImage) {
+                frameBgModeImage.removeEventListener('click', function () { });
+                frameBgModeImage.addEventListener('click', () => {
+                    frame.bgMode = 'image';
+                    frameBgModeImage.classList.add('active');
+                    frameBgModeSolid.classList.remove('active');
+                    if (frameBgColorSection) frameBgColorSection.style.display = 'none';
+                    if (frameBgImageSection) frameBgImageSection.style.display = 'block';
+                    updateFrameStyles();
+                    markUnsaved();
+                });
+            }
 
-    // ── LAYER CONTROLS ──
-    document.getElementById('bringForwardBtn')?.addEventListener('click', bringForward);
-    document.getElementById('sendBackwardBtn')?.addEventListener('click', sendBackward);
-    document.getElementById('bringToFrontBtn')?.addEventListener('click', bringToFront);
-    document.getElementById('sendToBackBtn')?.addEventListener('click', sendToBack);
-    document.getElementById('groupBtn')?.addEventListener('click', groupElements);
-    document.getElementById('ungroupBtn')?.addEventListener('click', ungroupElements);
-}
+            // ── FRAME BACKGROUND IMAGE UPLOAD ──
+            const frameBgFileInput = document.getElementById('frameBgImageInput');
+            const frameClearBgBtn = document.getElementById('frameClearBgBtn');
+            const frameBgStatus = document.getElementById('frameBgStatus');
+
+            if (frameBgFileInput) {
+                frameBgFileInput.removeEventListener('change', function () { });
+                frameBgFileInput.addEventListener('change', function (e) {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (ev) {
+                            frame.bgImageData = ev.target.result;
+                            if (frameBgStatus) frameBgStatus.textContent = '✓ Image set';
+                            updateFrameStyles();
+                            markUnsaved();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            if (frameClearBgBtn) {
+                frameClearBgBtn.removeEventListener('click', function () { });
+                frameClearBgBtn.addEventListener('click', function () {
+                    frame.bgImageData = '';
+                    if (frameBgStatus) frameBgStatus.textContent = 'Upload an image';
+                    if (frameBgFileInput) frameBgFileInput.value = '';
+                    updateFrameStyles();
+                    markUnsaved();
+                });
+            }
+
+            // ── LAYER CONTROLS ──
+            document.getElementById('bringForwardBtn')?.addEventListener('click', bringForward);
+            document.getElementById('sendBackwardBtn')?.addEventListener('click', sendBackward);
+            document.getElementById('bringToFrontBtn')?.addEventListener('click', bringToFront);
+            document.getElementById('sendToBackBtn')?.addEventListener('click', sendToBack);
+            document.getElementById('groupBtn')?.addEventListener('click', groupElements);
+            document.getElementById('ungroupBtn')?.addEventListener('click', ungroupElements);
+        }
 
         function fitElementToContent() {
             const selected = getFirstSelected();
