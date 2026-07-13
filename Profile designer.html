@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -13,6 +14,7 @@
             margin: 0;
             padding: 0;
         }
+
         html,
         body {
             height: 100%;
@@ -21,9 +23,11 @@
             background: #e8ecf1;
             color: #1e293b;
         }
+
         body {
             padding: 6px;
         }
+
         .app {
             width: 100%;
             height: 100%;
@@ -35,6 +39,7 @@
             flex-direction: column;
             overflow: hidden;
         }
+
         .app-header {
             padding: 6px 14px;
             background: #fff;
@@ -49,6 +54,7 @@
             z-index: 20;
             position: relative;
         }
+
         .app-header h1 {
             font-size: 15px;
             font-weight: 700;
@@ -57,6 +63,7 @@
             gap: 5px;
             white-space: nowrap;
         }
+
         .app-header h1 span {
             background: #4f46e5;
             color: #fff;
@@ -66,12 +73,14 @@
             border-radius: 20px;
             letter-spacing: 0.3px;
         }
+
         .header-actions {
             display: flex;
             gap: 4px;
             flex-wrap: wrap;
             align-items: center;
         }
+
         .header-actions button {
             background: #f1f4f9;
             border: none;
@@ -88,75 +97,96 @@
             align-items: center;
             gap: 4px;
         }
+
         .header-actions button:hover {
             background: #e2e8f0;
         }
+
         .header-actions .btn-clear {
             color: #b91c1c;
         }
+
         .header-actions .btn-clear:hover {
             background: #fee2e2;
         }
+
         .header-actions .btn-paste {
             background: #dbeafe;
             color: #1e40af;
         }
+
         .header-actions .btn-paste:hover {
             background: #bfdbfe;
         }
+
         .header-actions .btn-undo {
             background: #e0e7ff;
             color: #4f46e5;
         }
+
         .header-actions .btn-undo:hover {
             background: #c7d2fe;
         }
+
         .header-actions .btn-redo {
             background: #e0e7ff;
             color: #4f46e5;
         }
+
         .header-actions .btn-redo:hover {
             background: #c7d2fe;
         }
+
         .header-actions .btn-png {
             background: #d1fae5;
             color: #059669;
         }
+
         .header-actions .btn-png:hover {
             background: #a7f3d0;
         }
+
         .header-actions .btn-png.active {
             background: #fecaca;
             color: #dc2626;
         }
+
         .header-actions .btn-save {
             background: #dbeafe;
             color: #1e40af;
         }
+
         .header-actions .btn-save:hover {
             background: #bfdbfe;
         }
+
         .header-actions .btn-save-template {
             background: #fef3c7;
             color: #92400e;
         }
+
         .header-actions .btn-save-template:hover {
             background: #fde68a;
         }
+
         .header-actions .btn-load-template {
             background: #d1fae5;
             color: #065f46;
         }
+
         .header-actions .btn-load-template:hover {
             background: #a7f3d0;
         }
+
         .header-actions .btn-fit {
             background: #e0e7ff;
             color: #4f46e5;
         }
+
         .header-actions .btn-fit:hover {
             background: #c7d2fe;
         }
+
         .toolbar {
             padding: 3px 10px;
             background: #f8fafc;
@@ -170,6 +200,7 @@
             z-index: 10;
             position: relative;
         }
+
         .toolbar .group-label {
             font-size: 7px;
             font-weight: 700;
@@ -178,6 +209,7 @@
             color: #94a3b8;
             margin-right: 1px;
         }
+
         .toolbar .divider {
             width: 1px;
             height: 16px;
@@ -185,6 +217,7 @@
             margin: 0 2px;
             flex-shrink: 0;
         }
+
         .toolbar button {
             background: #fff;
             border: 1px solid #dce1e8;
@@ -204,10 +237,12 @@
             align-items: center;
             justify-content: center;
         }
+
         .toolbar button:hover {
             background: #eef2f6;
             border-color: #b9c2ce;
         }
+
         .toolbar button.snap-btn {
             background: #e0e7ff;
             color: #4f46e5;
@@ -216,93 +251,117 @@
             height: 18px;
             border-color: #c7d2fe;
         }
+
         .toolbar button.snap-btn.active {
             background: #4f46e5;
             color: #fff;
             border-color: #4f46e5;
         }
+
         .toolbar button.snap-btn:hover {
             background: #c7d2fe;
         }
+
         .toolbar button.snap-btn.active:hover {
             background: #4338ca;
         }
+
         .toolbar button.tag-a {
             color: #2563eb;
             text-decoration: underline;
         }
+
         .toolbar button.tag-p {
             color: #0b3b5c;
         }
+
         .toolbar button.tag-i {
             font-style: italic;
             color: #7c3aed;
         }
+
         .toolbar button.tag-strong {
             font-weight: 700;
             color: #b45309;
         }
+
         .toolbar button.tag-b {
             font-weight: 700;
             color: #1e40af;
         }
+
         .toolbar button.tag-u {
             text-decoration: underline;
             color: #047857;
         }
+
         .toolbar button.tag-h1 {
             font-size: 12px;
             font-weight: 700;
             color: #0f172a;
         }
+
         .toolbar button.tag-h2 {
             font-size: 11px;
             font-weight: 700;
             color: #1e293b;
         }
+
         .toolbar button.tag-h3 {
             font-size: 10px;
             font-weight: 700;
             color: #334155;
         }
+
         .toolbar button.tag-img {
             color: #0891b2;
         }
+
         .toolbar button.tag-font {
             color: #7c3aed;
             font-family: 'Times New Roman', serif;
         }
+
         .toolbar button.tag-br {
             color: #64748b;
         }
+
         .toolbar button.tag-span {
             color: #6b21a5;
         }
+
         .toolbar button.tag-ul {
             color: #b45309;
         }
+
         .toolbar button.tag-ol {
             color: #b45309;
         }
+
         .toolbar button.tag-li {
             color: #b45309;
         }
+
         .toolbar button.shape-rect {
             background: #e0e7ff;
             color: #4f46e5;
         }
+
         .toolbar button.shape-circle {
             background: #fce7f3;
             color: #db2777;
         }
+
         .toolbar button.shape-triangle {
             background: #d1fae5;
             color: #059669;
         }
+
         .toolbar button.shape-star {
             background: #fef3c7;
             color: #d97706;
         }
+
         .toolbar .layer-btn {
             background: #f1f5f9;
             color: #475569;
@@ -310,9 +369,11 @@
             padding: 1px 5px;
             height: 18px;
         }
+
         .toolbar .layer-btn:hover {
             background: #e2e8f0;
         }
+
         .toolbar .align-btn {
             background: #f1f5f9;
             color: #475569;
@@ -320,9 +381,11 @@
             padding: 1px 5px;
             height: 18px;
         }
+
         .toolbar .align-btn:hover {
             background: #e2e8f0;
         }
+
         .main-body {
             display: flex;
             flex: 1;
@@ -330,6 +393,7 @@
             min-height: 0;
             position: relative;
         }
+
         .workspace {
             flex: 1;
             background: #e8ecf1;
@@ -346,9 +410,11 @@
             justify-content: center;
             align-items: flex-start;
         }
+
         .workspace.marquee-active {
             cursor: crosshair;
         }
+
         .workspace-empty {
             display: flex;
             flex-direction: column;
@@ -361,11 +427,13 @@
             user-select: none;
             width: 100%;
         }
+
         .workspace-empty .icon {
             font-size: 32px;
             margin-bottom: 8px;
             opacity: 0.5;
         }
+
         #marquee {
             position: absolute;
             border: 2px dashed #4f46e5;
@@ -374,6 +442,7 @@
             display: none;
             z-index: 9999;
         }
+
         #selection-marquee {
             position: absolute;
             border: 1px solid #4f46e5;
@@ -382,6 +451,7 @@
             display: none;
             z-index: 9998;
         }
+
         .element-wrapper {
             position: absolute;
             min-width: 20px;
@@ -397,26 +467,33 @@
             overflow: visible !important;
             pointer-events: auto;
         }
+
         .element-wrapper:hover {
             border-color: #94a3b8;
             cursor: grab;
         }
+
         .element-wrapper:active {
             cursor: grabbing;
         }
+
         .element-wrapper.selected {
             outline: 2px solid #4f46e5 !important;
             outline-offset: 2px !important;
         }
+
         .element-wrapper.text-element .rendered:hover {
             cursor: text;
         }
+
         .element-wrapper.text-element:hover {
             cursor: grab;
         }
+
         .element-wrapper.text-element:active {
             cursor: grabbing;
         }
+
         .element-wrapper .rendered {
             width: 100%;
             height: 100%;
@@ -436,6 +513,7 @@
             background: transparent;
             padding: 4px;
         }
+
         .element-wrapper .rendered img {
             width: 100%;
             height: 100%;
@@ -447,11 +525,13 @@
             max-height: 100%;
             padding: 0;
         }
+
         .element-wrapper .rendered:focus {
             background: rgba(255, 255, 255, 0.3);
             outline: 2px solid #4f46e5;
             outline-offset: 2px;
         }
+
         .element-wrapper .delete-btn {
             position: absolute;
             top: -8px;
@@ -471,13 +551,16 @@
             box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
             z-index: 10;
         }
+
         .element-wrapper.selected .delete-btn {
             display: flex;
         }
+
         .element-wrapper .delete-btn:hover {
             background: #dc2626;
             transform: scale(1.1);
         }
+
         .element-wrapper .resize-handle {
             position: absolute;
             width: 12px;
@@ -490,64 +573,77 @@
             transition: transform 0.1s;
             display: none;
         }
+
         .element-wrapper.selected .resize-handle {
             display: block;
         }
+
         .element-wrapper .resize-handle:hover {
             transform: scale(1.25);
         }
+
         .element-wrapper .resize-handle-nw {
             top: -6px;
             left: -6px;
             cursor: nwse-resize;
         }
+
         .element-wrapper .resize-handle-ne {
             top: -6px;
             right: -6px;
             cursor: nesw-resize;
         }
+
         .element-wrapper .resize-handle-sw {
             bottom: -6px;
             left: -6px;
             cursor: nesw-resize;
         }
+
         .element-wrapper .resize-handle-se {
             bottom: -6px;
             right: -6px;
             cursor: nwse-resize;
         }
+
         .element-wrapper .resize-handle-n {
             top: -6px;
             left: 50%;
             transform: translateX(-50%);
             cursor: ns-resize;
         }
+
         .element-wrapper .resize-handle-s {
             bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
             cursor: ns-resize;
         }
+
         .element-wrapper .resize-handle-e {
             right: -6px;
             top: 50%;
             transform: translateY(-50%);
             cursor: ew-resize;
         }
+
         .element-wrapper .resize-handle-w {
             left: -6px;
             top: 50%;
             transform: translateY(-50%);
             cursor: ew-resize;
         }
+
         .element-wrapper .resize-handle-n:hover,
         .element-wrapper .resize-handle-s:hover {
             transform: translateX(-50%) scale(1.25);
         }
+
         .element-wrapper .resize-handle-e:hover,
         .element-wrapper .resize-handle-w:hover {
             transform: translateY(-50%) scale(1.25);
         }
+
         .element-wrapper .resize-handle::after {
             content: '';
             position: absolute;
@@ -558,6 +654,7 @@
             border-radius: 50%;
             background: transparent;
         }
+
         .element-wrapper .mask-badge {
             position: absolute;
             top: -8px;
@@ -571,19 +668,24 @@
             display: none;
             white-space: nowrap;
         }
+
         .element-wrapper .mask-badge.show {
             display: block;
         }
+
         .element-wrapper.group-parent {
             border-color: #8b5cf6;
             border-style: dashed;
         }
+
         .element-wrapper.text-element .rendered {
             overflow: visible !important;
         }
+
         .element-wrapper.text-element {
             overflow: visible !important;
         }
+
         .snap-guide {
             position: absolute;
             pointer-events: none;
@@ -592,21 +694,25 @@
             opacity: 0;
             transition: opacity 0.08s ease;
         }
+
         .snap-guide.visible {
             opacity: 0.7;
         }
+
         .snap-guide.horizontal {
             height: 2px;
             left: 0;
             right: 0;
             box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
         }
+
         .snap-guide.vertical {
             width: 2px;
             top: 0;
             bottom: 0;
             box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
         }
+
         .color-picker-popup {
             display: none;
             position: fixed;
@@ -620,20 +726,24 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+
         .color-picker-popup.open {
             display: block !important;
         }
+
         .color-picker-popup .cp-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
+
         .color-picker-popup .cp-header span {
             font-size: 11px;
             font-weight: 600;
             color: #1e293b;
         }
+
         .color-picker-popup .cp-header .cp-eyedropper {
             background: none;
             border: none;
@@ -644,10 +754,12 @@
             color: #64748b;
             transition: 0.15s;
         }
+
         .color-picker-popup .cp-header .cp-eyedropper:hover {
             background: #eef2f6;
             color: #1e293b;
         }
+
         .color-picker-popup .cp-close {
             background: none;
             border: none;
@@ -656,15 +768,18 @@
             color: #94a3b8;
             padding: 0 4px;
         }
+
         .color-picker-popup .cp-close:hover {
             color: #1e293b;
         }
+
         .color-picker-popup .cp-wheel-wrap {
             position: relative;
             width: 100%;
             padding-bottom: 100%;
             margin-bottom: 10px;
         }
+
         .color-picker-popup .cp-wheel-wrap canvas {
             position: absolute;
             top: 0;
@@ -675,17 +790,20 @@
             cursor: crosshair;
             touch-action: none;
         }
+
         .color-picker-popup .cp-sliders {
             display: flex;
             flex-direction: column;
             gap: 6px;
             margin-bottom: 10px;
         }
+
         .color-picker-popup .cp-slider-row {
             display: flex;
             align-items: center;
             gap: 8px;
         }
+
         .color-picker-popup .cp-slider-row label {
             font-size: 9px;
             font-weight: 600;
@@ -693,6 +811,7 @@
             width: 12px;
             text-align: right;
         }
+
         .color-picker-popup .cp-slider-row input[type="range"] {
             flex: 1;
             height: 4px;
@@ -703,6 +822,7 @@
             outline: none;
             cursor: pointer;
         }
+
         .color-picker-popup .cp-slider-row input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -714,6 +834,7 @@
             border: 2px solid #fff;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
+
         .color-picker-popup .cp-slider-row input[type="range"]::-moz-range-thumb {
             width: 12px;
             height: 12px;
@@ -723,11 +844,13 @@
             border: 2px solid #fff;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
+
         .color-picker-popup .cp-hex-row {
             display: flex;
             align-items: center;
             gap: 8px;
         }
+
         .color-picker-popup .cp-hex-row input[type="text"] {
             flex: 1;
             padding: 3px 8px;
@@ -738,6 +861,7 @@
             text-transform: uppercase;
             width: 70px;
         }
+
         .color-picker-popup .cp-hex-row .cp-preview {
             width: 28px;
             height: 28px;
@@ -745,12 +869,14 @@
             border: 2px solid #e9edf2;
             flex-shrink: 0;
         }
+
         .color-picker-popup .cp-presets {
             display: flex;
             flex-wrap: wrap;
             gap: 4px;
             margin-top: 8px;
         }
+
         .color-picker-popup .cp-presets .cp-swatch {
             width: 24px;
             height: 24px;
@@ -759,14 +885,17 @@
             cursor: pointer;
             transition: 0.1s;
         }
+
         .color-picker-popup .cp-presets .cp-swatch:hover {
             transform: scale(1.1);
             border-color: #4f46e5;
         }
+
         .color-picker-popup .cp-presets .cp-swatch.active {
             border-color: #4f46e5;
             box-shadow: 0 0 0 2px #fff, 0 0 0 4px #4f46e5;
         }
+
         .color-picker-trigger {
             display: flex;
             align-items: center;
@@ -779,6 +908,7 @@
             position: relative;
             min-height: 28px;
         }
+
         .color-picker-trigger .cp-swatch {
             width: 24px;
             height: 24px;
@@ -786,20 +916,24 @@
             border: 2px solid #e9edf2;
             flex-shrink: 0;
         }
+
         .color-picker-trigger .cp-label {
             font-size: 9px;
             color: #64748b;
             flex: 1;
         }
+
         .color-picker-trigger .cp-arrow {
             font-size: 10px;
             color: #94a3b8;
         }
+
         .bg-mode-toggle {
             display: flex;
             gap: 4px;
             margin-bottom: 4px;
         }
+
         .bg-mode-toggle button {
             flex: 1;
             padding: 2px 6px;
@@ -812,19 +946,23 @@
             font-weight: 600;
             color: #64748b;
         }
+
         .bg-mode-toggle button.active {
             background: #4f46e5;
             color: #fff;
             border-color: #4f46e5;
         }
+
         .bg-mode-toggle button:hover:not(.active) {
             background: #eef2f6;
         }
+
         .bg-upload-row {
             display: flex;
             gap: 4px;
             align-items: center;
         }
+
         .bg-upload-row input[type="file"] {
             flex: 1;
             font-size: 8px;
@@ -833,6 +971,7 @@
             border-radius: 3px;
             background: #fff;
         }
+
         .bg-upload-row button {
             padding: 1px 8px;
             font-size: 8px;
@@ -843,15 +982,19 @@
             transition: 0.1s;
             white-space: nowrap;
         }
+
         .bg-upload-row button:hover {
             background: #eef2f6;
         }
+
         .bg-upload-row button.clear-bg {
             color: #b91c1c;
         }
+
         .bg-upload-row button.clear-bg:hover {
             background: #fee2e2;
         }
+
         .section-divider {
             height: 2px;
             background: linear-gradient(to right, #4f46e5, #8b5cf6, #a78bfa);
@@ -860,6 +1003,7 @@
             border-radius: 2px;
             opacity: 0.7;
         }
+
         .prop-group .section-header {
             display: flex;
             align-items: center;
@@ -872,9 +1016,11 @@
             border-bottom: 2px solid #e9edf2;
             padding-bottom: 4px;
         }
+
         .prop-group .section-header .section-icon {
             font-size: 14px;
         }
+
         .prop-group .section-header .section-title {
             font-weight: 700;
             font-size: 10px;
@@ -882,6 +1028,7 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
+
         .property-panel {
             width: 240px;
             min-width: 140px;
@@ -898,6 +1045,7 @@
             transition: width 0.2s ease;
             height: 100%;
         }
+
         .property-panel.collapsed {
             width: 36px !important;
             min-width: 36px !important;
@@ -905,12 +1053,14 @@
             padding: 8px 4px;
             overflow: hidden;
         }
+
         .property-panel.collapsed .panel-title,
         .property-panel.collapsed .prop-group,
         .property-panel.collapsed .no-selection,
         .property-panel.collapsed #propertyContent {
             display: none !important;
         }
+
         .property-panel .collapse-toggle {
             position: absolute;
             top: 8px;
@@ -925,14 +1075,17 @@
             z-index: 5;
             transition: 0.15s;
         }
+
         .property-panel .collapse-toggle:hover {
             background: #eef2f6;
             color: #1e293b;
         }
+
         .property-panel.collapsed .collapse-toggle {
             right: 50%;
             transform: translateX(50%);
         }
+
         .property-panel .panel-title {
             font-size: 9px;
             font-weight: 700;
@@ -942,15 +1095,18 @@
             margin-bottom: 3px;
             padding-right: 24px;
         }
+
         .property-panel .no-selection {
             color: #94a3b8;
             font-size: 11px;
             text-align: center;
             margin-top: 20px;
         }
+
         .property-panel .prop-group {
             margin-bottom: 4px;
         }
+
         .property-panel .prop-group label {
             display: block;
             font-size: 8px;
@@ -958,6 +1114,7 @@
             color: #475569;
             margin-bottom: 1px;
         }
+
         .property-panel .prop-group input,
         .property-panel .prop-group textarea,
         .property-panel .prop-group select {
@@ -970,6 +1127,7 @@
             background: #ffffff;
             transition: 0.12s;
         }
+
         .property-panel .prop-group input:focus,
         .property-panel .prop-group textarea:focus,
         .property-panel .prop-group select:focus {
@@ -977,17 +1135,20 @@
             outline-offset: 0px;
             border-color: transparent;
         }
+
         .property-panel .prop-group textarea {
             resize: vertical;
             min-height: 24px;
             font-size: 10px;
         }
+
         .input-slider-group {
             display: flex;
             align-items: center;
             gap: 3px;
             margin-bottom: 2px;
         }
+
         .input-slider-group label {
             font-size: 8px;
             width: 18px;
@@ -997,6 +1158,7 @@
             text-align: right;
             flex-shrink: 0;
         }
+
         .input-slider-group input[type="number"] {
             width: 40px;
             padding: 1px 3px;
@@ -1006,6 +1168,7 @@
             text-align: center;
             flex-shrink: 0;
         }
+
         .input-slider-group input[type="range"] {
             flex: 1;
             height: 4px;
@@ -1018,6 +1181,7 @@
             min-width: 20px;
             cursor: pointer;
         }
+
         .input-slider-group input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -1029,6 +1193,7 @@
             border: 2px solid #fff;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
         }
+
         .input-slider-group input[type="range"]::-moz-range-thumb {
             width: 14px;
             height: 14px;
@@ -1038,9 +1203,11 @@
             border: 2px solid #fff;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
         }
+
         .input-slider-group input[type="range"]:hover {
             background: #b9c2ce;
         }
+
         .input-slider-group .range-value {
             min-width: 32px;
             text-align: center;
@@ -1052,6 +1219,7 @@
             padding: 0 4px;
             flex-shrink: 0;
         }
+
         .panel-resize-handle {
             position: absolute;
             left: -4px;
@@ -1063,10 +1231,12 @@
             background: transparent;
             transition: background 0.15s;
         }
+
         .panel-resize-handle:hover,
         .panel-resize-handle.active {
             background: rgba(79, 70, 229, 0.15);
         }
+
         .panel-resize-handle::after {
             content: '';
             position: absolute;
@@ -1079,15 +1249,18 @@
             border-radius: 2px;
             opacity: 0.5;
         }
+
         .panel-resize-handle:hover::after {
             opacity: 1;
             background: #4f46e5;
         }
+
         .property-panel .layer-controls {
             display: flex;
             gap: 2px;
             flex-wrap: wrap;
         }
+
         .property-panel .layer-controls button {
             flex: 1;
             min-width: 30px;
@@ -1099,13 +1272,16 @@
             cursor: pointer;
             transition: 0.1s;
         }
+
         .property-panel .layer-controls button:hover {
             background: #eef2f6;
         }
+
         .property-panel .group-controls {
             display: flex;
             gap: 2px;
         }
+
         .property-panel .group-controls button {
             flex: 1;
             padding: 1px 4px;
@@ -1116,14 +1292,17 @@
             cursor: pointer;
             transition: 0.1s;
         }
+
         .property-panel .group-controls button:hover {
             background: #eef2f6;
         }
+
         .property-panel .mask-controls {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
+
         .property-panel .mask-controls select {
             width: 100%;
             padding: 1px 4px;
@@ -1132,6 +1311,7 @@
             border-radius: 3px;
             background: #fff;
         }
+
         .code-preview {
             border-top: 1px solid #e9edf2;
             background: #0f172a;
@@ -1143,9 +1323,11 @@
             display: flex;
             flex-direction: column;
         }
+
         .code-preview.collapsed {
             max-height: 28px;
         }
+
         .code-preview .code-toggle {
             padding: 2px 12px;
             background: #0f172a;
@@ -1158,6 +1340,7 @@
             border-bottom: 1px solid #1e293b;
             flex-shrink: 0;
         }
+
         .code-preview .code-toggle span {
             color: #94a3b8;
             font-size: 8px;
@@ -1165,19 +1348,23 @@
             letter-spacing: 0.3px;
             text-transform: uppercase;
         }
+
         .code-preview .code-toggle .arrow {
             color: #64748b;
             font-size: 10px;
             transition: 0.2s;
         }
+
         .code-preview.collapsed .code-toggle .arrow {
             transform: rotate(-90deg);
         }
+
         .code-preview .code-editor-wrap {
             flex: 1;
             overflow: auto;
             padding: 4px 12px 8px;
         }
+
         .code-preview .code-editor-wrap textarea {
             width: 100%;
             height: 100%;
@@ -1195,9 +1382,11 @@
             word-break: break-all;
             tab-size: 2;
         }
+
         .code-preview .code-editor-wrap textarea::selection {
             background: #4f46e5;
         }
+
         .code-preview .code-sync-status {
             font-size: 7px;
             color: #64748b;
@@ -1205,26 +1394,33 @@
             text-align: right;
             flex-shrink: 0;
         }
+
         .code-preview .code-sync-status .synced {
             color: #34d399;
         }
+
         .code-preview .code-sync-status .unsynced {
             color: #fbbf24;
         }
+
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
         }
+
         ::-webkit-scrollbar-track {
             background: transparent;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #d1d9e6;
             border-radius: 8px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #b9c2ce;
         }
+
         .panel-toggle {
             display: none;
             position: fixed;
@@ -1244,12 +1440,15 @@
             align-items: center;
             justify-content: center;
         }
+
         .panel-toggle:hover {
             transform: scale(1.05);
         }
+
         .panel-toggle.active {
             background: #ef4444;
         }
+
         .workspace-size-hint {
             position: absolute;
             bottom: 8px;
@@ -1264,6 +1463,7 @@
             font-family: monospace;
             z-index: 1;
         }
+
         .workspace-width-indicator {
             position: absolute;
             top: 8px;
@@ -1284,6 +1484,7 @@
             letter-spacing: 0.3px;
             white-space: nowrap;
         }
+
         #formatToolbar {
             display: none;
             position: fixed;
@@ -1298,6 +1499,7 @@
             user-select: none;
             pointer-events: auto;
         }
+
         #formatToolbar .fmt-btn {
             background: transparent;
             border: none;
@@ -1312,22 +1514,26 @@
             min-width: 26px;
             text-align: center;
         }
+
         #formatToolbar .fmt-btn:hover {
             background: #334155;
             color: #ffffff;
         }
+
         #formatToolbar .fmt-divider {
             width: 1px;
             height: 20px;
             background: #475569;
             margin: 0 2px;
         }
+
         #formatToolbar .fmt-color-wrap {
             display: flex;
             align-items: center;
             gap: 3px;
             padding: 0 3px;
         }
+
         #formatToolbar .fmt-color-wrap input[type="color"] {
             width: 20px;
             height: 20px;
@@ -1337,13 +1543,16 @@
             cursor: pointer;
             background: transparent;
         }
+
         #formatToolbar .fmt-color-wrap input[type="color"]::-webkit-color-swatch-wrapper {
             padding: 1px;
         }
+
         #formatToolbar .fmt-color-wrap input[type="color"]::-webkit-color-swatch {
             border: 2px solid #475569;
             border-radius: 3px;
         }
+
         #formatToolbar .fmt-size-select {
             background: #334155;
             border: none;
@@ -1356,6 +1565,7 @@
             font-family: 'Segoe UI', sans-serif;
             height: 22px;
         }
+
         #frame-container {
             position: relative;
             width: 100%;
@@ -1369,9 +1579,11 @@
             background-clip: padding-box;
             margin: 0 auto;
         }
+
         #frame-container:hover {
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
         }
+
         #frame-inner {
             position: relative;
             width: 100%;
@@ -1380,20 +1592,25 @@
             min-height: inherit;
             box-sizing: border-box;
         }
+
         #frame-resize-handle {
             display: none !important;
         }
+
         #frame-container.frame-selected {
             outline: 2px solid #4f46e5;
             outline-offset: 4px;
         }
+
         #frame-container .element-wrapper {
             border-color: transparent;
         }
+
         #frame-container .element-wrapper.selected {
             border-color: #4f46e5;
             background: rgba(79, 70, 229, 0.06);
         }
+
         .template-selector {
             display: flex;
             align-items: center;
@@ -1401,6 +1618,7 @@
             position: relative;
             z-index: 30;
         }
+
         .template-selector select {
             background: #f1f4f9;
             border: none;
@@ -1414,78 +1632,96 @@
             position: relative;
             z-index: 30;
         }
+
         .template-selector select:focus {
             outline: 2px solid #4f46e5;
             outline-offset: 2px;
         }
+
         @media (max-width:1200px) {
             .property-panel {
                 width: 200px;
                 min-width: 120px;
                 padding: 6px 10px;
             }
+
             .property-panel .input-slider-group input[type="number"] {
                 width: 36px;
             }
+
             .property-panel .input-slider-group label {
                 width: 14px;
                 font-size: 7px;
             }
         }
+
         @media (max-width:900px) {
             .property-panel {
                 width: 160px;
                 min-width: 100px;
                 padding: 4px 8px;
             }
+
             .app-header h1 {
                 font-size: 13px;
             }
+
             .header-actions button {
                 font-size: 9px;
                 padding: 2px 6px;
                 height: 22px;
             }
+
             .property-panel .input-slider-group input[type="number"] {
                 width: 32px;
                 font-size: 8px;
             }
+
             .property-panel .input-slider-group input[type="range"] {
                 min-width: 15px;
             }
+
             .property-panel .prop-group input,
             .property-panel .prop-group textarea,
             .property-panel .prop-group select {
                 font-size: 9px;
                 padding: 1px 4px;
             }
+
             .property-panel .prop-group textarea {
                 min-height: 20px;
             }
+
             .toolbar button {
                 font-size: 8px;
                 padding: 1px 4px;
                 min-width: 18px;
                 height: 18px;
             }
+
             .toolbar .group-label {
                 font-size: 6px;
             }
+
             .color-picker-popup {
                 width: 200px;
                 padding: 12px;
             }
         }
+
         @media (max-width:700px) {
             body {
                 padding: 3px;
             }
+
             .app {
                 border-radius: 8px;
             }
+
             .main-body {
                 flex-direction: column;
             }
+
             .property-panel {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -1499,6 +1735,7 @@
                 overflow-y: auto;
                 height: auto;
             }
+
             .property-panel.collapsed {
                 height: 36px !important;
                 min-height: 36px !important;
@@ -1507,82 +1744,103 @@
                 min-width: unset !important;
                 max-width: 100% !important;
             }
+
             .property-panel .input-slider-group input[type="number"] {
                 width: 32px;
             }
+
             .property-panel .input-slider-group label {
                 width: 16px;
                 font-size: 8px;
             }
+
             .property-panel .prop-group {
                 margin-bottom: 2px;
             }
+
             .property-panel .prop-group label {
                 font-size: 7px;
             }
+
             .panel-resize-handle {
                 display: none;
             }
+
             .code-preview {
                 max-height: 80px;
             }
+
             .code-preview.collapsed {
                 max-height: 24px;
             }
+
             .app-header {
                 padding: 4px 10px;
                 min-height: 28px;
             }
+
             .app-header h1 {
                 font-size: 12px;
             }
+
             .app-header h1 span {
                 font-size: 7px;
                 padding: 1px 5px;
             }
+
             .header-actions button {
                 font-size: 8px;
                 padding: 2px 5px;
                 height: 20px;
             }
+
             .header-actions .btn-icon {
                 font-size: 11px;
                 padding: 2px 6px;
             }
+
             .toolbar {
                 padding: 2px 6px;
                 min-height: 22px;
                 gap: 1px;
             }
+
             .toolbar button {
                 font-size: 7px;
                 padding: 1px 3px;
                 min-width: 16px;
                 height: 16px;
             }
+
             .toolbar .divider {
                 height: 12px;
                 margin: 0 1px;
             }
+
             .toolbar .group-label {
                 font-size: 6px;
             }
+
             #formatToolbar {
                 padding: 2px 4px;
                 border-radius: 6px;
             }
+
             #formatToolbar .fmt-btn {
                 font-size: 10px;
                 padding: 2px 6px;
                 min-width: 22px;
             }
+
             .workspace {
                 min-height: 120px;
                 padding: 12px;
             }
+
             .element-wrapper .rendered {
                 font-size: 11px;
             }
+
             .color-picker-popup {
                 width: 180px;
                 padding: 10px;
@@ -1594,17 +1852,21 @@
                 max-height: 90vh;
                 overflow-y: auto;
             }
+
             .color-picker-popup .cp-wheel-wrap {
                 padding-bottom: 80%;
             }
+
             .panel-toggle {
                 display: flex;
             }
         }
+
         @media (max-width:550px) {
             .main-body {
                 flex-direction: column;
             }
+
             .property-panel {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -1618,55 +1880,69 @@
                 overflow-y: auto;
                 height: auto;
             }
+
             .header-actions button {
                 font-size: 7px;
                 padding: 1px 4px;
                 height: 18px;
             }
+
             .app-header h1 {
                 font-size: 10px;
             }
+
             .app-header h1 span {
                 font-size: 6px;
                 padding: 1px 4px;
             }
+
             .property-panel .input-slider-group input[type="number"] {
                 width: 26px;
                 font-size: 7px;
             }
+
             .property-panel .input-slider-group label {
                 font-size: 6px;
                 width: 12px;
             }
+
             .property-panel .input-slider-group input[type="range"] {
                 min-width: 12px;
             }
+
             .code-preview {
                 max-height: 60px;
             }
+
             .code-preview.collapsed {
                 max-height: 20px;
             }
+
             .toolbar button {
                 font-size: 6px;
                 padding: 1px 3px;
                 min-width: 14px;
                 height: 14px;
             }
+
             .toolbar .group-label {
                 font-size: 5px;
             }
+
             .toolbar .divider {
                 height: 10px;
             }
+
             #formatToolbar .fmt-btn {
                 font-size: 9px;
                 padding: 1px 5px;
                 min-width: 18px;
             }
+
             .element-wrapper .rendered {
                 font-size: 10px;
             }
+
             .color-picker-popup {
                 width: 160px;
                 padding: 8px;
@@ -1692,17 +1968,18 @@
                         <option value="portfolio">Portfolio</option>
                         <option value="custom">✨ Custom (saved)</option>
                     </select>
-                    <button id="applyTemplate" style="background:#e0e7ff;border:none;padding:1px 8px;border-radius:4px;font-size:9px;cursor:pointer;color:#4f46e5;">Apply</button>
+                    <button id="applyTemplate"
+                        style="background:#e0e7ff;border:none;padding:1px 8px;border-radius:4px;font-size:9px;cursor:pointer;color:#4f46e5;">Apply</button>
                 </div>
                 <button class="btn-undo" id="undoBtn" title="Undo (Ctrl+Z)">↩ Undo</button>
                 <button class="btn-redo" id="redoBtn" title="Redo (Ctrl+Y)">↪ Redo</button>
                 <button class="btn-png" id="pngBtn">📷 PNG</button>
                 <button class="btn-paste" id="pasteHTML">📋 Paste</button>
                 <button class="btn-clear" id="clearAll">🗑 Clear</button>
-                <button id="loadTemplate">📄 Load</button>
                 <button class="btn-save" id="saveHTML">💾 Save HTML</button>
                 <button class="btn-save-template" id="saveTemplate">💾 Save as Template</button>
-                <button class="btn-fit" id="fitFrameBtn">📐 Fit Frame</button>
+                <button class="btn-delete-template" id="deleteTemplate">🗑 Delete Template</button>
+                <button class="btn-rename-template" id="renameTemplate">✏️ Rename</button>
             </div>
         </header>
 
@@ -1824,8 +2101,8 @@
         class ColorPicker {
             constructor(triggerElement, options = {}) {
                 this.trigger = triggerElement;
-                this.onChange = options.onChange || (() => {});
-                this.onClose = options.onClose || (() => {});
+                this.onChange = options.onChange || (() => { });
+                this.onClose = options.onClose || (() => { });
                 this.color = options.initialColor || '#4f46e5';
                 this.hue = 240;
                 this.sat = 80;
@@ -2503,11 +2780,15 @@
             const el = findElement(draggingEl);
             if (!el) return null;
             const result = { x: null, y: null, hGuide: null, vGuide: null };
-            const frameEdges = { left: 0, right: frame.width, top: 0, bottom: 1000, centerX: frame.width / 2,
-                centerY: 500 };
+            const frameEdges = {
+                left: 0, right: frame.width, top: 0, bottom: 1000, centerX: frame.width / 2,
+                centerY: 500
+            };
             const others = elements.filter(e => e.id !== el.id && e.id !== excludeId);
-            const edges = { left: el.x, right: el.x + el.width, top: el.y, bottom: el.y + el.height, centerX: el.x + el
-                    .width / 2, centerY: el.y + el.height / 2 };
+            const edges = {
+                left: el.x, right: el.x + el.width, top: el.y, bottom: el.y + el.height, centerX: el.x + el
+                    .width / 2, centerY: el.y + el.height / 2
+            };
             let bestX = null,
                 bestY = null,
                 bestXDist = Infinity,
@@ -2517,9 +2798,9 @@
 
             function checkTarget(oEdges) {
                 const yAligns = [{ val: edges.top, target: oEdges.top }, { val: edges.bottom, target: oEdges.bottom },
-                    { val: edges.top, target: oEdges.bottom }, { val: edges.bottom, target: oEdges.top },
-                    { val: edges.centerY, target: oEdges.centerY }, { val: edges.top, target: oEdges.centerY },
-                    { val: edges.bottom, target: oEdges.centerY }
+                { val: edges.top, target: oEdges.bottom }, { val: edges.bottom, target: oEdges.top },
+                { val: edges.centerY, target: oEdges.centerY }, { val: edges.top, target: oEdges.centerY },
+                { val: edges.bottom, target: oEdges.centerY }
                 ];
                 for (const align of yAligns) {
                     const dist = Math.abs(align.val - align.target);
@@ -2530,9 +2811,9 @@
                     }
                 }
                 const xAligns = [{ val: edges.left, target: oEdges.left }, { val: edges.right, target: oEdges.right },
-                    { val: edges.left, target: oEdges.right }, { val: edges.right, target: oEdges.left },
-                    { val: edges.centerX, target: oEdges.centerX }, { val: edges.left, target: oEdges.centerX },
-                    { val: edges.right, target: oEdges.centerX }
+                { val: edges.left, target: oEdges.right }, { val: edges.right, target: oEdges.left },
+                { val: edges.centerX, target: oEdges.centerX }, { val: edges.left, target: oEdges.centerX },
+                { val: edges.right, target: oEdges.centerX }
                 ];
                 for (const align of xAligns) {
                     const dist = Math.abs(align.val - align.target);
@@ -2545,8 +2826,10 @@
             }
             checkTarget(frameEdges);
             for (const other of others) {
-                const oEdges = { left: other.x, right: other.x + other.width, top: other.y, bottom: other.y + other
-                        .height, centerX: other.x + other.width / 2, centerY: other.y + other.height / 2 };
+                const oEdges = {
+                    left: other.x, right: other.x + other.width, top: other.y, bottom: other.y + other
+                        .height, centerX: other.x + other.width / 2, centerY: other.y + other.height / 2
+                };
                 checkTarget(oEdges);
             }
             result.x = bestX;
@@ -2561,12 +2844,16 @@
             const bbox = getBoundingBox(elementsList);
             if (!bbox) return null;
             const fakeEl = { id: 'group', x: bbox.x, y: bbox.y, width: bbox.width, height: bbox.height };
-            const frameEdges = { left: 0, right: frame.width, top: 0, bottom: 1000, centerX: frame.width / 2,
-                centerY: 500 };
+            const frameEdges = {
+                left: 0, right: frame.width, top: 0, bottom: 1000, centerX: frame.width / 2,
+                centerY: 500
+            };
             const others = elements.filter(e => !excludeIds.includes(e.id));
             const result = { x: null, y: null, hGuide: null, vGuide: null };
-            const edges = { left: fakeEl.x, right: fakeEl.x + fakeEl.width, top: fakeEl.y, bottom: fakeEl.y + fakeEl
-                    .height, centerX: fakeEl.x + fakeEl.width / 2, centerY: fakeEl.y + fakeEl.height / 2 };
+            const edges = {
+                left: fakeEl.x, right: fakeEl.x + fakeEl.width, top: fakeEl.y, bottom: fakeEl.y + fakeEl
+                    .height, centerX: fakeEl.x + fakeEl.width / 2, centerY: fakeEl.y + fakeEl.height / 2
+            };
             let bestX = null,
                 bestY = null,
                 bestXDist = Infinity,
@@ -2576,9 +2863,9 @@
 
             function checkTarget(oEdges) {
                 const yAligns = [{ val: edges.top, target: oEdges.top }, { val: edges.bottom, target: oEdges.bottom },
-                    { val: edges.top, target: oEdges.bottom }, { val: edges.bottom, target: oEdges.top },
-                    { val: edges.centerY, target: oEdges.centerY }, { val: edges.top, target: oEdges.centerY },
-                    { val: edges.bottom, target: oEdges.centerY }
+                { val: edges.top, target: oEdges.bottom }, { val: edges.bottom, target: oEdges.top },
+                { val: edges.centerY, target: oEdges.centerY }, { val: edges.top, target: oEdges.centerY },
+                { val: edges.bottom, target: oEdges.centerY }
                 ];
                 for (const align of yAligns) {
                     const dist = Math.abs(align.val - align.target);
@@ -2589,9 +2876,9 @@
                     }
                 }
                 const xAligns = [{ val: edges.left, target: oEdges.left }, { val: edges.right, target: oEdges.right },
-                    { val: edges.left, target: oEdges.right }, { val: edges.right, target: oEdges.left },
-                    { val: edges.centerX, target: oEdges.centerX }, { val: edges.left, target: oEdges.centerX },
-                    { val: edges.right, target: oEdges.centerX }
+                { val: edges.left, target: oEdges.right }, { val: edges.right, target: oEdges.left },
+                { val: edges.centerX, target: oEdges.centerX }, { val: edges.left, target: oEdges.centerX },
+                { val: edges.right, target: oEdges.centerX }
                 ];
                 for (const align of xAligns) {
                     const dist = Math.abs(align.val - align.target);
@@ -2604,8 +2891,10 @@
             }
             checkTarget(frameEdges);
             for (const other of others) {
-                const oEdges = { left: other.x, right: other.x + other.width, top: other.y, bottom: other.y + other
-                        .height, centerX: other.x + other.width / 2, centerY: other.y + other.height / 2 };
+                const oEdges = {
+                    left: other.x, right: other.x + other.width, top: other.y, bottom: other.y + other
+                        .height, centerX: other.x + other.width / 2, centerY: other.y + other.height / 2
+                };
                 checkTarget(oEdges);
             }
             result.x = bestX;
@@ -2634,17 +2923,25 @@
                 const oLeft = other.x,
                     oRight = other.x + other.width;
                 const distR = Math.abs(right - oLeft);
-                if (distR < SNAP_THRESHOLD && distR < bestDist) { snapW = oLeft - left;
-                    bestDist = distR; }
+                if (distR < SNAP_THRESHOLD && distR < bestDist) {
+                    snapW = oLeft - left;
+                    bestDist = distR;
+                }
                 const distR2 = Math.abs(right - oRight);
-                if (distR2 < SNAP_THRESHOLD && distR2 < bestDist) { snapW = oRight - left;
-                    bestDist = distR2; }
+                if (distR2 < SNAP_THRESHOLD && distR2 < bestDist) {
+                    snapW = oRight - left;
+                    bestDist = distR2;
+                }
                 const distB = Math.abs(bottom - other.y);
-                if (distB < SNAP_THRESHOLD && distB < bestDist) { snapH = other.y - top;
-                    bestDist = distB; }
+                if (distB < SNAP_THRESHOLD && distB < bestDist) {
+                    snapH = other.y - top;
+                    bestDist = distB;
+                }
                 const distB2 = Math.abs(bottom - (other.y + other.height));
-                if (distB2 < SNAP_THRESHOLD && distB2 < bestDist) { snapH = (other.y + other.height) - top;
-                    bestDist = distB2; }
+                if (distB2 < SNAP_THRESHOLD && distB2 < bestDist) {
+                    snapH = (other.y + other.height) - top;
+                    bestDist = distB2;
+                }
             }
             return { w: Math.max(20, snapW), h: Math.max(20, snapH) };
         }
@@ -2652,10 +2949,14 @@
         function showSnapGuides(hPos, vPos) {
             const hGuide = document.getElementById('snapGuideH'),
                 vGuide = document.getElementById('snapGuideV');
-            if (hPos !== null) { hGuide.style.top = hPos + 'px';
-                hGuide.classList.add('visible'); } else hGuide.classList.remove('visible');
-            if (vPos !== null) { vGuide.style.left = vPos + 'px';
-                vGuide.classList.add('visible'); } else vGuide.classList.remove('visible');
+            if (hPos !== null) {
+                hGuide.style.top = hPos + 'px';
+                hGuide.classList.add('visible');
+            } else hGuide.classList.remove('visible');
+            if (vPos !== null) {
+                vGuide.style.left = vPos + 'px';
+                vGuide.classList.add('visible');
+            } else vGuide.classList.remove('visible');
         }
 
         function hideSnapGuides() {
@@ -2747,30 +3048,38 @@
                 paddingBottom: 0,
                 paddingLeft: 0,
             };
-            if (shape === 'triangle') { base.background = '#059669';
+            if (shape === 'triangle') {
+                base.background = '#059669';
                 base.borderRadius = '0px';
                 base.width = 100;
                 base.height = 86;
                 base.content = '';
-                base.maintainAspect = true; }
-            if (shape === 'star') { base.background = '#d97706';
+                base.maintainAspect = true;
+            }
+            if (shape === 'star') {
+                base.background = '#d97706';
                 base.borderRadius = '0px';
                 base.width = 100;
                 base.height = 100;
                 base.content = '';
-                base.maintainAspect = true; }
-            if (shape === 'circle') { base.background = '#db2777';
+                base.maintainAspect = true;
+            }
+            if (shape === 'circle') {
+                base.background = '#db2777';
                 base.borderRadius = '50%';
                 base.width = 100;
                 base.height = 100;
                 base.content = '';
-                base.maintainAspect = true; }
-            if (shape === 'rect') { base.background = '#4f46e5';
+                base.maintainAspect = true;
+            }
+            if (shape === 'rect') {
+                base.background = '#4f46e5';
                 base.borderRadius = '0px';
                 base.width = 100;
                 base.height = 100;
                 base.content = '';
-                base.maintainAspect = false; }
+                base.maintainAspect = false;
+            }
             switch (tag) {
                 case 'a':
                     return { ...base, content: 'Link text', height: 40, attributes: { href: '#' } };
@@ -2793,19 +3102,31 @@
                 case 'span':
                     return { ...base, content: 'Span text', height: 38 };
                 case 'font':
-                    return { ...base, content: 'Font text', height: 40, attributes: { color: '#1e293b', size: '4',
-                            face: 'Arial' } };
+                    return {
+                        ...base, content: 'Font text', height: 40, attributes: {
+                            color: '#1e293b', size: '4',
+                            face: 'Arial'
+                        }
+                    };
                 case 'img':
-                    return { ...base, content: '', width: 160, height: 120, attributes: { src: 'https://i.postimg.cc/T1rY9rsw/1.png',
-                            alt: 'Image' }, maintainAspect: true };
+                    return {
+                        ...base, content: '', width: 160, height: 120, attributes: {
+                            src: 'https://i.postimg.cc/T1rY9rsw/1.png',
+                            alt: 'Image'
+                        }, maintainAspect: true
+                    };
                 case 'br':
                     return { ...base, content: '', height: 16, width: 50 };
                 case 'ul':
-                    return { ...base, content: '', height: 70, width: 180, listItems: ['List item 1', 'List item 2'],
-                        listStyle: 'disc' };
+                    return {
+                        ...base, content: '', height: 70, width: 180, listItems: ['List item 1', 'List item 2'],
+                        listStyle: 'disc'
+                    };
                 case 'ol':
-                    return { ...base, content: '', height: 70, width: 180, listItems: ['List item 1', 'List item 2'],
-                        listStyle: 'decimal' };
+                    return {
+                        ...base, content: '', height: 70, width: 180, listItems: ['List item 1', 'List item 2'],
+                        listStyle: 'decimal'
+                    };
                 case 'li':
                     return { ...base, content: 'List item', width: 130, height: 30 };
                 default:
@@ -2838,349 +3159,553 @@
         }
 
         const TEMPLATES = {
-            profile: function() {
+            profile: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                const heroBg = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-                    borderRadius: '16px', opacity: 0.9, height: 200 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                const heroBg = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                    borderRadius: '16px', opacity: 0.9, height: 200
+                });
                 els.push(heroBg);
-                const profileImg = makeEl('img', Math.min(fw - 180, 560), 24, 130, '', '', { src: 'https://i.postimg.cc/T1rY9rsw/1.png',
-                    alt: 'Profile' });
+                const profileImg = makeEl('img', Math.min(fw - 180, 560), 24, 130, '', '', {
+                    src: 'https://i.postimg.cc/T1rY9rsw/1.png',
+                    alt: 'Profile'
+                });
                 profileImg.borderRadius = '50%';
                 profileImg.height = 130;
                 els.push(profileImg);
-                els.push(makeEl('h1', 170, 35, 350, 'Model Name', null, { fontFamily: 'Georgia, serif', color: '#ffffff',
-                    fontSize: '28px' }));
-                els.push(makeEl('p', 170, 85, 400, 'Creative Designer & Developer', null, { fontFamily: 'Arial, sans-serif',
-                    color: '#c7d2fe', fontSize: '14px' }));
-                els.push(makeEl('p', 170, 118, 400, 'Crafting beautiful, functional experiences.', null, { fontFamily: 'Arial, sans-serif',
-                    color: '#c7d2fe', fontSize: '13px' }));
-                const aboutBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, { background: 'rgba(255,255,255,0.9)',
-                    borderRadius: '12px', border: '1px solid #e9edf2', height: 170 });
+                els.push(makeEl('h1', 170, 35, 350, 'Model Name', null, {
+                    fontFamily: 'Georgia, serif', color: '#ffffff',
+                    fontSize: '28px'
+                }));
+                els.push(makeEl('p', 170, 85, 400, 'Creative Designer & Developer', null, {
+                    fontFamily: 'Arial, sans-serif',
+                    color: '#c7d2fe', fontSize: '14px'
+                }));
+                els.push(makeEl('p', 170, 118, 400, 'Crafting beautiful, functional experiences.', null, {
+                    fontFamily: 'Arial, sans-serif',
+                    color: '#c7d2fe', fontSize: '13px'
+                }));
+                const aboutBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, {
+                    background: 'rgba(255,255,255,0.9)',
+                    borderRadius: '12px', border: '1px solid #e9edf2', height: 170
+                });
                 els.push(aboutBg);
-                const aboutImg = makeEl('img', 24, 245, 120, '', '', { src: 'https://i.postimg.cc/nV7zpJh2/2.png',
-                    alt: 'About' });
+                const aboutImg = makeEl('img', 24, 245, 120, '', '', {
+                    src: 'https://i.postimg.cc/nV7zpJh2/2.png',
+                    alt: 'About'
+                });
                 aboutImg.borderRadius = '8px';
                 aboutImg.height = 120;
                 els.push(aboutImg);
-                els.push(makeEl('h2', 160, 250, 150, 'About Me', null, { fontFamily: 'Georgia, serif', color: '#1e293b',
-                    fontSize: '22px' }));
+                els.push(makeEl('h2', 160, 250, 150, 'About Me', null, {
+                    fontFamily: 'Georgia, serif', color: '#1e293b',
+                    fontSize: '22px'
+                }));
                 els.push(makeEl('p', 160, 288, Math.min(fw - 200, 500), 'I\'m a passionate designer & developer. I strive to craft beautiful, functional experiences. Let\'s build something amazing together.',
                     null, { fontFamily: 'Verdana, sans-serif', fontSize: '13px', color: '#475569' }));
-                els.push(makeEl('h2', 24, 420, 160, 'Gallery', null, { fontFamily: 'Georgia, serif', color: '#1e293b',
-                    fontSize: '22px' }));
-                const img1 = makeEl('img', 24, 460, 140, '', '', { src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
-                    alt: 'Work 1' });
+                els.push(makeEl('h2', 24, 420, 160, 'Gallery', null, {
+                    fontFamily: 'Georgia, serif', color: '#1e293b',
+                    fontSize: '22px'
+                }));
+                const img1 = makeEl('img', 24, 460, 140, '', '', {
+                    src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
+                    alt: 'Work 1'
+                });
                 img1.borderRadius = '8px';
                 img1.height = 140;
                 els.push(img1);
-                const img2 = makeEl('img', 178, 460, 140, '', '', { src: 'https://i.postimg.cc/1R6tsQ30/4.png',
-                    alt: 'Work 2' });
+                const img2 = makeEl('img', 178, 460, 140, '', '', {
+                    src: 'https://i.postimg.cc/1R6tsQ30/4.png',
+                    alt: 'Work 2'
+                });
                 img2.borderRadius = '8px';
                 img2.height = 140;
                 els.push(img2);
-                const img3 = makeEl('img', 332, 460, 140, '', '', { src: 'https://i.postimg.cc/66R3tXph/5.png',
-                    alt: 'Work 3' });
+                const img3 = makeEl('img', 332, 460, 140, '', '', {
+                    src: 'https://i.postimg.cc/66R3tXph/5.png',
+                    alt: 'Work 3'
+                });
                 img3.borderRadius = '8px';
                 img3.height = 140;
                 els.push(img3);
-                els.push(makeEl('h3', 24, 620, 120, 'Skills', null, { fontFamily: 'Georgia, serif', color: '#1e293b',
-                    fontSize: '18px' }));
-                const skillsList = makeEl('ul', 24, 654, 200, '', '', { listItems: ['UI/UX Design', 'Frontend Dev',
+                els.push(makeEl('h3', 24, 620, 120, 'Skills', null, {
+                    fontFamily: 'Georgia, serif', color: '#1e293b',
+                    fontSize: '18px'
+                }));
+                const skillsList = makeEl('ul', 24, 654, 200, '', '', {
+                    listItems: ['UI/UX Design', 'Frontend Dev',
                         'Brand Identity'
-                    ], fontSize: '13px', color: '#475569' });
+                    ], fontSize: '13px', color: '#475569'
+                });
                 els.push(skillsList);
-                els.push(makeEl('h3', 260, 620, 120, 'Interests', null, { fontFamily: 'Georgia, serif', color: '#1e293b',
-                    fontSize: '18px' }));
-                const interestsList = makeEl('ul', 260, 654, 200, '', '', { listItems: ['Photography', 'Travel',
+                els.push(makeEl('h3', 260, 620, 120, 'Interests', null, {
+                    fontFamily: 'Georgia, serif', color: '#1e293b',
+                    fontSize: '18px'
+                }));
+                const interestsList = makeEl('ul', 260, 654, 200, '', '', {
+                    listItems: ['Photography', 'Travel',
                         'Music'
-                    ], fontSize: '13px', color: '#475569' });
+                    ], fontSize: '13px', color: '#475569'
+                });
                 els.push(interestsList);
-                const footer = makeEl('span', 12, 760, Math.min(fw - 24, 700), '', null, { background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-                    borderRadius: '12px', opacity: 0.9, height: 40 });
+                const footer = makeEl('span', 12, 760, Math.min(fw - 24, 700), '', null, {
+                    background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                    borderRadius: '12px', opacity: 0.9, height: 40
+                });
                 els.push(footer);
-                els.push(makeEl('p', 24, 770, 400, '✨ Thanks for visiting!', { color: '#e2e8f0' }, { fontFamily: 'Arial, sans-serif',
-                    fontSize: '13px' }));
+                els.push(makeEl('p', 24, 770, 400, '✨ Thanks for visiting!', { color: '#e2e8f0' }, {
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '13px'
+                }));
                 return els;
             },
-            landing: function() {
+            landing: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                const hero = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: 'linear-gradient(135deg, #0f172a, #1e293b)',
-                    borderRadius: '16px', height: 280 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                const hero = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: 'linear-gradient(135deg, #0f172a, #1e293b)',
+                    borderRadius: '16px', height: 280
+                });
                 els.push(hero);
-                els.push(makeEl('h1', 40, 45, 550, 'Welcome to Our Platform', null, { color: '#ffffff', fontFamily: 'Georgia, serif',
-                    fontSize: '38px' }));
+                els.push(makeEl('h1', 40, 45, 550, 'Welcome to Our Platform', null, {
+                    color: '#ffffff', fontFamily: 'Georgia, serif',
+                    fontSize: '38px'
+                }));
                 els.push(makeEl('p', 40, 115, 550, 'Build amazing things with our powerful tools and intuitive interface.',
                     null, { color: '#cbd5e1', fontFamily: 'Arial, sans-serif', fontSize: '16px' }));
-                els.push(makeEl('span', 40, 175, 150, 'Get Started', null, { background: '#4f46e5', borderRadius: '8px',
+                els.push(makeEl('span', 40, 175, 150, 'Get Started', null, {
+                    background: '#4f46e5', borderRadius: '8px',
                     color: '#ffffff', fontFamily: 'Arial, sans-serif', fontSize: '14px', fontWeight: '700',
-                    textAlign: 'center', paddingTop: 10, paddingBottom: 10, height: 44 }));
-                const feature1 = makeEl('span', 12, 320, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 160 });
+                    textAlign: 'center', paddingTop: 10, paddingBottom: 10, height: 44
+                }));
+                const feature1 = makeEl('span', 12, 320, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 160
+                });
                 els.push(feature1);
-                els.push(makeEl('h3', 28, 340, 180, '🚀 Fast', null, { fontFamily: 'Georgia, serif', fontSize: '18px',
-                    color: '#1e293b' }));
+                els.push(makeEl('h3', 28, 340, 180, '🚀 Fast', null, {
+                    fontFamily: 'Georgia, serif', fontSize: '18px',
+                    color: '#1e293b'
+                }));
                 els.push(makeEl('p', 28, 374, 180, 'Lightning fast performance out of the box. No waiting, just creating.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '12px', color: '#64748b' }));
-                const feature2 = makeEl('span', 248, 320, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 160 });
+                const feature2 = makeEl('span', 248, 320, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 160
+                });
                 els.push(feature2);
-                els.push(makeEl('h3', 264, 340, 180, '🔒 Secure', null, { fontFamily: 'Georgia, serif', fontSize: '18px',
-                    color: '#1e293b' }));
+                els.push(makeEl('h3', 264, 340, 180, '🔒 Secure', null, {
+                    fontFamily: 'Georgia, serif', fontSize: '18px',
+                    color: '#1e293b'
+                }));
                 els.push(makeEl('p', 264, 374, 180, 'Enterprise-grade security built in. Your data is always protected.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '12px', color: '#64748b' }));
-                const feature3 = makeEl('span', 484, 320, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 160 });
+                const feature3 = makeEl('span', 484, 320, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 160
+                });
                 els.push(feature3);
-                els.push(makeEl('h3', 500, 340, 180, '📱 Responsive', null, { fontFamily: 'Georgia, serif',
-                    fontSize: '18px', color: '#1e293b' }));
+                els.push(makeEl('h3', 500, 340, 180, '📱 Responsive', null, {
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '18px', color: '#1e293b'
+                }));
                 els.push(makeEl('p', 500, 374, 180, 'Looks great on every device. From mobile to desktop, it just works.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '12px', color: '#64748b' }));
                 return els;
             },
-            blog: function() {
+            blog: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    borderRadius: '12px', height: 200 }));
-                els.push(makeEl('h1', 40, 55, 550, '10 Tips for Better Design', null, { color: '#ffffff', fontFamily: 'Georgia, serif',
-                    fontSize: '34px' }));
-                els.push(makeEl('p', 40, 115, 450, 'By John Doe • March 15, 2025', null, { color: '#fef3c7',
-                    fontFamily: 'Arial, sans-serif', fontSize: '13px' }));
-                const contentBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, { background: '#ffffff',
-                    borderRadius: '12px', border: '1px solid #e9edf2', height: 420 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                    borderRadius: '12px', height: 200
+                }));
+                els.push(makeEl('h1', 40, 55, 550, '10 Tips for Better Design', null, {
+                    color: '#ffffff', fontFamily: 'Georgia, serif',
+                    fontSize: '34px'
+                }));
+                els.push(makeEl('p', 40, 115, 450, 'By John Doe • March 15, 2025', null, {
+                    color: '#fef3c7',
+                    fontFamily: 'Arial, sans-serif', fontSize: '13px'
+                }));
+                const contentBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, {
+                    background: '#ffffff',
+                    borderRadius: '12px', border: '1px solid #e9edf2', height: 420
+                });
                 els.push(contentBg);
-                els.push(makeEl('h2', 40, 250, 300, 'Introduction', null, { fontFamily: 'Georgia, serif',
-                    fontSize: '22px', color: '#1e293b' }));
+                els.push(makeEl('h2', 40, 250, 300, 'Introduction', null, {
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '22px', color: '#1e293b'
+                }));
                 els.push(makeEl('p', 40, 290, Math.min(fw - 80, 620), 'Design is not just about making things look pretty. It\'s about solving problems and creating meaningful experiences. Here are 10 tips to elevate your design game.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '14px', lineHeight: '1.6', color: '#475569' }));
-                els.push(makeEl('h2', 40, 390, 300, '1. Start with Research', null, { fontFamily: 'Georgia, serif',
-                    fontSize: '20px', color: '#1e293b' }));
+                els.push(makeEl('h2', 40, 390, 300, '1. Start with Research', null, {
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '20px', color: '#1e293b'
+                }));
                 els.push(makeEl('p', 40, 430, Math.min(fw - 80, 620), 'Always begin by understanding your users. Research their needs, pain points, and behaviors. This foundation will guide every design decision.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '14px', lineHeight: '1.6', color: '#475569' }));
-                els.push(makeEl('h2', 40, 510, 300, '2. Simplify', null, { fontFamily: 'Georgia, serif', fontSize: '20px',
-                    color: '#1e293b' }));
+                els.push(makeEl('h2', 40, 510, 300, '2. Simplify', null, {
+                    fontFamily: 'Georgia, serif', fontSize: '20px',
+                    color: '#1e293b'
+                }));
                 els.push(makeEl('p', 40, 550, Math.min(fw - 80, 620), 'Simplicity is the ultimate sophistication. Remove unnecessary elements and focus on what truly matters to your users.',
                     null, { fontFamily: 'Arial, sans-serif', fontSize: '14px', lineHeight: '1.6', color: '#475569' }));
                 return els;
             },
-            gallery: function() {
+            gallery: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                els.push(makeEl('h1', 12, 12, 300, '📸 Gallery', null, { fontFamily: 'Georgia, serif', fontSize: '32px',
-                    color: '#1e293b' }));
-                els.push(makeEl('p', 12, 60, 400, 'A collection of beautiful moments captured in time', null, { fontFamily: 'Arial, sans-serif',
-                    fontSize: '14px', color: '#64748b' }));
-                const img1 = makeEl('img', 12, 110, 230, '', '', { src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
-                    alt: 'Nature' });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                els.push(makeEl('h1', 12, 12, 300, '📸 Gallery', null, {
+                    fontFamily: 'Georgia, serif', fontSize: '32px',
+                    color: '#1e293b'
+                }));
+                els.push(makeEl('p', 12, 60, 400, 'A collection of beautiful moments captured in time', null, {
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '14px', color: '#64748b'
+                }));
+                const img1 = makeEl('img', 12, 110, 230, '', '', {
+                    src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
+                    alt: 'Nature'
+                });
                 img1.borderRadius = '8px';
                 img1.height = 200;
                 els.push(img1);
-                const img2 = makeEl('img', 258, 110, 230, '', '', { src: 'https://i.postimg.cc/1R6tsQ30/4.png',
-                    alt: 'City' });
+                const img2 = makeEl('img', 258, 110, 230, '', '', {
+                    src: 'https://i.postimg.cc/1R6tsQ30/4.png',
+                    alt: 'City'
+                });
                 img2.borderRadius = '8px';
                 img2.height = 200;
                 els.push(img2);
-                const img3 = makeEl('img', 504, 110, 230, '', '', { src: 'https://i.postimg.cc/66R3tXph/5.png',
-                    alt: 'Abstract' });
+                const img3 = makeEl('img', 504, 110, 230, '', '', {
+                    src: 'https://i.postimg.cc/66R3tXph/5.png',
+                    alt: 'Abstract'
+                });
                 img3.borderRadius = '8px';
                 img3.height = 200;
                 els.push(img3);
-                const img4 = makeEl('img', 12, 330, 230, '', '', { src: 'https://i.postimg.cc/T1rY9rsw/1.png',
-                    alt: 'Portrait' });
+                const img4 = makeEl('img', 12, 330, 230, '', '', {
+                    src: 'https://i.postimg.cc/T1rY9rsw/1.png',
+                    alt: 'Portrait'
+                });
                 img4.borderRadius = '8px';
                 img4.height = 200;
                 els.push(img4);
-                const img5 = makeEl('img', 258, 330, 230, '', '', { src: 'https://i.postimg.cc/nV7zpJh2/2.png',
-                    alt: 'Travel' });
+                const img5 = makeEl('img', 258, 330, 230, '', '', {
+                    src: 'https://i.postimg.cc/nV7zpJh2/2.png',
+                    alt: 'Travel'
+                });
                 img5.borderRadius = '8px';
                 img5.height = 200;
                 els.push(img5);
-                const img6 = makeEl('img', 504, 330, 230, '', '', { src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
-                    alt: 'Food' });
+                const img6 = makeEl('img', 504, 330, 230, '', '', {
+                    src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
+                    alt: 'Food'
+                });
                 img6.borderRadius = '8px';
                 img6.height = 200;
                 els.push(img6);
                 return els;
             },
-            newsletter: function() {
+            newsletter: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                const bg = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: 'linear-gradient(135deg, #1e1b4b, #312e81)',
-                    borderRadius: '16px', height: 400 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                const bg = makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: 'linear-gradient(135deg, #1e1b4b, #312e81)',
+                    borderRadius: '16px', height: 400
+                });
                 els.push(bg);
-                els.push(makeEl('h1', 40, 55, 550, '📬 Weekly Newsletter', null, { color: '#ffffff', fontFamily: 'Georgia, serif',
-                    fontSize: '36px' }));
+                els.push(makeEl('h1', 40, 55, 550, '📬 Weekly Newsletter', null, {
+                    color: '#ffffff', fontFamily: 'Georgia, serif',
+                    fontSize: '36px'
+                }));
                 els.push(makeEl('p', 40, 125, 550, 'Stay up to date with the latest design trends, tips, and resources delivered to your inbox every Friday.',
                     null, { color: '#c7d2fe', fontFamily: 'Arial, sans-serif', fontSize: '15px' }));
-                const inputBg = makeEl('span', 40, 195, 400, '', null, { background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', height: 50 });
+                const inputBg = makeEl('span', 40, 195, 400, '', null, {
+                    background: 'rgba(255,255,255,0.1)',
+                    borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', height: 50
+                });
                 els.push(inputBg);
-                els.push(makeEl('span', 50, 206, 200, 'Enter your email', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '13px' }));
-                els.push(makeEl('span', 280, 200, 130, 'Subscribe', null, { background: '#4f46e5', borderRadius: '6px',
+                els.push(makeEl('span', 50, 206, 200, 'Enter your email', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '13px'
+                }));
+                els.push(makeEl('span', 280, 200, 130, 'Subscribe', null, {
+                    background: '#4f46e5', borderRadius: '6px',
                     color: '#ffffff', fontFamily: 'Arial, sans-serif', fontSize: '13px', fontWeight: '700',
-                    textAlign: 'center', paddingTop: 8, paddingBottom: 8, height: 40 }));
-                els.push(makeEl('p', 40, 275, 400, 'No spam. Unsubscribe anytime.', null, { color: '#94a3b8',
-                    fontFamily: 'Arial, sans-serif', fontSize: '12px' }));
-                const feature1 = makeEl('span', 12, 435, 220, '', null, { background: 'rgba(255,255,255,0.05)',
-                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140 });
+                    textAlign: 'center', paddingTop: 8, paddingBottom: 8, height: 40
+                }));
+                els.push(makeEl('p', 40, 275, 400, 'No spam. Unsubscribe anytime.', null, {
+                    color: '#94a3b8',
+                    fontFamily: 'Arial, sans-serif', fontSize: '12px'
+                }));
+                const feature1 = makeEl('span', 12, 435, 220, '', null, {
+                    background: 'rgba(255,255,255,0.05)',
+                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140
+                });
                 els.push(feature1);
-                els.push(makeEl('h3', 28, 455, 180, '🎨 Design Tips', null, { color: '#e2e8f0', fontFamily: 'Georgia, serif',
-                    fontSize: '16px' }));
-                els.push(makeEl('p', 28, 489, 180, 'Weekly design insights from industry experts.', null, { color: '#94a3b8',
-                    fontFamily: 'Arial, sans-serif', fontSize: '11px' }));
-                const feature2 = makeEl('span', 248, 435, 220, '', null, { background: 'rgba(255,255,255,0.05)',
-                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140 });
+                els.push(makeEl('h3', 28, 455, 180, '🎨 Design Tips', null, {
+                    color: '#e2e8f0', fontFamily: 'Georgia, serif',
+                    fontSize: '16px'
+                }));
+                els.push(makeEl('p', 28, 489, 180, 'Weekly design insights from industry experts.', null, {
+                    color: '#94a3b8',
+                    fontFamily: 'Arial, sans-serif', fontSize: '11px'
+                }));
+                const feature2 = makeEl('span', 248, 435, 220, '', null, {
+                    background: 'rgba(255,255,255,0.05)',
+                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140
+                });
                 els.push(feature2);
-                els.push(makeEl('h3', 264, 455, 180, '🔧 Resources', null, { color: '#e2e8f0', fontFamily: 'Georgia, serif',
-                    fontSize: '16px' }));
-                els.push(makeEl('p', 264, 489, 180, 'Curated tools and resources for designers.', null, { color: '#94a3b8',
-                    fontFamily: 'Arial, sans-serif', fontSize: '11px' }));
-                const feature3 = makeEl('span', 484, 435, 220, '', null, { background: 'rgba(255,255,255,0.05)',
-                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140 });
+                els.push(makeEl('h3', 264, 455, 180, '🔧 Resources', null, {
+                    color: '#e2e8f0', fontFamily: 'Georgia, serif',
+                    fontSize: '16px'
+                }));
+                els.push(makeEl('p', 264, 489, 180, 'Curated tools and resources for designers.', null, {
+                    color: '#94a3b8',
+                    fontFamily: 'Arial, sans-serif', fontSize: '11px'
+                }));
+                const feature3 = makeEl('span', 484, 435, 220, '', null, {
+                    background: 'rgba(255,255,255,0.05)',
+                    borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', height: 140
+                });
                 els.push(feature3);
-                els.push(makeEl('h3', 500, 455, 180, '📈 Trends', null, { color: '#e2e8f0', fontFamily: 'Georgia, serif',
-                    fontSize: '16px' }));
-                els.push(makeEl('p', 500, 489, 180, 'Stay ahead with the latest design trends.', null, { color: '#94a3b8',
-                    fontFamily: 'Arial, sans-serif', fontSize: '11px' }));
+                els.push(makeEl('h3', 500, 455, 180, '📈 Trends', null, {
+                    color: '#e2e8f0', fontFamily: 'Georgia, serif',
+                    fontSize: '16px'
+                }));
+                els.push(makeEl('p', 500, 489, 180, 'Stay ahead with the latest design trends.', null, {
+                    color: '#94a3b8',
+                    fontFamily: 'Arial, sans-serif', fontSize: '11px'
+                }));
                 return els;
             },
-            dashboard: function() {
+            dashboard: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: '#ffffff',
-                    borderRadius: '12px', border: '1px solid #e9edf2', height: 60 }));
-                els.push(makeEl('h1', 28, 24, 200, '📊 Dashboard', null, { fontFamily: 'Georgia, serif', fontSize: '22px',
-                    color: '#1e293b' }));
-                els.push(makeEl('span', 220, 28, 120, 'Welcome back!', null, { color: '#64748b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px' }));
-                const card1 = makeEl('span', 12, 90, 220, '', null, { background: '#ffffff', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 120 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: '#ffffff',
+                    borderRadius: '12px', border: '1px solid #e9edf2', height: 60
+                }));
+                els.push(makeEl('h1', 28, 24, 200, '📊 Dashboard', null, {
+                    fontFamily: 'Georgia, serif', fontSize: '22px',
+                    color: '#1e293b'
+                }));
+                els.push(makeEl('span', 220, 28, 120, 'Welcome back!', null, {
+                    color: '#64748b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px'
+                }));
+                const card1 = makeEl('span', 12, 90, 220, '', null, {
+                    background: '#ffffff', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 120
+                });
                 els.push(card1);
-                els.push(makeEl('p', 28, 106, 180, 'Total Users', null, { color: '#64748b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '11px' }));
-                els.push(makeEl('p', 28, 130, 180, '12,847', null, { color: '#1e293b', fontFamily: 'Georgia, serif',
-                    fontSize: '28px', fontWeight: '700' }));
-                const card2 = makeEl('span', 248, 90, 220, '', null, { background: '#ffffff', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 120 });
+                els.push(makeEl('p', 28, 106, 180, 'Total Users', null, {
+                    color: '#64748b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '11px'
+                }));
+                els.push(makeEl('p', 28, 130, 180, '12,847', null, {
+                    color: '#1e293b', fontFamily: 'Georgia, serif',
+                    fontSize: '28px', fontWeight: '700'
+                }));
+                const card2 = makeEl('span', 248, 90, 220, '', null, {
+                    background: '#ffffff', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 120
+                });
                 els.push(card2);
-                els.push(makeEl('p', 264, 106, 180, 'Revenue', null, { color: '#64748b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '11px' }));
-                els.push(makeEl('p', 264, 130, 180, '$84,293', null, { color: '#1e293b', fontFamily: 'Georgia, serif',
-                    fontSize: '28px', fontWeight: '700' }));
-                const card3 = makeEl('span', 484, 90, 220, '', null, { background: '#ffffff', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 120 });
+                els.push(makeEl('p', 264, 106, 180, 'Revenue', null, {
+                    color: '#64748b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '11px'
+                }));
+                els.push(makeEl('p', 264, 130, 180, '$84,293', null, {
+                    color: '#1e293b', fontFamily: 'Georgia, serif',
+                    fontSize: '28px', fontWeight: '700'
+                }));
+                const card3 = makeEl('span', 484, 90, 220, '', null, {
+                    background: '#ffffff', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 120
+                });
                 els.push(card3);
-                els.push(makeEl('p', 500, 106, 180, 'Active Sessions', null, { color: '#64748b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '11px' }));
-                els.push(makeEl('p', 500, 130, 180, '342', null, { color: '#1e293b', fontFamily: 'Georgia, serif',
-                    fontSize: '28px', fontWeight: '700' }));
-                const chartBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, { background: '#ffffff',
-                    borderRadius: '12px', border: '1px solid #e9edf2', height: 200 });
+                els.push(makeEl('p', 500, 106, 180, 'Active Sessions', null, {
+                    color: '#64748b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '11px'
+                }));
+                els.push(makeEl('p', 500, 130, 180, '342', null, {
+                    color: '#1e293b', fontFamily: 'Georgia, serif',
+                    fontSize: '28px', fontWeight: '700'
+                }));
+                const chartBg = makeEl('span', 12, 230, Math.min(fw - 24, 700), '', null, {
+                    background: '#ffffff',
+                    borderRadius: '12px', border: '1px solid #e9edf2', height: 200
+                });
                 els.push(chartBg);
-                els.push(makeEl('p', 28, 248, 180, '📈 Weekly Activity', null, { color: '#1e293b', fontFamily: 'Georgia, serif',
-                    fontSize: '14px', fontWeight: '600' }));
+                els.push(makeEl('p', 28, 248, 180, '📈 Weekly Activity', null, {
+                    color: '#1e293b', fontFamily: 'Georgia, serif',
+                    fontSize: '14px', fontWeight: '600'
+                }));
                 const barColors = ['#4f46e5', '#7c3aed', '#8b5cf6', '#a78bfa', '#c4b5fd', '#4f46e5', '#7c3aed'];
                 const barData = [60, 80, 50, 90, 70, 85, 65];
                 barData.forEach((val, i) => {
-                    const bar = makeEl('span', 30 + i * 40, 360 - val * 1.2, 30, '', null, { background: barColors[
-                            i % barColors.length], borderRadius: '4px', opacity: 0.8, height: val * 1.2 });
+                    const bar = makeEl('span', 30 + i * 40, 360 - val * 1.2, 30, '', null, {
+                        background: barColors[
+                            i % barColors.length], borderRadius: '4px', opacity: 0.8, height: val * 1.2
+                    });
                     els.push(bar);
                 });
                 return els;
             },
-            portfolio: function() {
+            portfolio: function () {
                 const fw = 1000,
                     els = [];
 
-                function makeEl(tag, x, y, w, content, attrs, extra) { return makeTemplateEl(tag, x, y, w, content,
-                        attrs, extra); }
-                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, { background: '#ffffff',
-                    borderRadius: '12px', border: '1px solid #e9edf2', height: 80 }));
-                els.push(makeEl('h1', 28, 28, 300, '🎨 My Portfolio', null, { fontFamily: 'Georgia, serif',
-                    fontSize: '28px', color: '#1e293b' }));
-                els.push(makeEl('p', 340, 38, 300, 'Creative work from the past year', null, { color: '#64748b',
-                    fontFamily: 'Arial, sans-serif', fontSize: '13px' }));
-                const work1 = makeEl('span', 12, 110, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 180 });
+                function makeEl(tag, x, y, w, content, attrs, extra) {
+                    return makeTemplateEl(tag, x, y, w, content,
+                        attrs, extra);
+                }
+                els.push(makeEl('span', 12, 12, Math.min(fw - 24, 700), '', null, {
+                    background: '#ffffff',
+                    borderRadius: '12px', border: '1px solid #e9edf2', height: 80
+                }));
+                els.push(makeEl('h1', 28, 28, 300, '🎨 My Portfolio', null, {
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '28px', color: '#1e293b'
+                }));
+                els.push(makeEl('p', 340, 38, 300, 'Creative work from the past year', null, {
+                    color: '#64748b',
+                    fontFamily: 'Arial, sans-serif', fontSize: '13px'
+                }));
+                const work1 = makeEl('span', 12, 110, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 180
+                });
                 els.push(work1);
-                const w1img = makeEl('img', 28, 126, 188, '', '', { src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
-                    alt: 'Project 1' });
+                const w1img = makeEl('img', 28, 126, 188, '', '', {
+                    src: 'https://i.postimg.cc/G3Y2dCmQ/3.png',
+                    alt: 'Project 1'
+                });
                 w1img.borderRadius = '8px';
                 w1img.height = 110;
                 els.push(w1img);
-                els.push(makeEl('p', 28, 244, 188, 'Brand Identity', null, { color: '#1e293b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px', fontWeight: '600' }));
-                els.push(makeEl('p', 28, 268, 188, '2025', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '10px' }));
-                const work2 = makeEl('span', 248, 110, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 180 });
+                els.push(makeEl('p', 28, 244, 188, 'Brand Identity', null, {
+                    color: '#1e293b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px', fontWeight: '600'
+                }));
+                els.push(makeEl('p', 28, 268, 188, '2025', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '10px'
+                }));
+                const work2 = makeEl('span', 248, 110, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 180
+                });
                 els.push(work2);
-                const w2img = makeEl('img', 264, 126, 188, '', '', { src: 'https://i.postimg.cc/1R6tsQ30/4.png',
-                    alt: 'Project 2' });
+                const w2img = makeEl('img', 264, 126, 188, '', '', {
+                    src: 'https://i.postimg.cc/1R6tsQ30/4.png',
+                    alt: 'Project 2'
+                });
                 w2img.borderRadius = '8px';
                 w2img.height = 110;
                 els.push(w2img);
-                els.push(makeEl('p', 264, 244, 188, 'Web Design', null, { color: '#1e293b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px', fontWeight: '600' }));
-                els.push(makeEl('p', 264, 268, 188, '2024', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '10px' }));
-                const work3 = makeEl('span', 484, 110, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 180 });
+                els.push(makeEl('p', 264, 244, 188, 'Web Design', null, {
+                    color: '#1e293b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px', fontWeight: '600'
+                }));
+                els.push(makeEl('p', 264, 268, 188, '2024', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '10px'
+                }));
+                const work3 = makeEl('span', 484, 110, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 180
+                });
                 els.push(work3);
-                const w3img = makeEl('img', 500, 126, 188, '', '', { src: 'https://i.postimg.cc/66R3tXph/5.png',
-                    alt: 'Project 3' });
+                const w3img = makeEl('img', 500, 126, 188, '', '', {
+                    src: 'https://i.postimg.cc/66R3tXph/5.png',
+                    alt: 'Project 3'
+                });
                 w3img.borderRadius = '8px';
                 w3img.height = 110;
                 els.push(w3img);
-                els.push(makeEl('p', 500, 244, 188, 'Mobile App', null, { color: '#1e293b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px', fontWeight: '600' }));
-                els.push(makeEl('p', 500, 268, 188, '2024', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '10px' }));
-                const work4 = makeEl('span', 12, 310, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 180 });
+                els.push(makeEl('p', 500, 244, 188, 'Mobile App', null, {
+                    color: '#1e293b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px', fontWeight: '600'
+                }));
+                els.push(makeEl('p', 500, 268, 188, '2024', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '10px'
+                }));
+                const work4 = makeEl('span', 12, 310, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 180
+                });
                 els.push(work4);
-                const w4img = makeEl('img', 28, 326, 188, '', '', { src: 'https://i.postimg.cc/T1rY9rsw/1.png',
-                    alt: 'Project 4' });
+                const w4img = makeEl('img', 28, 326, 188, '', '', {
+                    src: 'https://i.postimg.cc/T1rY9rsw/1.png',
+                    alt: 'Project 4'
+                });
                 w4img.borderRadius = '8px';
                 w4img.height = 110;
                 els.push(w4img);
-                els.push(makeEl('p', 28, 444, 188, 'Illustration', null, { color: '#1e293b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px', fontWeight: '600' }));
-                els.push(makeEl('p', 28, 468, 188, '2023', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '10px' }));
-                const work5 = makeEl('span', 248, 310, 220, '', null, { background: '#f8fafc', borderRadius: '12px',
-                    border: '1px solid #e9edf2', height: 180 });
+                els.push(makeEl('p', 28, 444, 188, 'Illustration', null, {
+                    color: '#1e293b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px', fontWeight: '600'
+                }));
+                els.push(makeEl('p', 28, 468, 188, '2023', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '10px'
+                }));
+                const work5 = makeEl('span', 248, 310, 220, '', null, {
+                    background: '#f8fafc', borderRadius: '12px',
+                    border: '1px solid #e9edf2', height: 180
+                });
                 els.push(work5);
-                const w5img = makeEl('img', 264, 326, 188, '', '', { src: 'https://i.postimg.cc/nV7zpJh2/2.png',
-                    alt: 'Project 5' });
+                const w5img = makeEl('img', 264, 326, 188, '', '', {
+                    src: 'https://i.postimg.cc/nV7zpJh2/2.png',
+                    alt: 'Project 5'
+                });
                 w5img.borderRadius = '8px';
                 w5img.height = 110;
                 els.push(w5img);
-                els.push(makeEl('p', 264, 444, 188, 'Packaging', null, { color: '#1e293b', fontFamily: 'Arial, sans-serif',
-                    fontSize: '12px', fontWeight: '600' }));
-                els.push(makeEl('p', 264, 468, 188, '2023', null, { color: '#94a3b8', fontFamily: 'Arial, sans-serif',
-                    fontSize: '10px' }));
+                els.push(makeEl('p', 264, 444, 188, 'Packaging', null, {
+                    color: '#1e293b', fontFamily: 'Arial, sans-serif',
+                    fontSize: '12px', fontWeight: '600'
+                }));
+                els.push(makeEl('p', 264, 468, 188, '2023', null, {
+                    color: '#94a3b8', fontFamily: 'Arial, sans-serif',
+                    fontSize: '10px'
+                }));
                 return els;
             }
         };
@@ -3302,13 +3827,12 @@
 
             if (el.textDirection && el.textDirection !== 'ltr') style += `direction:${el.textDirection};`;
             if (el.zIndex) style += `z-index:${el.zIndex};`;
-            if (el.shape === 'triangle') style +=
-                `clip-path:polygon(50% 0%,0% 100%,100% 100%); -webkit-clip-path:polygon(50% 0%,0% 100%,100% 100%);`;
-            else if (el.shape === 'star') style +=
-                `clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); -webkit-clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);`;
+            // (removed all clip-path rules from here)
+
             if (el.maskId) {
                 const maskEl = findElement(el.maskId);
                 if (maskEl) {
+                    // mask handling still applied to wrapper (kept as is)
                     if (maskEl.shape === 'circle') {
                         const cx = maskEl.x + maskEl.width / 2 - el.x,
                             cy = maskEl.y + maskEl.height / 2 - el.y,
@@ -3431,7 +3955,7 @@
                     rendered.style.cursor = 'text';
                 }
 
-                wrapper.addEventListener('mousedown', function(e) {
+                wrapper.addEventListener('mousedown', function (e) {
                     if (e.target.closest('.resize-handle') || e.target.closest('.delete-btn')) return;
                     if (e.target.closest('[contenteditable="true"]')) return;
 
@@ -3442,13 +3966,13 @@
 
                     wrapper.style.cursor = 'grabbing';
                 });
-                wrapper.addEventListener('mouseup', function(e) {
+                wrapper.addEventListener('mouseup', function (e) {
                     wrapper.style.cursor = 'grab';
                     if (rendered && isTextTag(el.tag)) {
                         rendered.style.cursor = 'text';
                     }
                 });
-                wrapper.addEventListener('mouseleave', function(e) {
+                wrapper.addEventListener('mouseleave', function (e) {
                     if (!this.classList.contains('selected')) {
                         wrapper.style.cursor = 'grab';
                     }
@@ -3462,22 +3986,22 @@
                 const del = wrapper.querySelector('.delete-btn');
                 if (del) {
                     del.addEventListener('mousedown', e => e.stopPropagation());
-                    del.addEventListener('click', e => { e.stopPropagation();
-                        deleteElement(id); });
+                    del.addEventListener('click', e => {
+                        e.stopPropagation();
+                        deleteElement(id);
+                    });
                 }
 
-                wrapper.addEventListener('dblclick', function(e) {
-                    if (e.target.closest('.rendered')) {
+                wrapper.addEventListener('dblclick', function (e) {
+                    e.stopPropagation(); // prevent frame selection
+                    const el2 = findElement(id);
+                    if (el2 && isTextTag(el2.tag)) {
                         e.preventDefault();
-                        e.stopPropagation();
-                        const el2 = findElement(id);
-                        if (el2 && isTextTag(el2.tag)) {
-                            startInlineEdit(id);
-                        }
+                        startInlineEdit(id);
                     }
                 });
 
-                wrapper.addEventListener('mousedown', function(e) {
+                wrapper.addEventListener('mousedown', function (e) {
                     if (e.target.closest('.resize-handle') || e.target.closest('.delete-btn')) return;
                     if (e.target.closest('[contenteditable="true"]')) return;
                     const ctrlKey = e.ctrlKey || e.metaKey,
@@ -3557,8 +4081,10 @@
                         e.stopPropagation();
                         e.preventDefault();
                         const touch = e.touches[0];
-                        const me = new MouseEvent('mousedown', { clientX: touch.clientX,
-                            clientY: touch.clientY });
+                        const me = new MouseEvent('mousedown', {
+                            clientX: touch.clientX,
+                            clientY: touch.clientY
+                        });
                         const direction = handle.dataset.direction || 'se';
                         onResizeMouseDown(me, id, wrapper, direction);
                     }, { passive: false });
@@ -3566,8 +4092,10 @@
 
                 const badge = wrapper.querySelector('.mask-badge');
                 if (badge) {
-                    if (el.maskId) { badge.classList.add('show');
-                        badge.textContent = '🔲 Mask'; } else badge.classList.remove('show');
+                    if (el.maskId) {
+                        badge.classList.add('show');
+                        badge.textContent = '🔲 Mask';
+                    } else badge.classList.remove('show');
                 }
             });
 
@@ -3603,8 +4131,10 @@
         function updatePropertyPanelValues() {
             const selected = getFirstSelected();
             if (!selected) return;
-            if (window._lastSelectedId !== selected.id) { renderProperties();
-                window._lastSelectedId = selected.id; } else updatePropertyValues();
+            if (window._lastSelectedId !== selected.id) {
+                renderProperties();
+                window._lastSelectedId = selected.id;
+            } else updatePropertyValues();
         }
 
         function updateWidthIndicator() {
@@ -3664,48 +4194,60 @@
                 }
                 innerHtml =
                     `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" style="width:100%;height:100%;object-fit:contain;display:block;border-radius:${radiusStr};padding:0;margin:0;">`;
-            } else if (tag === 'br') innerHtml = '<br>';
-            else if (tag === 'font') {
+            } else if (tag === 'br') {
+                innerHtml = '<br>';
+            } else if (tag === 'font') {
                 const color = attrs.color || '#1e293b',
                     size = attrs.size || '4',
                     face = attrs.face || 'Arial';
                 const content = el.content || '';
                 innerHtml =
-                `<font color="${escapeHtml(color)}" size="${escapeHtml(size)}" face="${escapeHtml(face)}">${content}</font>`;
+                    `<font color="${escapeHtml(color)}" size="${escapeHtml(size)}" face="${escapeHtml(face)}">${content}</font>`;
             } else {
                 const content = el.content || '';
                 const attrsStr = buildAttrs(attrs);
                 if (tag === 'li') innerHtml = `<li${attrsStr}>${content}</li>`;
                 else innerHtml = `<${tag}${attrsStr}>${content}</${tag}>`;
             }
+
             let renderedStyle = '';
             if (isText) {
                 const fontFamily = getFontFamilyValue(el);
                 const align = el.textAlign || 'center';
                 const valign = el.verticalAlign || 'center';
+                let textCase = el.textCase || 'none';
+                if (textCase !== 'none') textCase = `text-transform:${textCase};`;
+
                 renderedStyle =
-                    `font-size:${el.fontSize || '13px'};font-family:${fontFamily};font-weight:${el.fontWeight || 'normal'};font-style:${el.fontStyle || 'normal'};text-decoration:${el.textDecoration || 'none'};color:${el.color || frame.color};line-height:1.4;text-align:${align};display:flex;flex-direction:column;width:100%;height:100%;overflow:visible !important;justify-content:${valign};align-items:${align === 'center' ? 'center' : (align === 'right' ? 'flex-end' : 'flex-start')};min-height:${Math.max(el.height || 30, 30)}px;background:transparent;padding:4px;`
-                    .replace(/\s+/g, ' ').trim();
+                    `font-size:${el.fontSize || '13px'};font-family:${fontFamily};font-weight:${el.fontWeight || 'normal'};font-style:${el.fontStyle || 'normal'};text-decoration:${el.textDecoration || 'none'};color:${el.color || frame.color};line-height:1.4;text-align:${align};display:flex;flex-direction:column;width:100%;height:100%;overflow:visible !important;justify-content:${valign};align-items:${align === 'center' ? 'center' : (align === 'right' ? 'flex-end' : 'flex-start')};min-height:${Math.max(el.height || 30, 30)}px;background:transparent;padding:4px;${textCase}`
+                        .replace(/\s+/g, ' ').trim();
             } else {
-                renderedStyle = 'overflow:hidden;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:0;';
+                // For shapes and non‑text elements, apply clip‑path here
+                let shapeClip = '';
+                if (el.shape === 'triangle') {
+                    shapeClip = 'clip-path:polygon(50% 0%,0% 100%,100% 100%); -webkit-clip-path:polygon(50% 0%,0% 100%,100% 100%);';
+                } else if (el.shape === 'star') {
+                    shapeClip = 'clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); -webkit-clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);';
+                }
+                renderedStyle = `overflow:hidden;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:0;${shapeClip}`;
             }
+
             const editableAttr = isEditing ? 'contenteditable="true"' : '';
             const selectedClass = isSelected ? 'selected' : '';
 
             return `<div class="element-wrapper ${selectedClass}" data-id="${el.id}" style="${styleString}" draggable="false">
-      <div class="rendered" ${editableAttr} data-id="${el.id}" style="${renderedStyle}">${innerHtml}</div>
-      <div class="resize-handle resize-handle-nw" data-direction="nw" title="Resize NW"></div>
-      <div class="resize-handle resize-handle-n" data-direction="n" title="Resize N"></div>
-      <div class="resize-handle resize-handle-ne" data-direction="ne" title="Resize NE"></div>
-      <div class="resize-handle resize-handle-e" data-direction="e" title="Resize E"></div>
-      <div class="resize-handle resize-handle-se" data-direction="se" title="Resize SE"></div>
-      <div class="resize-handle resize-handle-s" data-direction="s" title="Resize S"></div>
-      <div class="resize-handle resize-handle-sw" data-direction="sw" title="Resize SW"></div>
-      <div class="resize-handle resize-handle-w" data-direction="w" title="Resize W"></div>
-      <div class="mask-badge"></div>
-    </div>`;
+                        <div class="rendered" ${editableAttr} data-id="${el.id}" style="${renderedStyle}">${innerHtml}</div>
+                        <div class="resize-handle resize-handle-nw" data-direction="nw" title="Resize NW"></div>
+                        <div class="resize-handle resize-handle-n" data-direction="n" title="Resize N"></div>
+                        <div class="resize-handle resize-handle-ne" data-direction="ne" title="Resize NE"></div>
+                        <div class="resize-handle resize-handle-e" data-direction="e" title="Resize E"></div>
+                        <div class="resize-handle resize-handle-se" data-direction="se" title="Resize SE"></div>
+                        <div class="resize-handle resize-handle-s" data-direction="s" title="Resize S"></div>
+                        <div class="resize-handle resize-handle-sw" data-direction="sw" title="Resize SW"></div>
+                        <div class="resize-handle resize-handle-w" data-direction="w" title="Resize W"></div>
+                        <div class="mask-badge"></div>
+                    </div>`;
         }
-
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         //  SELECTION, DRAG & RESIZE
@@ -4187,8 +4729,10 @@
             }
             elements = JSON.parse(JSON.stringify(customTemplate));
             let maxId = 0;
-            elements.forEach(el => { if (el.id > maxId) maxId = el.id; if (el.fontFamily === undefined) el.fontFamily =
-                    frame.fontFamily; });
+            elements.forEach(el => {
+                if (el.id > maxId) maxId = el.id; if (el.fontFamily === undefined) el.fontFamily =
+                    frame.fontFamily;
+            });
             nextId = maxId + 1;
             selectedIds = elements.length > 0 ? [elements[0].id] : [];
             render();
@@ -4554,9 +5098,6 @@
         <div class="prop-group" style="margin-bottom:8px;">
             <label style="font-size:10px;font-weight:700;color:#4f46e5;">📐 Design Frame</label>
             <p style="font-size:8px;color:#64748b;margin-bottom:4px;">Responsive – fills available width</p>
-            <label style="font-size:8px;display:flex;align-items:center;gap:4px;margin-top:2px;">
-                <input type="checkbox" id="frameLock" ${frame.locked ? 'checked' : ''} /> Lock frame
-            </label>
         </div>
         <div class="prop-group">
             <label style="font-weight:700;font-size:9px;color:#1e293b;">📏 Padding</label>
@@ -4717,6 +5258,15 @@
             </select>
         </div>
         <div>
+            <label style="font-size:8px;font-weight:600;color:#475569;">Case</label>
+            <select id="propTextCase" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
+                <option value="none" ${el.textCase === 'none' ? 'selected' : ''}>None</option>
+                <option value="uppercase" ${el.textCase === 'uppercase' ? 'selected' : ''}>UPPERCASE</option>
+                <option value="lowercase" ${el.textCase === 'lowercase' ? 'selected' : ''}>lowercase</option>
+                <option value="capitalize" ${el.textCase === 'capitalize' ? 'selected' : ''}>Capitalize</option>
+            </select>
+        </div>
+        <div>
             <label style="font-size:8px;font-weight:600;color:#475569;">H. Align</label>
             <select id="propTextAlign" style="font-size:9px;padding:1px 3px;width:100%;border:1px solid #dce1e8;border-radius:3px;">
                 ${TEXT_ALIGN.map(a => `<option value="${a}" ${a === (el.textAlign || 'center') ? 'selected' : ''}>${a}</option>`).join('')}
@@ -4751,19 +5301,19 @@
 <div class="prop-group">
     <div class="section-divider"></div>
     <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">📏 Padding</label>
-    <div class="input-slider-group"><label style="width:16px;">T</label>
+    <div class="input-slider-group"><label style="width:16px;">Top</label>
         <input type="number" id="propPaddingTop" value="${el.paddingTop || 0}" step="1" min="0" max="100" />
         <input type="range" id="propPaddingTopRange" min="0" max="100" step="1" value="${el.paddingTop || 0}" />
     </div>
-    <div class="input-slider-group"><label style="width:16px;">R</label>
+    <div class="input-slider-group"><label style="width:16px;">Right</label>
         <input type="number" id="propPaddingRight" value="${el.paddingRight || 0}" step="1" min="0" max="100" />
         <input type="range" id="propPaddingRightRange" min="0" max="100" step="1" value="${el.paddingRight || 0}" />
     </div>
-    <div class="input-slider-group"><label style="width:16px;">B</label>
+    <div class="input-slider-group"><label style="width:16px;">Bottom</label>
         <input type="number" id="propPaddingBottom" value="${el.paddingBottom || 0}" step="1" min="0" max="100" />
         <input type="range" id="propPaddingBottomRange" min="0" max="100" step="1" value="${el.paddingBottom || 0}" />
     </div>
-    <div class="input-slider-group"><label style="width:16px;">L</label>
+    <div class="input-slider-group"><label style="width:16px;">Left</label>
         <input type="number" id="propPaddingLeft" value="${el.paddingLeft || 0}" step="1" min="0" max="100" />
         <input type="range" id="propPaddingLeftRange" min="0" max="100" step="1" value="${el.paddingLeft || 0}" />
     </div>
@@ -4793,35 +5343,35 @@
             </div>
         </div>
     </div>
-    <div class="input-slider-group" style="margin-top:4px;"><label style="width:16px;">R</label>
+    <div class="input-slider-group" style="margin-top:4px;"><label style="width:16px;">Radius</label>
         <input type="number" id="propBorderRadius" value="${parseInt(el.borderRadius) || 0}" step="1" min="0" max="100" />
         <input type="range" id="propBorderRadiusRange" min="0" max="100" step="1" value="${parseInt(el.borderRadius) || 0}" />
         <span class="range-value" id="borderRadiusVal">${parseInt(el.borderRadius) || 0}px</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;">
         <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">TL</label>
+            <label style="font-size:7px;font-weight:600;color:#475569;">Top Left</label>
             <div class="input-slider-group" style="margin-bottom:0;">
                 <input type="number" id="propBorderRadiusTL" value="${el.borderRadiusTL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                 <input type="range" id="propBorderRadiusTLRange" min="0" max="100" step="1" value="${el.borderRadiusTL || 0}" style="flex:1;" />
             </div>
         </div>
         <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">TR</label>
+            <label style="font-size:7px;font-weight:600;color:#475569;">Top Right</label>
             <div class="input-slider-group" style="margin-bottom:0;">
                 <input type="number" id="propBorderRadiusTR" value="${el.borderRadiusTR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                 <input type="range" id="propBorderRadiusTRRange" min="0" max="100" step="1" value="${el.borderRadiusTR || 0}" style="flex:1;" />
             </div>
         </div>
         <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">BL</label>
+            <label style="font-size:7px;font-weight:600;color:#475569;">Bottom Left</label>
             <div class="input-slider-group" style="margin-bottom:0;">
                 <input type="number" id="propBorderRadiusBL" value="${el.borderRadiusBL || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                 <input type="range" id="propBorderRadiusBLRange" min="0" max="100" step="1" value="${el.borderRadiusBL || 0}" style="flex:1;" />
             </div>
         </div>
         <div>
-            <label style="font-size:7px;font-weight:600;color:#475569;">BR</label>
+            <label style="font-size:7px;font-weight:600;color:#475569;">Bottom Right</label>
             <div class="input-slider-group" style="margin-bottom:0;">
                 <input type="number" id="propBorderRadiusBR" value="${el.borderRadiusBR || 0}" step="1" min="0" max="100" style="width:40px;flex-shrink:0;" />
                 <input type="range" id="propBorderRadiusBRRange" min="0" max="100" step="1" value="${el.borderRadiusBR || 0}" style="flex:1;" />
@@ -4859,12 +5409,14 @@
 <div class="prop-group">
     <div class="section-divider"></div>
     <label style="font-weight:700;font-size:10px;color:#1e293b;display:block;margin-bottom:4px;">✨ Effects</label>
-    <div class="input-slider-group"><label style="width:16px;">B</label><input type="number" id="propBlur" value="${el.blur || 0}" step="0.5" min="0" max="20" /><input type="range" id="propBlurRange" min="0" max="20" step="0.5" value="${el.blur || 0}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">O</label><input type="number" id="propOpacity" value="${el.opacity !== undefined ? el.opacity : 1}" step="0.05" min="0" max="1" /><input type="range" id="propOpacityRange" min="0" max="1" step="0.05" value="${el.opacity !== undefined ? el.opacity : 1}" /></div>
-    <div class="input-slider-group"><label style="width:16px;">D</label><select id="propTextDir" style="flex:1;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
+    <div class="input-slider-group"><label style="width:16px;">Blur</label><input type="number" id="propBlur" value="${el.blur || 0}" step="0.5" min="0" max="20" /><input type="range" id="propBlurRange" min="0" max="20" step="0.5" value="${el.blur || 0}" /></div>
+    <div class="input-slider-group"><label style="width:16px;">Opacity</label><input type="number" id="propOpacity" value="${el.opacity !== undefined ? el.opacity : 1}" step="0.05" min="0" max="1" /><input type="range" id="propOpacityRange" min="0" max="1" step="0.05" value="${el.opacity !== undefined ? el.opacity : 1}" /></div>
+    <div class="input-slider-group"><label style="width:16px;">Direction</label><select id="propTextDir" style="flex:1;padding:1px 3px;font-size:9px;border:1px solid #dce1e8;border-radius:3px;">
         <option value="ltr" ${el.textDirection === 'ltr' ? 'selected' : ''}>LTR</option>
         <option value="rtl" ${el.textDirection === 'rtl' ? 'selected' : ''}>RTL</option>
     </select></div>
+    <div>
+</div>
 </div>`;
 
                 if (tag === 'img') {
@@ -4968,12 +5520,18 @@
         }
 
         function setupElementColorPickers() {
-            if (colorPickerBg) { colorPickerBg.destroy();
-                colorPickerBg = null; }
-            if (colorPickerTextColor) { colorPickerTextColor.destroy();
-                colorPickerTextColor = null; }
-            if (colorPickerBorder) { colorPickerBorder.destroy();
-                colorPickerBorder = null; }
+            if (colorPickerBg) {
+                colorPickerBg.destroy();
+                colorPickerBg = null;
+            }
+            if (colorPickerTextColor) {
+                colorPickerTextColor.destroy();
+                colorPickerTextColor = null;
+            }
+            if (colorPickerBorder) {
+                colorPickerBorder.destroy();
+                colorPickerBorder = null;
+            }
 
             const el = getFirstSelected();
             if (!el || el === 'frame') return;
@@ -5020,7 +5578,7 @@
                 });
                 const label = bgTrigger.querySelector('.cp-label');
                 if (label) label.textContent = (el.background === 'transparent') ? 'Transparent' : el.background ||
-                '#ffffff';
+                    '#ffffff';
                 const swatch = bgTrigger.querySelector('.cp-swatch');
                 if (swatch) swatch.style.background = (el.background === 'transparent') ? 'transparent' : el
                     .background || '#ffffff';
@@ -5176,14 +5734,20 @@
                 }
             });
             const bs = document.getElementById('frameBorderStyle');
-            if (bs) { bs.removeEventListener('change', updateFrameSelects);
-                bs.addEventListener('change', updateFrameSelects); }
+            if (bs) {
+                bs.removeEventListener('change', updateFrameSelects);
+                bs.addEventListener('change', updateFrameSelects);
+            }
             const ff = document.getElementById('frameFontFamily');
-            if (ff) { ff.removeEventListener('change', updateFrameSelects);
-                ff.addEventListener('change', updateFrameSelects); }
+            if (ff) {
+                ff.removeEventListener('change', updateFrameSelects);
+                ff.addEventListener('change', updateFrameSelects);
+            }
             const lock = document.getElementById('frameLock');
-            if (lock) { lock.removeEventListener('change', toggleFrameLock);
-                lock.addEventListener('change', toggleFrameLock); }
+            if (lock) {
+                lock.removeEventListener('change', toggleFrameLock);
+                lock.addEventListener('change', toggleFrameLock);
+            }
         }
 
         function attachFrameRadiusListeners() {
@@ -5218,12 +5782,12 @@
                     updateFrameStyles();
                     markUnsaved();
                 };
-                newAllInput.addEventListener('input', function() {
+                newAllInput.addEventListener('input', function () {
                     const val = parseInt(this.value) || 0;
                     if (newAllRange) newAllRange.value = val;
                     syncFrameRadiusAll(val);
                 });
-                newAllRange.addEventListener('input', function() {
+                newAllRange.addEventListener('input', function () {
                     const val = parseInt(this.value) || 0;
                     if (newAllInput) newAllInput.value = val;
                     syncFrameRadiusAll(val);
@@ -5246,7 +5810,7 @@
                     const newInput = input.cloneNode(true);
                     input.parentNode.replaceChild(newInput, input);
                     const propName = frameCornerMap[id];
-                    newInput.addEventListener('input', function() {
+                    newInput.addEventListener('input', function () {
                         const val = parseFloat(this.value) || 0;
                         frame[propName] = val;
                         const pairedId = id.includes('Range') ? id.replace('Range', '') : id + 'Range';
@@ -5307,12 +5871,12 @@
                         markUnsaved();
                     }
                 };
-                newAllInput.addEventListener('input', function() {
+                newAllInput.addEventListener('input', function () {
                     const val = parseInt(this.value) || 0;
                     if (newAllRange) newAllRange.value = val;
                     syncRadiusAll(val);
                 });
-                newAllRange.addEventListener('input', function() {
+                newAllRange.addEventListener('input', function () {
                     const val = parseInt(this.value) || 0;
                     if (newAllInput) newAllInput.value = val;
                     syncRadiusAll(val);
@@ -5335,7 +5899,7 @@
                     const newInput = input.cloneNode(true);
                     input.parentNode.replaceChild(newInput, input);
                     const propName = cornerMap[id];
-                    newInput.addEventListener('input', function() {
+                    newInput.addEventListener('input', function () {
                         const el2 = getFirstSelected();
                         if (el2 && el2 !== 'frame') {
                             const maxRadius = Math.min(el2.width || 100, el2.height || 100) / 2;
@@ -5489,7 +6053,7 @@
                     sel.removeAllRanges();
                     sel.addRange(range);
 
-                    rendered.addEventListener('keydown', function(e) {
+                    rendered.addEventListener('keydown', function (e) {
                         if (e.key === 'Enter') {
                             e.preventDefault();
                             document.execCommand('insertLineBreak', false, null);
@@ -5502,7 +6066,7 @@
                                 const valign = el2.verticalAlign || 'center';
                                 rendered.style.cssText =
                                     `font-size:${el2.fontSize || '13px'};font-family:${fontFamily};font-weight:${el2.fontWeight || 'normal'};font-style:${el2.fontStyle || 'normal'};text-decoration:${el2.textDecoration || 'none'};color:${el2.color || frame.color};line-height:1.4;text-align:${align};display:flex;flex-direction:column;width:100%;height:100%;overflow:visible !important;justify-content:${valign};align-items:${align === 'center' ? 'center' : (align === 'right' ? 'flex-end' : 'flex-start')};min-height:${Math.max(el2.height || 30, 30)}px;background:transparent;padding:4px;`
-                                    .replace(/\s+/g, ' ').trim();
+                                        .replace(/\s+/g, ' ').trim();
                                 updatePropertyValues();
                                 updateCodeEditor();
                                 markUnsaved();
@@ -5510,7 +6074,7 @@
                         }
                     });
 
-                    rendered.addEventListener('paste', function(e) {
+                    rendered.addEventListener('paste', function (e) {
                         e.preventDefault();
                         const text = (e.clipboardData || window.clipboardData).getData('text/plain');
                         const processed = text.replace(/\n/g, '<br>');
@@ -5523,7 +6087,7 @@
                         }
                     });
 
-                    rendered.addEventListener('input', function() {
+                    rendered.addEventListener('input', function () {
                         const el2 = findElement(id);
                         if (el2) {
                             el2.content = this.innerHTML;
@@ -5539,7 +6103,7 @@
                             markUnsaved();
                         }
                     });
-                    rendered.addEventListener('blur', function() {
+                    rendered.addEventListener('blur', function () {
                         saveInlineEdit(id);
                     });
                 }
@@ -5571,8 +6135,10 @@
             pushHistory();
         }
 
-        function cancelInlineEdit() { editingId = null;
-            render(); }
+        function cancelInlineEdit() {
+            editingId = null;
+            render();
+        }
 
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -5906,7 +6472,7 @@
                     face = attrs.face || 'Arial';
                 const content = el.content || '';
                 innerHtml =
-                `<font color="${escapeHtml(color)}" size="${escapeHtml(size)}" face="${escapeHtml(face)}">${content}</font>`;
+                    `<font color="${escapeHtml(color)}" size="${escapeHtml(size)}" face="${escapeHtml(face)}">${content}</font>`;
             } else {
                 const content = el.content || '';
                 const attrsStr = buildAttrs(attrs);
@@ -5919,7 +6485,7 @@
                 const valign = el.verticalAlign || 'center';
                 const textStyle =
                     `font-size:${fontSizeVw}vw;font-family:${fontFamily};font-weight:${el.fontWeight || 'normal'};font-style:${el.fontStyle || 'normal'};text-decoration:${el.textDecoration || 'none'};color:${el.color || frame.color};line-height:1.4;text-align:${align};display:flex;flex-direction:column;justify-content:${valign};align-items:${align === 'center' ? 'center' : (align === 'right' ? 'flex-end' : 'flex-start')};width:100%;height:100%;max-width:100%;overflow:hidden;min-height:${Math.max(el.height || 30, 30)}px;background:transparent;padding:4px;box-sizing:border-box;word-wrap:break-word;`
-                    .replace(/\s+/g, ' ').trim();
+                        .replace(/\s+/g, ' ').trim();
                 innerHtml = `<span style="${textStyle}">${innerHtml}</span>`;
             }
             return `<span style="${wrapperStyle}">${innerHtml}</span>`;
@@ -5980,7 +6546,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'design-export.html';
+            a.download = 'modela-name.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -6051,7 +6617,7 @@
                 if (input) {
                     if (!input._listenerAttached) {
                         input._listenerAttached = true;
-                        input.addEventListener('input', function(e) {
+                        input.addEventListener('input', function (e) {
                             e.stopPropagation();
                             if (isUpdatingInputs) return;
                             const selected = getFirstSelected();
@@ -6097,15 +6663,16 @@
 
             const contentInput = document.getElementById('propContent');
             if (contentInput) {
-                contentInput.addEventListener('input', function() {
+                contentInput.addEventListener('input', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
-                        selected.content = this.value;
-                        const wrapper = document.querySelector(
-                            `.element-wrapper[data-id="${selected.id}"]`);
+                        // Convert newlines to <br> for HTML rendering
+                        let newContent = this.value.replace(/\n/g, '<br>');
+                        selected.content = newContent;
+                        const wrapper = document.querySelector(`.element-wrapper[data-id="${selected.id}"]`);
                         if (wrapper) {
                             const rendered = wrapper.querySelector('.rendered');
-                            if (rendered) rendered.innerHTML = this.value;
+                            if (rendered) rendered.innerHTML = newContent;
                         }
                         updateCodeEditor();
                         markUnsaved();
@@ -6115,7 +6682,7 @@
 
             const srcInput = document.getElementById('propSrc');
             if (srcInput) {
-                srcInput.addEventListener('input', function() {
+                srcInput.addEventListener('input', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         if (!selected.attributes) selected.attributes = {};
@@ -6128,7 +6695,7 @@
 
             const altInput = document.getElementById('propAlt');
             if (altInput) {
-                altInput.addEventListener('input', function() {
+                altInput.addEventListener('input', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         if (!selected.attributes) selected.attributes = {};
@@ -6141,7 +6708,7 @@
 
             const hrefInput = document.getElementById('propHref');
             if (hrefInput) {
-                hrefInput.addEventListener('input', function() {
+                hrefInput.addEventListener('input', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         if (!selected.attributes) selected.attributes = {};
@@ -6153,7 +6720,7 @@
 
             const aspectCheck = document.getElementById('propAspect');
             if (aspectCheck) {
-                aspectCheck.addEventListener('change', function() {
+                aspectCheck.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         selected.maintainAspect = this.checked;
@@ -6163,7 +6730,7 @@
 
             const textDirSelect = document.getElementById('propTextDir');
             if (textDirSelect) {
-                textDirSelect.addEventListener('change', function() {
+                textDirSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         selected.textDirection = this.value;
@@ -6175,7 +6742,7 @@
 
             const textAlignSelect = document.getElementById('propTextAlign');
             if (textAlignSelect) {
-                textAlignSelect.addEventListener('change', function() {
+                textAlignSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.textAlign = this.value;
@@ -6188,7 +6755,7 @@
 
             const verticalAlignSelect = document.getElementById('propVerticalAlign');
             if (verticalAlignSelect) {
-                verticalAlignSelect.addEventListener('change', function() {
+                verticalAlignSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.verticalAlign = this.value;
@@ -6201,7 +6768,7 @@
 
             const fontFamilySelect = document.getElementById('propFontFamily');
             if (fontFamilySelect) {
-                fontFamilySelect.addEventListener('change', function() {
+                fontFamilySelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.fontFamily = this.value;
@@ -6232,12 +6799,12 @@
                         markUnsaved();
                     }
                 };
-                newFontSizeInput.addEventListener('input', function() {
+                newFontSizeInput.addEventListener('input', function () {
                     const val = parseInt(this.value) || 13;
                     if (newFontSizeRange) newFontSizeRange.value = val;
                     syncFontSize(val);
                 });
-                newFontSizeRange.addEventListener('input', function() {
+                newFontSizeRange.addEventListener('input', function () {
                     const val = parseInt(this.value) || 13;
                     if (newFontSizeInput) newFontSizeInput.value = val;
                     syncFontSize(val);
@@ -6246,7 +6813,7 @@
 
             const fontWeightSelect = document.getElementById('propFontWeight');
             if (fontWeightSelect) {
-                fontWeightSelect.addEventListener('change', function() {
+                fontWeightSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.fontWeight = this.value;
@@ -6259,7 +6826,7 @@
 
             const fontStyleSelect = document.getElementById('propFontStyle');
             if (fontStyleSelect) {
-                fontStyleSelect.addEventListener('change', function() {
+                fontStyleSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.fontStyle = this.value;
@@ -6272,7 +6839,7 @@
 
             const textDecorSelect = document.getElementById('propTextDecor');
             if (textDecorSelect) {
-                textDecorSelect.addEventListener('change', function() {
+                textDecorSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
                         selected.textDecoration = this.value;
@@ -6283,9 +6850,22 @@
                 });
             }
 
+            const textCaseSelect = document.getElementById('propTextCase');
+            if (textCaseSelect) {
+                textCaseSelect.addEventListener('change', function () {
+                    const selected = getFirstSelected();
+                    if (selected && selected !== 'frame' && isTextTag(selected.tag)) {
+                        selected.textCase = this.value;
+                        render();
+                        pushHistory();
+                        markUnsaved();
+                    }
+                });
+            }
+
             const borderStyleSelect = document.getElementById('propBorderStyle');
             if (borderStyleSelect) {
-                borderStyleSelect.addEventListener('change', function() {
+                borderStyleSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         selected.borderStyle = this.value;
@@ -6298,7 +6878,7 @@
 
             const maskSelect = document.getElementById('propMaskSelect');
             if (maskSelect) {
-                maskSelect.addEventListener('change', function() {
+                maskSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         selected.maskId = this.value ? parseInt(this.value) : null;
@@ -6310,7 +6890,7 @@
 
             const maskInvert = document.getElementById('propMaskInvert');
             if (maskInvert) {
-                maskInvert.addEventListener('change', function() {
+                maskInvert.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame') {
                         selected.maskInvert = this.checked;
@@ -6332,7 +6912,7 @@
             const bgImageSection = document.getElementById('bgImageSection');
 
             if (bgModeSolid) {
-                bgModeSolid.removeEventListener('click', function() {});
+                bgModeSolid.removeEventListener('click', function () { });
                 bgModeSolid.addEventListener('click', () => {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
@@ -6348,7 +6928,7 @@
                 });
             }
             if (bgModeImage) {
-                bgModeImage.removeEventListener('click', function() {});
+                bgModeImage.removeEventListener('click', function () { });
                 bgModeImage.addEventListener('click', () => {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
@@ -6368,14 +6948,14 @@
             const clearBgBtn = document.getElementById('clearBgBtn');
             const bgStatus = document.getElementById('bgImageStatus');
             if (bgFileInput) {
-                bgFileInput.removeEventListener('change', function() {});
-                bgFileInput.addEventListener('change', function(e) {
+                bgFileInput.removeEventListener('change', function () { });
+                bgFileInput.addEventListener('change', function (e) {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
                         const file = this.files[0];
                         if (file) {
                             const reader = new FileReader();
-                            reader.onload = function(ev) {
+                            reader.onload = function (ev) {
                                 el2.bgImageData = ev.target.result;
                                 el2.bgMode = 'image';
                                 if (bgStatus) bgStatus.textContent = '✓ Image set';
@@ -6397,8 +6977,8 @@
                 });
             }
             if (clearBgBtn) {
-                clearBgBtn.removeEventListener('click', function() {});
-                clearBgBtn.addEventListener('click', function() {
+                clearBgBtn.removeEventListener('click', function () { });
+                clearBgBtn.addEventListener('click', function () {
                     const el2 = getFirstSelected();
                     if (el2 && el2 !== 'frame') {
                         el2.bgImageData = '';
@@ -6426,7 +7006,7 @@
             const frameBgImageSection = document.getElementById('frameBgImageSection');
 
             if (frameBgModeSolid) {
-                frameBgModeSolid.removeEventListener('click', function() {});
+                frameBgModeSolid.removeEventListener('click', function () { });
                 frameBgModeSolid.addEventListener('click', () => {
                     frame.bgMode = 'solid';
                     frameBgModeSolid.classList.add('active');
@@ -6438,7 +7018,7 @@
                 });
             }
             if (frameBgModeImage) {
-                frameBgModeImage.removeEventListener('click', function() {});
+                frameBgModeImage.removeEventListener('click', function () { });
                 frameBgModeImage.addEventListener('click', () => {
                     frame.bgMode = 'image';
                     frameBgModeImage.classList.add('active');
@@ -6454,12 +7034,12 @@
             const frameClearBgBtn = document.getElementById('frameClearBgBtn');
             const frameBgStatus = document.getElementById('frameBgStatus');
             if (frameBgFileInput) {
-                frameBgFileInput.removeEventListener('change', function() {});
-                frameBgFileInput.addEventListener('change', function(e) {
+                frameBgFileInput.removeEventListener('change', function () { });
+                frameBgFileInput.addEventListener('change', function (e) {
                     const file = this.files[0];
                     if (file) {
                         const reader = new FileReader();
-                        reader.onload = function(ev) {
+                        reader.onload = function (ev) {
                             frame.bgImageData = ev.target.result;
                             frame.bgMode = 'image';
                             if (frameBgStatus) frameBgStatus.textContent = '✓ Image set';
@@ -6479,8 +7059,8 @@
                 });
             }
             if (frameClearBgBtn) {
-                frameClearBgBtn.removeEventListener('click', function() {});
-                frameClearBgBtn.addEventListener('click', function() {
+                frameClearBgBtn.removeEventListener('click', function () { });
+                frameClearBgBtn.addEventListener('click', function () {
                     frame.bgImageData = '';
                     frame.bgMode = 'solid';
                     if (frameBgStatus) frameBgStatus.textContent = 'Upload an image';
@@ -6506,8 +7086,8 @@
             document.getElementById('ungroupBtn')?.addEventListener('click', ungroupElements);
 
             document.querySelectorAll('.add-li-btn').forEach(btn => {
-                btn.removeEventListener('click', function() {});
-                btn.addEventListener('click', function() {
+                btn.removeEventListener('click', function () { });
+                btn.addEventListener('click', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isListTag(selected.tag)) {
                         const items = selected.listItems || [];
@@ -6520,8 +7100,8 @@
                 });
             });
             document.querySelectorAll('.li-remove').forEach(btn => {
-                btn.removeEventListener('click', function() {});
-                btn.addEventListener('click', function() {
+                btn.removeEventListener('click', function () { });
+                btn.addEventListener('click', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isListTag(selected.tag)) {
                         const idx = parseInt(this.dataset.index);
@@ -6537,8 +7117,8 @@
                 });
             });
             document.querySelectorAll('.li-input').forEach(inp => {
-                inp.removeEventListener('change', function() {});
-                inp.addEventListener('change', function() {
+                inp.removeEventListener('change', function () { });
+                inp.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isListTag(selected.tag)) {
                         const idx = parseInt(this.dataset.index);
@@ -6554,8 +7134,8 @@
 
             const listStyleSelect = document.getElementById('propListStyle');
             if (listStyleSelect) {
-                listStyleSelect.removeEventListener('change', function() {});
-                listStyleSelect.addEventListener('change', function() {
+                listStyleSelect.removeEventListener('change', function () { });
+                listStyleSelect.addEventListener('change', function () {
                     const selected = getFirstSelected();
                     if (selected && selected !== 'frame' && isListTag(selected.tag)) {
                         selected.listStyle = this.value;
@@ -6589,15 +7169,66 @@
         document.getElementById('redoBtn').addEventListener('click', redo);
         document.getElementById('saveHTML').addEventListener('click', saveHTMLToDisk);
         document.getElementById('saveTemplate').addEventListener('click', saveCustomTemplate);
-        document.getElementById('applyTemplate').addEventListener('click', function() {
+        document.getElementById('applyTemplate').addEventListener('click', function () {
             const name = document.getElementById('templateSelect').value;
             applyTemplate(name);
         });
-        document.getElementById('loadTemplate').addEventListener('click', function() {
-            const name = document.getElementById('templateSelect').value;
-            applyTemplate(name);
+
+        // Rename custom template
+        document.getElementById('renameTemplate').addEventListener('click', function () {
+            const select = document.getElementById('templateSelect');
+            const selected = select.value;
+            if (selected !== 'custom') {
+                alert('Only custom templates can be renamed.');
+                return;
+            }
+            const stored = localStorage.getItem('customTemplate');
+            if (!stored) {
+                alert('No custom template found.');
+                return;
+            }
+            try {
+                const data = JSON.parse(stored);
+                const newName = prompt('Enter a new name for the custom template:', data._name || 'My Template');
+                if (newName && newName.trim()) {
+                    data._name = newName.trim();
+                    localStorage.setItem('customTemplate', JSON.stringify(data));
+                    // Update the option text
+                    for (let opt of select.options) {
+                        if (opt.value === 'custom') {
+                            opt.textContent = '✨ ' + newName.trim() + ' (custom)';
+                            break;
+                        }
+                    }
+                    alert('Template renamed.');
+                }
+            } catch (e) {
+                alert('Error renaming template.');
+            }
         });
-        document.getElementById('snapToggle').addEventListener('click', function() {
+
+        // Delete custom template
+        document.getElementById('deleteTemplate').addEventListener('click', function () {
+            const select = document.getElementById('templateSelect');
+            if (select.value !== 'custom') {
+                alert('Only custom templates can be deleted.');
+                return;
+            }
+            if (confirm('Delete the saved custom template?')) {
+                localStorage.removeItem('customTemplate');
+                customTemplate = null;
+                // Remove 'custom' option if it exists
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === 'custom') {
+                        select.remove(i);
+                        break;
+                    }
+                }
+                alert('Custom template deleted.');
+            }
+        });
+
+        document.getElementById('snapToggle').addEventListener('click', function () {
             snapEnabled = !snapEnabled;
             this.classList.toggle('active', snapEnabled);
             hideSnapGuides();
@@ -6608,26 +7239,32 @@
             btn.addEventListener('click', () => alignElements(btn.dataset.align));
         });
 
-        document.getElementById('panelCollapseToggle').addEventListener('click', function() {
+        document.getElementById('panelCollapseToggle').addEventListener('click', function () {
             document.getElementById('propertyPanel').classList.toggle('collapsed');
         });
-        document.getElementById('codeToggle').addEventListener('click', function() {
+        document.getElementById('codeToggle').addEventListener('click', function () {
             document.getElementById('codePreview').classList.toggle('collapsed');
         });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault();
-                undo(); return; }
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.shiftKey && e.key === 'Z'))) { e.preventDefault();
-                redo(); return; }
-            if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault();
-                duplicateSelected(); return; }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+                e.preventDefault();
+                undo(); return;
+            }
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.shiftKey && e.key === 'Z'))) {
+                e.preventDefault();
+                redo(); return;
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                e.preventDefault();
+                duplicateSelected(); return;
+            }
 
             // ★ FIX: Delete/Backspace now works reliably
             if ((e.key === 'Delete' || e.key === 'Backspace') && selectedIds.length > 0 && editingId === null) {
                 if (e.target.closest('input') || e.target.closest('textarea') || e.target.closest(
-                        '[contenteditable="true"]')) {
+                    '[contenteditable="true"]')) {
                     return;
                 }
                 e.preventDefault();
@@ -6645,8 +7282,10 @@
 
             if (e.key === 'Escape') {
                 if (editingId !== null) cancelInlineEdit();
-                else { selectedIds = [];
-                    render(); }
+                else {
+                    selectedIds = [];
+                    render();
+                }
                 document.getElementById('formatToolbar').style.display = 'none';
             }
             if (e.key === 's' && !e.ctrlKey && !e.metaKey && !e.target.closest('input,textarea')) {
@@ -6657,7 +7296,7 @@
             if (selectedIds.length === 1 && selectedIds[0] !== 'frame' && !editingId) {
                 const active = document.activeElement;
                 if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active
-                        .contentEditable === 'true')) {
+                    .contentEditable === 'true')) {
                     return;
                 }
                 const el = findElement(selectedIds[0]);
@@ -6700,7 +7339,7 @@
 
         document.getElementById('workspace').addEventListener('mousedown', e => {
             if (e.target === e.currentTarget || e.target.id === 'emptyState' || e.target.closest(
-                    '.workspace-empty')) {
+                '.workspace-empty')) {
                 if (editingId !== null) saveInlineEdit(editingId);
                 selectedIds = ['frame'];
                 pushHistory();
@@ -6723,7 +7362,7 @@
                     opt.textContent = '✨ Custom (saved)';
                     select.appendChild(opt);
                 }
-            } catch (e) {}
+            } catch (e) { }
         }
 
         applyTemplate('profile');
@@ -6742,4 +7381,5 @@
         console.log('✅ Design Studio Pro – Delete key fixed. Click an element then press Delete to remove it.');
     </script>
 </body>
+
 </html>
