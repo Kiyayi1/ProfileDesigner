@@ -404,7 +404,6 @@
         .element-wrapper:active {
             cursor: grabbing;
         }
-        /* ── FIX: removed background !important from selected rule ── */
         .element-wrapper.selected {
             outline: 2px solid #4f46e5 !important;
             outline-offset: 2px !important;
@@ -1839,7 +1838,6 @@
             }
 
             createPopup() {
-                // Remove any existing popup for this instance
                 if (this.popup) {
                     this.popup.remove();
                     this.popup = null;
@@ -2071,7 +2069,6 @@
             }
 
             bindEvents() {
-                // Use click on trigger
                 this.trigger.addEventListener('click', (e) => {
                     e.stopPropagation();
                     e.preventDefault();
@@ -2118,7 +2115,6 @@
                     });
                 }
 
-                // Wheel mouse events
                 this.wheelCanvas.addEventListener('mousedown', (e) => {
                     e.stopPropagation();
                     e.preventDefault();
@@ -2134,14 +2130,12 @@
                     document.addEventListener('mouseup', onUp);
                 });
 
-                // Preset swatches
                 this.popup.querySelectorAll('.cp-swatch').forEach(el => {
                     el.addEventListener('click', () => {
                         this.setColor(el.dataset.color);
                     });
                 });
 
-                // Close on outside click
                 document.addEventListener('click', (e) => {
                     if (this._isOpen &&
                         !this.popup.contains(e.target) &&
@@ -2150,7 +2144,6 @@
                     }
                 });
 
-                // Close on Escape
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && this._isOpen) {
                         this.close();
@@ -2180,13 +2173,11 @@
             }
 
             open() {
-                // Ensure popup exists and is properly attached
                 if (!this.popup || !this.popup.parentNode) {
                     this.createPopup();
                     this.bindEvents();
                 }
 
-                // Position the popup relative to the trigger
                 const rect = this.trigger.getBoundingClientRect();
                 const popupWidth = 240;
                 const popupHeight = Math.min(this.popup.scrollHeight || 380, window.innerHeight - 20);
@@ -2194,7 +2185,6 @@
                 let left = rect.left + (rect.width - popupWidth) / 2;
                 let top = rect.bottom + 8;
 
-                // Make sure it fits in the viewport
                 if (top + popupHeight > window.innerHeight - 10) {
                     top = rect.top - popupHeight - 8;
                 }
@@ -2261,6 +2251,7 @@
         let colorPickerBg = null,
             colorPickerFrameBg = null,
             colorPickerFrameColor = null,
+            colorPickerFrameBorder = null,
             colorPickerBorder = null,
             colorPickerTextColor = null;
         let hasUnsavedChanges = false;
@@ -2405,7 +2396,6 @@
             const plain = text.replace(/<[^>]*>/g, '');
             if (!plain.trim()) return 40;
             const fs = parseFloat(fontSize) || 13;
-            // Count newlines to determine line count
             const lines = plain.split(/\n/).length;
             const avgCharWidth = fs * 0.55;
             const effectiveWidth = Math.max(width - 16, 40);
@@ -3430,8 +3420,6 @@
                     wrapper.style.borderColor = borderColor;
                     wrapper.style.outline = `2px solid ${borderColor}`;
                     wrapper.style.outlineOffset = '2px';
-                    // ── FIX: do NOT set background here ──
-                    // wrapper.style.background = `rgba(79, 70, 229, 0.04)`;
                 } else {
                     wrapper.style.outline = 'none';
                     wrapper.style.outlineOffset = '0';
@@ -3446,6 +3434,12 @@
                 wrapper.addEventListener('mousedown', function(e) {
                     if (e.target.closest('.resize-handle') || e.target.closest('.delete-btn')) return;
                     if (e.target.closest('[contenteditable="true"]')) return;
+
+                    // ★ FIX: Save any pending inline edit when clicking on a different element
+                    if (editingId !== null && editingId !== id) {
+                        saveInlineEdit(editingId);
+                    }
+
                     wrapper.style.cursor = 'grabbing';
                 });
                 wrapper.addEventListener('mouseup', function(e) {
@@ -4317,7 +4311,6 @@
                     }
                 });
 
-                // Update color picker triggers
                 const frameBgTrigger = document.getElementById('frameBgTrigger');
                 if (frameBgTrigger) {
                     const swatch = frameBgTrigger.querySelector('.cp-swatch');
@@ -4506,7 +4499,6 @@
             const listStyleSelect = document.getElementById('propListStyle');
             if (listStyleSelect && isListTag(el.tag)) listStyleSelect.value = el.listStyle || 'disc';
 
-            // Update color picker triggers
             const bgColorTrigger = document.getElementById('bgColorTrigger');
             if (bgColorTrigger) {
                 const swatch = bgColorTrigger.querySelector('.cp-swatch');
@@ -4530,7 +4522,6 @@
             const content = document.getElementById('propertyContent');
             const selected = getFirstSelected();
 
-            // ── CLOSE ANY OPEN COLOR PICKERS ──
             closeAllColorPickers();
 
             if (!selected) {
@@ -4559,7 +4550,6 @@
             let html = '';
 
             if (selected === 'frame') {
-                // ── Frame properties HTML (unchanged) ──
                 html = `
         <div class="prop-group" style="margin-bottom:8px;">
             <label style="font-size:10px;font-weight:700;color:#4f46e5;">📐 Design Frame</label>
@@ -4653,7 +4643,6 @@
         </div>
         `;
             } else {
-                // ── Element properties HTML (unchanged) ──
                 const el = selected;
                 const tag = el.tag;
                 const isText = isTextTag(tag);
@@ -4951,21 +4940,18 @@
 
             content.innerHTML = html;
 
-            // ── ATTACH LISTENERS ──
-            // Reset the "attached" flag so listeners are reattached
             window._propertyListenersAttached = false;
 
             if (selected === 'frame') {
                 attachFrameListeners();
                 attachFrameRadiusListeners();
-                setupFrameColorPickers();      // <-- NEW: create frame color pickers
+                setupFrameColorPickers();
                 updatePropertyValues();
             } else {
-                // Element branch
                 setTimeout(() => {
                     attachPropertyListeners();
-                    attachSpecialListeners();   // UI toggles, uploads, layer/group controls
-                    setupElementColorPickers(); // <-- NEW: create element color pickers
+                    attachSpecialListeners();
+                    setupElementColorPickers();
                     attachElementRadiusListeners();
                     updatePropertyValues();
                 }, 10);
@@ -4982,7 +4968,6 @@
         }
 
         function setupElementColorPickers() {
-            // Destroy old element pickers
             if (colorPickerBg) { colorPickerBg.destroy();
                 colorPickerBg = null; }
             if (colorPickerTextColor) { colorPickerTextColor.destroy();
@@ -4993,7 +4978,6 @@
             const el = getFirstSelected();
             if (!el || el === 'frame') return;
 
-            // ── Background Color Picker ──
             const bgTrigger = document.getElementById('bgColorTrigger');
             if (bgTrigger) {
                 const initialColor = (el.background === 'transparent') ? 'transparent' : (el.background || '#ffffff');
@@ -5002,12 +4986,9 @@
                     onChange: (color) => {
                         const el2 = getFirstSelected();
                         if (el2 && el2 !== 'frame') {
-                            // Update the element's data
                             el2.background = (color === 'transparent') ? 'transparent' : color;
                             el2.bgMode = 'solid';
-                            el2.bgImageData = ''; // clear any image
-
-                            // Update the wrapper style directly
+                            el2.bgImageData = '';
                             const wrapper = document.querySelector(`.element-wrapper[data-id="${el2.id}"]`);
                             if (wrapper) {
                                 wrapper.style.background = (color === 'transparent') ? 'transparent' : color;
@@ -5016,18 +4997,12 @@
                                 wrapper.style.backgroundPosition = '';
                                 wrapper.style.backgroundRepeat = '';
                             }
-
-                            // Update the trigger's swatch and label
                             const swatch = bgTrigger.querySelector('.cp-swatch');
                             if (swatch) swatch.style.background = (color === 'transparent') ? 'transparent' : color;
                             const label = bgTrigger.querySelector('.cp-label');
                             if (label) label.textContent = (color === 'transparent') ? 'Transparent' : color;
-
-                            // Update the propBg input if present
                             const bgInput = document.getElementById('propBg');
                             if (bgInput) bgInput.value = (color === 'transparent') ? 'transparent' : color;
-
-                            // Update the bgMode toggle buttons to reflect solid mode
                             const solidBtn = document.getElementById('bgModeSolid');
                             const imageBtn = document.getElementById('bgModeImage');
                             if (solidBtn && imageBtn) {
@@ -5038,14 +5013,11 @@
                             const imageSection = document.getElementById('bgImageSection');
                             if (colorSection) colorSection.style.display = 'block';
                             if (imageSection) imageSection.style.display = 'none';
-
-                            // Do NOT call render() – direct style update is sufficient
                             pushHistory();
                             markUnsaved();
                         }
                     }
                 });
-                // Update initial display
                 const label = bgTrigger.querySelector('.cp-label');
                 if (label) label.textContent = (el.background === 'transparent') ? 'Transparent' : el.background ||
                 '#ffffff';
@@ -5054,7 +5026,6 @@
                     .background || '#ffffff';
             }
 
-            // ── Text Color Picker ── (direct style update)
             const textColorTrigger = document.getElementById('propTextColorTrigger');
             if (textColorTrigger) {
                 colorPickerTextColor = new ColorPicker(textColorTrigger, {
@@ -5072,7 +5043,7 @@
                             if (swatch) swatch.style.background = color;
                             const label = textColorTrigger.querySelector('.cp-label');
                             if (label) label.textContent = color;
-                            render(); // needed to update property panel
+                            render();
                             pushHistory();
                             markUnsaved();
                         }
@@ -5080,7 +5051,6 @@
                 });
             }
 
-            // ── Border Color Picker ── (direct style update)
             const borderColorTrigger = document.getElementById('borderColorTrigger');
             if (borderColorTrigger) {
                 colorPickerBorder = new ColorPicker(borderColorTrigger, {
@@ -5105,7 +5075,6 @@
         }
 
         function setupFrameColorPickers() {
-            // ── Frame Background Color Picker ──
             const frameBgTrigger = document.getElementById('frameBgTrigger');
             if (frameBgTrigger) {
                 if (window._frameBgPicker) {
@@ -5137,7 +5106,6 @@
                         markUnsaved();
                     }
                 });
-                // Update initial display
                 const label = frameBgTrigger.querySelector('.cp-label');
                 if (label) label.textContent = (frame.background === 'transparent') ? 'Transparent' : frame.background;
                 const swatch = frameBgTrigger.querySelector('.cp-swatch');
@@ -5145,7 +5113,6 @@
                     .background;
             }
 
-            // ── Frame Text Color Picker ──
             const frameColorTrigger = document.getElementById('frameColorTrigger');
             if (frameColorTrigger) {
                 if (window._frameColorPicker) {
@@ -5164,14 +5131,12 @@
                         markUnsaved();
                     }
                 });
-                // Update initial display
                 const label = frameColorTrigger.querySelector('.cp-label');
                 if (label) label.textContent = frame.color;
                 const swatch = frameColorTrigger.querySelector('.cp-swatch');
                 if (swatch) swatch.style.background = frame.color;
             }
 
-            // ── Frame Border Color Picker ──
             const frameBorderColorTrigger = document.getElementById('frameBorderColorTrigger');
             if (frameBorderColorTrigger) {
                 if (window._frameBorderPicker) {
@@ -5190,7 +5155,6 @@
                         markUnsaved();
                     }
                 });
-                // Update initial display
                 const label = frameBorderColorTrigger.querySelector('.cp-label');
                 if (label) label.textContent = frame.borderColor;
                 const swatch = frameBorderColorTrigger.querySelector('.cp-swatch');
@@ -5525,17 +5489,13 @@
                     sel.removeAllRanges();
                     sel.addRange(range);
 
-                    // ── FIX: Better Enter key handling using execCommand ──
                     rendered.addEventListener('keydown', function(e) {
                         if (e.key === 'Enter') {
                             e.preventDefault();
-                            // Use execCommand to insert a line break (creates <br>)
                             document.execCommand('insertLineBreak', false, null);
-                            // Update the element's content
                             const el2 = findElement(id);
                             if (el2) {
                                 el2.content = rendered.innerHTML;
-                                // Update the wrapper style to reflect any height changes
                                 wrapper.style.cssText = buildElementStyles(el2);
                                 const fontFamily = getFontFamilyValue(el2);
                                 const align = el2.textAlign || 'center';
@@ -5553,7 +5513,6 @@
                     rendered.addEventListener('paste', function(e) {
                         e.preventDefault();
                         const text = (e.clipboardData || window.clipboardData).getData('text/plain');
-                        // Replace newlines with <br> tags
                         const processed = text.replace(/\n/g, '<br>');
                         document.execCommand('insertHTML', false, processed);
                         const el2 = findElement(id);
@@ -6364,10 +6323,9 @@
 
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        //  ATTACH SPECIAL LISTENERS — FIXED COLOR PICKERS
+        //  ATTACH SPECIAL LISTENERS
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         function attachSpecialListeners() {
-            // ── ELEMENT BG MODE TOGGLE ──
             const bgModeSolid = document.getElementById('bgModeSolid');
             const bgModeImage = document.getElementById('bgModeImage');
             const bgColorSection = document.getElementById('bgColorSection');
@@ -6406,7 +6364,6 @@
                 });
             }
 
-            // ── ELEMENT BG IMAGE UPLOAD ──
             const bgFileInput = document.getElementById('bgImageInput');
             const clearBgBtn = document.getElementById('clearBgBtn');
             const bgStatus = document.getElementById('bgImageStatus');
@@ -6463,7 +6420,6 @@
                 });
             }
 
-            // ── FRAME BG MODE TOGGLE ──
             const frameBgModeSolid = document.getElementById('frameBgModeSolid');
             const frameBgModeImage = document.getElementById('frameBgModeImage');
             const frameBgColorSection = document.getElementById('frameBgColorSection');
@@ -6494,7 +6450,6 @@
                 });
             }
 
-            // ── FRAME BG IMAGE UPLOAD ──
             const frameBgFileInput = document.getElementById('frameBgImageInput');
             const frameClearBgBtn = document.getElementById('frameClearBgBtn');
             const frameBgStatus = document.getElementById('frameBgStatus');
@@ -6543,7 +6498,6 @@
                 });
             }
 
-            // ── LAYER CONTROLS ──
             document.getElementById('bringForwardBtn')?.addEventListener('click', bringForward);
             document.getElementById('sendBackwardBtn')?.addEventListener('click', sendBackward);
             document.getElementById('bringToFrontBtn')?.addEventListener('click', bringToFront);
@@ -6551,7 +6505,6 @@
             document.getElementById('groupBtn')?.addEventListener('click', groupElements);
             document.getElementById('ungroupBtn')?.addEventListener('click', ungroupElements);
 
-            // ── LIST ITEM CONTROLS ──
             document.querySelectorAll('.add-li-btn').forEach(btn => {
                 btn.removeEventListener('click', function() {});
                 btn.addEventListener('click', function() {
@@ -6599,7 +6552,6 @@
                 });
             });
 
-            // ── LIST STYLE ──
             const listStyleSelect = document.getElementById('propListStyle');
             if (listStyleSelect) {
                 listStyleSelect.removeEventListener('change', function() {});
@@ -6672,6 +6624,7 @@
             if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault();
                 duplicateSelected(); return; }
 
+            // ★ FIX: Delete/Backspace now works reliably
             if ((e.key === 'Delete' || e.key === 'Backspace') && selectedIds.length > 0 && editingId === null) {
                 if (e.target.closest('input') || e.target.closest('textarea') || e.target.closest(
                         '[contenteditable="true"]')) {
@@ -6756,7 +6709,6 @@
             }
         });
 
-        // Load stored custom template
         const stored = localStorage.getItem('customTemplate');
         if (stored) {
             try {
@@ -6774,7 +6726,6 @@
             } catch (e) {}
         }
 
-        // Init with profile template
         applyTemplate('profile');
 
         function setupFrameObserver() {
@@ -6788,7 +6739,7 @@
         setupFrameObserver();
 
         markSaved();
-        console.log('✅ Design Studio Pro – All fixes applied: color pickers toggle, background renders, Enter adds new lines.');
+        console.log('✅ Design Studio Pro – Delete key fixed. Click an element then press Delete to remove it.');
     </script>
 </body>
 </html>
